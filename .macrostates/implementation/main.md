@@ -107,3 +107,9 @@ in [its workflow](workflows/2026-10-08__1V3M9F__public-onboarding-and-dependenci
 
 The short README disclosure identifies AI assistance. Its addition is tracked
 in [a separate workflow](workflows/2026-10-08__1VJQE4__ai-assistance-readme-note.md).
+
+The local CLI package authors dependencies with explicit `at_least` constraints.
+Composition spec-0.2.3 retains the same external release selections and runtime
+contract. Exact project pins and canonical package integrity remain unchanged.
+The dependency default work is tracked in
+[its workflow](workflows/2026-10-08__1XHKTJ__at-least-dependency-default.md).
