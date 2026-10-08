@@ -1,0 +1,17 @@
+schema_version: 1
+project:
+  name: example
+  entrypoint: main.md
+packages:
+  - name: meta
+    version: 1.7.0
+    path: 000_meta
+    entrypoint: README.md
+    source:
+      type: github-archive
+      repository: https://github.com/Macrostates/macrostates-meta.git
+      tag: v1.7.0
+authority_order:
+  - meta
+reading_order:
+  - meta

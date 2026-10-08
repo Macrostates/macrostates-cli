@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "macrostates-cli"
+version = "0.1.0"
+description = "Compose, install and validate versioned Macrostates specification packages."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Lucas Lopez", email = "713375+lucaslopez@users.noreply.github.com"}]
+dependencies = ["PyYAML>=6.0.2,<7"]
+
+[project.urls]
+Repository = "https://github.com/Macrostates/macrostates-cli"
+
+[project.scripts]
+macrostates = "macrostates._cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-cov>=6", "ruff>=0.9", "pyright>=1.1.390", "types-PyYAML>=6"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+macrostates = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B"]
+
+[tool.pyright]
+include = ["src", "examples"]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+venvPath = "."
+venv = ".venv"
