@@ -9,7 +9,7 @@
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), supplied in this conversation.
 - Implementer: Codex, GPT-6; exact revision and effort not exposed.
 - Started at: 2026-10-08 17:13 UTC
-- Last updated at: 2026-10-08 17:27 UTC
+- Last updated at: 2026-10-08 17:30 UTC
 
 ## Original request
 
@@ -78,8 +78,19 @@ meta v2.0.2, process v3.0.2, repository-1 v2.0.2, docker-1 v2.0.2, python-1 v2.0
   dependency lock changes. Runtime 0.2.0 and its exact spec-0.2.0 release baseline
   remain unchanged. CLI local package is 0.3.1; composition is spec-0.2.2.
 
+## Publication verification
+
+Published CLI commit 8ff6f6dd89995d5e5ec1abbccad5456f366e6ad7. Live GitHub API reads confirm
+all eight final package versions/dependencies, the CLI composition, public HTTPS
+setup text and all ten README disclosures. Package repositories retain their
+private visibility and MIT licenses; profile content is public.
+[GitHub CI](https://github.com/Macrostates/macrostates-cli/actions/runs/37816784942) passed Python 3.12, 3.13 and 3.14 for the published
+change. Both working-tree and exact staged self-checks pass after publication.
+A follow-up documentation commit records this evidence without changing the
+implementation, specification versions, package snapshots or existing tags.
+
 ## Remaining work
 
-CLI commit/push and remote verification are the final publication steps. After
-delivery, definer acceptance and explicit closure remain separate. No workflow
-was closed by these requests. Earlier closed records remain in history.
+Definer acceptance and explicit workflow closure. No requested content,
+dependency or publication work remains. No workflow was closed by these requests;
+earlier closed records remain in history.
