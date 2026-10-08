@@ -127,12 +127,14 @@ def check_links(root: Path, boundary: Path, report: Report) -> None:
 class Process23Policy:
     """Process 2.3.x declaration policy; earlier releases retain their own rules."""
 
+    label = "Process 2.3"
+
     def check(self, composition: Composition, implementation: Path, report: Report) -> None:
         declared = composition.raw["project"].get("version")
         if not isinstance(declared, str) or not declared.startswith("spec-"):
             report.add(
                 "process.spec_version",
-                "Process 2.3 requires project.version: spec-MAJOR.MINOR.REVISION",
+                f"{self.label} requires project.version: spec-MAJOR.MINOR.REVISION",
             )
             return
         try:
@@ -171,6 +173,49 @@ class Process23Policy:
             report.add("process.release_invalid", str(exc))
 
 
+class Process24Policy(Process23Policy):
+    """2.4 adds optional verification guidance without changing declarations."""
+
+    label = "Process 2.4"
+
+
+class Process30Policy(Process23Policy):
+    """3.0 retains contract versions and adopts Meta 2 artifact locations."""
+
+    label = "Process 3.0"
+
+    def check(self, composition: Composition, implementation: Path, report: Report) -> None:
+        if implementation.parent.name != ".macrostates":
+            report.add("process.layout", "Process 3.0 requires .macrostates/implementation/")
+        super().check(composition, implementation, report)
+
+
+PROCESS_POLICIES = {
+    (2, 3): Process23Policy(),
+    (2, 4): Process24Policy(),
+    (3, 0): Process30Policy(),
+}
+
+
+def has_contract_version(process_version: str) -> bool:
+    """Only known release policies opt new projects into contract versions."""
+    return version(process_version)[:2] in PROCESS_POLICIES
+
+
+def check_meta(composition: Composition, specs: Path, root: Path, report: Report) -> None:
+    """Release-selected layout policy; legacy projects keep their own conventions."""
+    meta = next((item for item in composition.packages if item.name == "meta"), None)
+    if meta is None or version(meta.version)[0] < 2:
+        return
+    if version(meta.version)[:2] != (2, 0):
+        report.add("meta.unsupported_policy", f"No layout-policy adapter for Meta {meta.version}")
+        return
+    if specs != root / ".macrostates" / "specs":
+        report.add("meta.layout", "Meta 2.0 requires .macrostates/specs/")
+    if composition.schema_version != 1:
+        report.add("meta.composition_format", "Meta 2.0 requires composition schema_version: 1")
+
+
 def check_process(composition: Composition, implementation: Path, report: Report) -> None:
     process = next((package for package in composition.packages if package.name == "process"), None)
     if process is None:
@@ -178,8 +223,9 @@ def check_process(composition: Composition, implementation: Path, report: Report
     selected = version(process.version)
     if selected[0] == 1 or (selected[0] == 2 and selected[1] < 3):
         return
-    if selected[:2] == (2, 3):
-        Process23Policy().check(composition, implementation, report)
+    policy = PROCESS_POLICIES.get(selected[:2])
+    if policy is not None:
+        policy.check(composition, implementation, report)
     else:
         report.add(
             "process.unsupported_policy", f"No process-policy adapter for Process {process.version}"

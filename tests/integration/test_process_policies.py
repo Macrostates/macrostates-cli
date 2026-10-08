@@ -71,7 +71,7 @@ def test_process_23_requires_composition_version(tmp_path):
     assert "process.spec_version" in {item.code for item in project.lint().diagnostics}
 
 
-@pytest.mark.parametrize("selected", ["2.4.0", "3.0.0"])
+@pytest.mark.parametrize("selected", ["2.5.0", "3.1.0", "4.0.0"])
 def test_future_process_policy_is_not_guessed(tmp_path, selected):
     project = prepare(tmp_path, selected)
     assert "process.unsupported_policy" in {item.code for item in project.lint().diagnostics}

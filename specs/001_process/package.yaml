@@ -1,9 +1,0 @@
-name: process
-version: 1.8.0
-versioned_at: 2026-09-15 19:01
-description: Specification-driven development process rules.
-entrypoint: README.md
-dependencies:
-  - name: meta
-    version: 1.0.2
-    constraint: compatible

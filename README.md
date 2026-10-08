@@ -5,7 +5,7 @@ numbered, version-controlled directories such as `000_meta/` and `001_process/`.
 The `macrostates` command and the `macrostates` Python API share the same core.
 
 Requires Python 3.12 or newer. Distribution name: `macrostates-cli`.
-Import package and executable name: `macrostates`. Version 0.1.0 is an initial
+Import package and executable name: `macrostates`. Version 0.2.0 is an initial
 API; compatibility changes will be documented. Licensed under [MIT](LICENSE).
 
 ## Installation
@@ -36,7 +36,7 @@ macrostates info
 macrostates check
 ```
 
-For a short setup, `macrostates init --name my-project --package meta@1.7.0`
+For a short setup, `macrostates init --name my-project --package meta@2.0.0`
 creates a composition. Repeat `--package NAME@VERSION` for additional packages.
 This shorthand uses the order you supplied for both reading and authority
 (highest first); review those orders before installation. It does not select
@@ -61,10 +61,10 @@ AGENTS.md
 Commit the manifest, lockfile, package directories and project specifications.
 Initialization preserves existing agent instructions and refuses to overwrite
 project files. It prepares specification files; it does not implement an app.
-The new layout and archive format are CLI format-1 conventions; existing Meta
-releases still describe `specs/` and Git subtree. This CLI does not rewrite those
-published specifications. A project adopting the new conventions must declare
-their authority explicitly; initialization records that layout below.
+Meta 2.0 and Process 3.0 define this layout. Their numbered packages and locks
+remain tracked in Git. The CLI is strongly recommended and optional; reading
+specifications and manual checks remain necessary for requirements beyond its
+coverage. Existing projects keep their selected policies until explicitly migrated.
 
 ## Commands
 
@@ -93,7 +93,7 @@ accepts local modifications as the baseline: it compares against the release.
 
 ### Updating and recovering
 
-For this first version, updates are deliberate manifest edits: change the
+Updates are deliberate manifest edits: change the
 selected `version` and `source.tag` together, update the human entrypoint, then
 run `install`. It replaces an old package only if its files still match its
 previous locked inventory. Modified packages are left intact. A missing package
@@ -168,8 +168,9 @@ authentication or a `SourceProvider` implementation for another test transport.
 `install(locked=True)` requires unchanged locked selections; `check(staged=True)`
 checks the index. Expected configuration/operation errors raise
 `MacrostatesError`; check failures are returned in `Report.diagnostics`.
-Ordinary file read failures can raise `OSError`. No imports perform I/O or
-configure logging. The CLI configures standard logging when explicitly invoked.
+Ordinary file read failures can raise `OSError`. Imports perform no project-local
+or network I/O and do not configure logging. Accessing `__version__` explicitly
+reads installed distribution metadata; it does not read a project declaration. The CLI configures standard logging when explicitly invoked.
 
 ## Compatibility and development
 
@@ -183,11 +184,20 @@ tag migration and are reported instead of being silently reinterpreted.
 
 Package release versions are independent of format versions. Existing package
 metadata is format 1, as is an explicit `schema_version: 1`. Unknown manifest,
-metadata or lock formats fail clearly. Process declaration checks are selected
-by package release: Process 1.x and 2.0–2.2 do not inherit Process 2.3.x rules.
-Unsupported later Process policies produce a diagnostic.
-See [architecture](implementation/main.md) for adapter extension guidance and
-[project specifications](specs/main.md) for this repository's working rules.
+metadata or lock formats fail clearly. Release policy adapters support Meta
+2.0.x and Process 2.3.x, 2.4.x and 3.0.x. Modern policies require the modern
+layout; Meta 2 also requires composition format 1. Earlier Meta releases and
+Process 1.x/2.0–2.2 retain their existing checks. Future policy releases receive
+explicit unsupported diagnostics rather than guessed requirements.
+
+`info` lists directory-scoped specifications under visible component directories;
+`lint` checks their local file links. The scope root is the component containing
+`.macrostates/`. Separately composed subprojects are checked independently.
+Tool/cache/build/temporary and hidden implementation directories are excluded
+from this discovery; inspect their applicable scopes manually. Scope authority,
+semantic requirements and workflow conformance always need specification reading.
+See [architecture](.macrostates/implementation/main.md) for adapter extension guidance and
+[project specifications](.macrostates/specs/main.md) for this repository's working rules.
 
 ```bash
 uv sync --locked
@@ -202,3 +212,19 @@ The contributor `uv.lock` is committed for repeatable development and CI.
 Builds go to ignored `dist/`; temporary work goes to `tmp/<activity>/`.
 Automated update planning, workflow commands, release publishing and migrations
 are future features.
+
+## This repository's specifications and version
+
+The CLI manages its own specification composition under `.macrostates/specs/`,
+using Meta 2.0.0, Process 3.0.0, Repository 2.0.0, Python 2.0.0 and Python-library
+1.0.0 as canonical archive snapshots. Its local CLI requirements remain editable.
+`macrostates check` and `check --staged` validate the same files contributors use.
+This is also a real integration test of the supported package installation path.
+
+The implementation's single version declaration is
+[release.yaml](.macrostates/implementation/release.yaml); the specification baseline
+is `project.version` in the composition. Setuptools reads the declaration during
+isolated builds. The sdist includes that one declaration, while the wheel reports
+its installed distribution version. Builds do not edit declarations, create tags
+or require Git/network access to obtain release metadata. Ordinary dependency
+installation may still require access to package indexes.

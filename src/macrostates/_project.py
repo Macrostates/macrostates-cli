@@ -14,9 +14,16 @@ from ._integrity import binding, content_hash, extract_archive, inventory, parse
 from ._io import dump_yaml, read_yaml, safe_path, string, version
 from ._models import Composition, MacrostatesError, Report
 from ._mutations import replace_paths
+from ._scopes import directory_scopes
 from ._sources import GitHubSource, SourceProvider, github_repository
 from ._staged import export_index
-from ._validation import check_links, check_process, validate_packages
+from ._validation import (
+    check_links,
+    check_meta,
+    check_process,
+    has_contract_version,
+    validate_packages,
+)
 
 MANIFESTS = ("composition.yaml", "composition.yml")
 LAYOUTS = {"modern": ".macrostates/specs", "legacy": "specs"}
@@ -144,12 +151,19 @@ class Project:
                 "reading_order": order,
             }
             process = next((item for item in selection if item["name"] == "process"), None)
-            if process and version(process["version"])[:2] == (2, 3):
+            if process and has_contract_version(process["version"]):
                 data["project"]["version"] = "spec-0.1.0"
         composition = read_composition(data)
         specs = safe_path(directory, LAYOUTS[layout])
         project = cls(directory, specs, specs / "composition.yaml", source=source)
         project._validate_paths(composition)
+        layout_report = Report()
+        check_meta(composition, specs, directory, layout_report)
+        if not layout_report.ok:
+            raise MacrostatesError("; ".join(item.message for item in layout_report.diagnostics))
+        process = next((item for item in composition.packages if item.name == "process"), None)
+        if process and version(process.version)[:2] == (3, 0) and layout != "modern":
+            raise MacrostatesError("Process 3.0 requires the modern .macrostates/ layout")
         package_lines = "\n".join(
             f"- [{package.name} {package.version}]({package.path}/{package.entrypoint})"
             for package in composition.packages
@@ -162,7 +176,13 @@ class Project:
         )
         overview = f"# {composition.name} specifications\n\nDescribe the project's purpose and requirements here.\n\n## Selected packages\n\n{package_lines}\n\n## Reading order\n\n{order_lines}\n\n## Authority\n\nHighest to lowest: {authority}. Directory-scoped specifications apply only to their enclosing directory; define their authority here before use.\n\nSelection and sources: [composition.yaml](composition.yaml).\n"
         if composition.schema_version == 1:
-            overview += f"\n## CLI conventions\n\nThis project adopts CLI composition format 1. Specification files live under `{specs.relative_to(directory).as_posix()}/`; implementation documentation lives under `{project.implementation.relative_to(directory).as_posix()}/`. Packages marked `github-archive` are tracked source snapshots managed by the CLI and checked against `composition.lock.yaml`. These project-level location and transport choices take precedence over selected packages' older layout and subtree conventions. They do not change package-owned requirements or imply implementation conformance.\n"
+            meta = next((item for item in composition.packages if item.name == "meta"), None)
+            guidance = (
+                "These locations and snapshot sources follow the selected Meta 2 layout."
+                if meta and version(meta.version)[:2] == (2, 0)
+                else "These explicit project-level location and transport choices take precedence over selected packages' older layout and subtree conventions."
+            )
+            overview += f"\n## Layout and verification\n\nSpecification files live under `{specs.relative_to(directory).as_posix()}/`; implementation documentation lives under `{project.implementation.relative_to(directory).as_posix()}/`. Packages marked `github-archive` are tracked release snapshots checked against `composition.lock.yaml`. {guidance} Local packages remain editable. Process, when selected, owns composition/implementation version policy. CLI checks supplement specification reading and do not establish implementation conformance.\n"
         agent_target = (specs.relative_to(directory) / composition.entrypoint).as_posix()
         planned = {
             project.manifest: dump_yaml(data),
@@ -254,6 +274,9 @@ class Project:
                     warning=True,
                 )
         check_links(self.specs, self.root, report)
+        for _, scoped_specs in directory_scopes(self.root, self.specs):
+            check_links(scoped_specs, self.root, report)
+        check_meta(composition, self.specs, self.root, report)
         check_process(composition, self.implementation, report)
         return report
 
@@ -278,6 +301,13 @@ class Project:
             "packages": packages,
             "authority_order": list(composition.authority_order),
             "reading_order": list(composition.reading_order),
+            "directory_specifications": [
+                {
+                    "scope": scope.relative_to(self.root).as_posix(),
+                    "entrypoint": (local / "main.md").relative_to(self.root).as_posix(),
+                }
+                for scope, local in directory_scopes(self.root, self.specs)
+            ],
         }
 
     def _lock_records(self, *, required: bool = True) -> dict[str, Any]:

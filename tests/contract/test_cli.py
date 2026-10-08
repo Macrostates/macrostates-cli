@@ -17,7 +17,7 @@ def command(*arguments, cwd):
 
 def test_installed_command_help_and_version(tmp_path):
     assert command("--help", cwd=tmp_path).returncode == 0
-    assert command("--version", cwd=tmp_path).stdout.strip() == "macrostates 0.1.0"
+    assert command("--version", cwd=tmp_path).stdout.strip() == "macrostates 0.2.0"
 
 
 def test_json_success_and_failed_checks(project):

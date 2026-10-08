@@ -88,6 +88,8 @@ def display(payload: dict[str, Any], *, json_output: bool) -> None:
                 )
         print("Reading order: " + " → ".join(payload["reading_order"]))
         print("Authority (highest first): " + " → ".join(payload["authority_order"]))
+        for scope in payload.get("directory_specifications", []):
+            print(f"Directory scope: {scope['scope']} — {scope['entrypoint']}")
     else:
         print(payload.get("message", "Done."))
 

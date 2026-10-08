@@ -83,8 +83,10 @@ HISTORICAL = yaml.safe_load(
     (Path(__file__).parents[1] / "fixtures/historical-metadata.yaml").read_text()
 )
 
+CURRENT = yaml.safe_load((Path(__file__).parents[1] / "fixtures/current-metadata.yaml").read_text())
 
-@pytest.mark.parametrize("snapshot", HISTORICAL, ids=lambda value: value["release"])
+
+@pytest.mark.parametrize("snapshot", HISTORICAL + CURRENT, ids=lambda value: value["release"])
 def test_all_existing_release_metadata(snapshot):
     actual = read_metadata(snapshot["metadata"])
     assert actual.name == snapshot["name"]

@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=77"]
+requires = ["setuptools>=77", "PyYAML>=6.0.2,<7"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "macrostates-cli"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Compose, install and validate versioned Macrostates specification packages."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -27,6 +27,9 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 macrostates = ["py.typed"]
+
+[tool.setuptools.dynamic]
+version = {attr = "macrostates._build_version.VERSION"}
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
