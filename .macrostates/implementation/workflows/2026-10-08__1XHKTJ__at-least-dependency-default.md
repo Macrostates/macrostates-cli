@@ -3,7 +3,7 @@
 - Workflow type: Specification update
 - Project phase: bootstrapping
 - Status: in_progress
-- Delivery state: implementing
+- Delivery state: awaiting_acceptance
 - Branch: spec/at-least-dependency-default in macrostates-cli
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), supplied in this conversation.
 - Implementer: Codex, GPT-6; exact revision and effort not exposed.
@@ -36,7 +36,7 @@ consumer and CLI policy compatibility separately from numeric constraints.
 
 ## Remaining work
 
-Content edits, validation and PR delivery.
+Definer acceptance, authorized merge/release and explicit closure. All requested edits and PR submission are delivered.
 
 ## Confirmed scope
 
@@ -70,3 +70,30 @@ The new canonical release candidates are not selected in the CLI yet. Its Meta
 2.0 and Process 3.0 policy adapters remain unchanged; Meta 2.1 and Process 4.x
 policy support is required before automated adoption of those future releases.
 At_least validation itself already accepts later Majors numerically.
+
+## PR delivery
+
+- meta 2.1.0: https://github.com/Macrostates/macrostates-meta/pull/1
+- process 4.1.0: https://github.com/Macrostates/macrostates-process/pull/2
+- repository-1 3.1.0: https://github.com/Macrostates/macrostates-repository-1/pull/2
+- docker-1 2.1.0: https://github.com/Macrostates/macrostates-docker-1/pull/1
+- python-1 2.1.0: https://github.com/Macrostates/macrostates-python-1/pull/1
+- python-project-1 2.1.0: https://github.com/Macrostates/macrostates-python-project-1/pull/1
+- python-library-1 1.1.0: https://github.com/Macrostates/macrostates-python-library-1/pull/1
+- android-app-1 4.1.0: https://github.com/Macrostates/macrostates-android-app-1/pull/1
+- cli local 0.4.0: https://github.com/Macrostates/macrostates-cli/pull/1
+
+All nine PRs target main and are open and mergeable at verification. Package
+repositories have no configured PR checks. CLI CI run 37821403654 passed its
+Python 3.12, 3.13 and 3.14 checks for implementation commit 44d7435. A final
+workflow-only commit records delivery without changing specifications or runtime.
+PRs are attached to the chat. No direct primary-branch push or new release tag
+was performed. Earlier Process/Repository PR merges were external target updates.
+
+## Follow-up after acceptance
+
+Merge and tag accepted package candidates when release publication is requested.
+New selections remain deliberate. Before adopting Meta 2.1 or Process 4.x through
+CLI checks, add the corresponding release-policy adapters and fixtures while
+preserving older selected policies. No installed project snapshot was rewritten
+to adopt an unpublished package. Explicit workflow closure remains outstanding.
