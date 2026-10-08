@@ -57,3 +57,7 @@ This specification package, including its documentation, metadata, and bundled
 resources, is licensed under the [MIT License](LICENSE).
 
 Copyright (c) 2026 Lucas Lopez.
+
+## AI assistance
+
+This project was developed with AI assistance.

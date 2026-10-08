@@ -2,50 +2,50 @@ schema_version: 1
 project:
   name: macrostates-cli
   entrypoint: main.md
-  version: spec-0.2.1
+  version: spec-0.2.2
 packages:
 - name: meta
-  version: 2.0.0
+  version: 2.0.2
   path: 000_meta/
   entrypoint: README.md
   source:
     type: github-archive
     repository: https://github.com/Macrostates/macrostates-meta.git
-    tag: v2.0.0
+    tag: v2.0.2
 - name: process
-  version: 3.0.0
+  version: 3.0.2
   path: 001_process/
   entrypoint: README.md
   source:
     type: github-archive
     repository: https://github.com/Macrostates/macrostates-process.git
-    tag: v3.0.0
+    tag: v3.0.2
 - name: repository-1
-  version: 2.0.0
+  version: 2.0.2
   path: 010_repository-1/
   entrypoint: README.md
   source:
     type: github-archive
     repository: https://github.com/Macrostates/macrostates-repository-1.git
-    tag: v2.0.0
+    tag: v2.0.2
 - name: python-1
-  version: 2.0.0
+  version: 2.0.2
   path: 020_python-1/
   entrypoint: README.md
   source:
     type: github-archive
     repository: https://github.com/Macrostates/macrostates-python-1.git
-    tag: v2.0.0
+    tag: v2.0.2
 - name: python-library-1
-  version: 1.0.0
+  version: 1.0.2
   path: 031_python-library-1/
   entrypoint: README.md
   source:
     type: github-archive
     repository: https://github.com/Macrostates/macrostates-python-library-1.git
-    tag: v1.0.0
+    tag: v1.0.2
 - name: cli
-  version: 0.3.0
+  version: 0.3.1
   path: 051_cli/
   entrypoint: README.md
   source:

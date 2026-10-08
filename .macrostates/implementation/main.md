@@ -3,8 +3,9 @@
 Project phase: bootstrapping. Implementation version: 0.2.0.
 [release.yaml](release.yaml) is the authoritative declaration for spec-0.2.0.
 The definer requested both a CLI and a public Python API. Acceptance of this
-first baseline remains a separate phase decision. All CLI workflows are closed
-under the definer’s explicit instruction; closure does not itself change phase.
+first baseline remains a separate phase decision. Earlier CLI workflows were
+closed under the definer’s explicit instruction. Public onboarding and dependency
+synchronization are tracked separately; workflow state does not itself change phase.
 
 ## Current behavior
 
@@ -78,7 +79,7 @@ existing documented use should still be treated carefully.
 
 Run the documented uv checks, build a wheel/sdist and exercise the installed
 console entrypoint and Python API from a clean location. Tests include actual
-metadata from all 21 prior releases and eight current Macrostates package releases, both manifest
+metadata from all 37 prior releases and eight current Macrostates package releases, both manifest
 formats/layouts, safe installation failure, staged-file integrity and Process
 policy isolation. Test fixtures contain synthetic package content only, except
 for public-intended specification package metadata.
@@ -101,4 +102,8 @@ Behavior-to-code verification is mapped in
 dated delivery and closure evidence.
 
 Closed workflow records and dated verification are in
-[workflow history](workflows/history/). There are no open CLI workflows.
+[workflow history](workflows/history/). Current public onboarding work is tracked
+in [its workflow](workflows/2026-10-08__1V3M9F__public-onboarding-and-dependencies.md).
+
+The short README disclosure identifies AI assistance. Its addition is tracked
+in [a separate workflow](workflows/2026-10-08__1VJQE4__ai-assistance-readme-note.md).

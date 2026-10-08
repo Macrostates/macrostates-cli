@@ -10,11 +10,11 @@ API; compatibility changes will be documented. Licensed under [MIT](LICENSE).
 
 ## Installation
 
-The repository is currently private and the package is **not published to PyPI**.
-With GitHub SSH access and [uv](https://docs.astral.sh/uv/):
+The package is **not published to PyPI**. Install it directly from GitHub with
+[uv](https://docs.astral.sh/uv/):
 
 ```bash
-uv tool install 'git+ssh://git@github.com/Macrostates/macrostates-cli.git'
+uv tool install 'git+https://github.com/Macrostates/macrostates-cli.git'
 macrostates --help
 ```
 
@@ -36,7 +36,7 @@ macrostates info
 macrostates check
 ```
 
-For a short setup, `macrostates init --name my-project --package meta@2.0.0`
+For a short setup, `macrostates init --name my-project --package meta@2.0.2`
 creates a composition. Repeat `--package NAME@VERSION` for additional packages.
 This shorthand uses the order you supplied for both reading and authority
 (highest first); review those orders before installation. It does not select
@@ -220,8 +220,8 @@ are future features.
 ## This repository's specifications and version
 
 The CLI manages its own specification composition under `.macrostates/specs/`,
-using Meta 2.0.0, Process 3.0.0, Repository 2.0.0, Python 2.0.0 and Python-library
-1.0.0 as canonical archive snapshots. Its local CLI requirements remain editable.
+using Meta 2.0.2, Process 3.0.2, Repository 2.0.2, Python 2.0.2 and Python-library
+1.0.1 as canonical archive snapshots. Its local CLI requirements remain editable.
 `macrostates check` and `check --staged` validate the same files contributors use.
 This is also a real integration test of the supported package installation path.
 
@@ -232,3 +232,7 @@ isolated builds. The sdist includes that one declaration, while the wheel report
 its installed distribution version. Builds do not edit declarations, create tags
 or require Git/network access to obtain release metadata. Ordinary dependency
 installation may still require access to package indexes.
+
+## AI assistance
+
+This project was developed with AI assistance.

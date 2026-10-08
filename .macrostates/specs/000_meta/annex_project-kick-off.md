@@ -29,11 +29,10 @@ Package access is required regardless of tool choice.
 ## Obtain instructions and understand intent
 
 Inspect [Macrostates](https://github.com/Macrostates) and the Meta source
-`git@github.com:Macrostates/macrostates-meta.git`. If public browsing cannot
-expose it, try the definer's existing Git credentials before concluding it is
-unavailable. Clone into a temporary location, read `README.md`, its core order
-and this annex. An inspection clone is not an installed package; install only
-a verified published release. Never copy its Git metadata into the project.
+`https://github.com/Macrostates/macrostates-meta.git`. Download or clone into a
+temporary location, then read `README.md`, its core order and this annex. An
+inspection clone is not an installed package; install only a verified published
+release. Never copy its Git metadata into the project.
 
 Read [the official catalog](annex_official-packages.md). Understand intended
 product, application/library role, languages, deployment, containers and

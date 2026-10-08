@@ -2,13 +2,14 @@
 
 ## Reviewed baseline and scope
 
-The local CLI package 0.3.0 describes the existing 0.2.0 runtime and supported
-public interfaces. Composition spec-0.2.1 reorganizes/clarifies the existing
-effective contract. Package Minor advances under Meta's clarification rule;
-composition Revision advances under Process's restructuring rule. No runtime
-change or distribution bump is warranted. The release declaration intentionally
+The local CLI package 0.3.1 describes the existing 0.2.0 runtime and supported
+public interfaces. Composition spec-0.2.2 reorganizes/clarifies the existing
+effective contract. The local package Patch advances for editorial dependency
+selections under Meta; composition Revision advances under Process's
+restructuring/selection rule. No runtime change or distribution bump is warranted. The release declaration intentionally
 retains its exact validated baseline spec-0.2.0. No persisted format changes,
-external package edits, new release tags or policy migrations are introduced.
+runtime changes or policy migrations are introduced. Canonical package Patch
+releases refresh public onboarding and same-contract dependency selections.
 
 Reviewed every source module, public root exports, command parser/rendering,
 project operations, formats, metadata/dependencies, scopes/links, Git index,
@@ -37,14 +38,14 @@ listed evidence; it does not claim every edge has an independent automated test.
 | [Composition](../specs/051_cli/004_composition.md): discovery and scope boundaries | _project.open; _scopes | competing layouts, duplicate manifests, nested discovery, component and separate-composition tests |
 | Composition strict documents and safe paths | _io; _formats; _project._validate_paths | unsafe YAML/path, overlapping selection, credential URL and unknown schema tests; reserved-path review |
 | Composition orders and extension preservation | _formats.common/v0/v1; initialize/info | format preservation and shorthand tests; explicit incomplete legacy/format-1 order probe |
-| Composition sources/metadata | _formats; _sources; _validation.validate_packages | 21 prior plus eight current metadata fixtures; source spelling/credentials; metadata mismatch review |
+| Composition sources/metadata | _formats; _sources; _validation.validate_packages | 37 prior plus eight current metadata fixtures; source spelling/credentials; metadata mismatch review |
 | Composition dependencies | _validation.validate_packages | exact/compatible/at_least, missing/optional dependency, cycles and full current graph tests |
 | Composition conservative local links | _validation.check_links; _scopes | missing/fenced-link and component tests; reference/anchor/escape behavior review |
 | [Integrity](../specs/051_cli/005_integrity.md): source resolution and archives | _sources; _integrity.extract_archive | annotated tags, malformed transport, unsafe links/devices/traversal archives; duplicate/root/limit code review |
 | Integrity lock binding/encoding/verification | _integrity; _project.verify | inventory bytes/add/remove/executable tests; unknown lock rejection; canonical/hash record review |
 | Integrity updates, lock-only and local ownership | _project._synchronize | edited copies not blessed/overwritten, clean upgrade, restore missing, moved tag, local and subtree tests |
 | Integrity competition/rollback | _project._synchronize; _mutations | concurrent edits/new destination/marker and simulated write rollback tests; rollback-failure/crash boundary review |
-| [Versioning](../specs/051_cli/006_versioning.md): retained/unknown formats | _formats; _integrity.parse_lock | composition 0/1 and 29 release metadata cases, future metadata/manifest/lock refusal |
+| [Versioning](../specs/051_cli/006_versioning.md): retained/unknown formats | _formats; _integrity.parse_lock | composition 0/1 and 45 release metadata cases, future metadata/manifest/lock refusal |
 | Versioning Meta/Process isolation | _validation; _project.initialize | tests/integration/test_process_policies.py and test_latest_policies.py |
 | Versioning distribution declaration/runtime metadata | _build_version; pyproject; MANIFEST.in; __init__ | tests/unit/test_build_version.py; installed --version; prior isolated sdist/wheel validation |
 | [Verification](../specs/051_cli/007_verification.md): quality and self-use | pyproject; uv.lock; .github/workflows/checks.yaml | full supported-Python test matrix, static tools, own working/staged checks, prior canonical self-install and installed-wheel evidence |
@@ -74,6 +75,6 @@ extracted archives/index snapshots 128 MiB; archives 10,000 entries; annotated
 release tag resolution eight levels. These are implementation limits rather
 than requirements fixing the algorithms forever.
 
-Dated validation results and publication evidence belong to the specification
-capture workflow in workflow history, after its authorized closure. Earlier
-installed-wheel/canonical-source results remain in the prior workflow records.
+Dated validation results belong to their owning workflows, including the current
+public onboarding/dependency update and closed specification-capture history.
+Earlier installed-wheel/canonical-source evidence remains in the prior records.

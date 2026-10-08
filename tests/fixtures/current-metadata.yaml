@@ -1,126 +1,126 @@
-- release: macrostates-android-app-1@v4.0.0
+- release: macrostates-android-app-1@v4.0.2
   name: android-app-1
-  version: 4.0.0
+  version: 4.0.2
   metadata:
     name: android-app-1
-    version: 4.0.0
-    versioned_at: 2026-10-08 12:08
+    version: 4.0.2
+    versioned_at: 2026-10-08 17:22
     description: Reusable Android application layout, tooling, packaging, and quality
       conventions.
     entrypoint: README.md
     dependencies:
     - name: meta
-      version: 2.0.0
+      version: 2.0.2
       constraint: compatible
     - name: repository-1
-      version: 2.0.0
+      version: 2.0.2
       constraint: compatible
     - name: process
-      version: 3.0.0
+      version: 3.0.2
       constraint: compatible
-- release: macrostates-docker-1@v2.0.0
+- release: macrostates-docker-1@v2.0.2
   name: docker-1
-  version: 2.0.0
+  version: 2.0.2
   metadata:
     name: docker-1
-    version: 2.0.0
-    versioned_at: 2026-10-08 12:08
+    version: 2.0.2
+    versioned_at: 2026-10-08 17:22
     description: Reusable Docker image and container conventions.
     entrypoint: README.md
     dependencies:
     - name: meta
-      version: 2.0.0
+      version: 2.0.2
       constraint: compatible
-- release: macrostates-meta@v2.0.0
+- release: macrostates-meta@v2.0.2
   name: meta
-  version: 2.0.0
+  version: 2.0.2
   metadata:
     name: meta
-    version: 2.0.0
-    versioned_at: 2026-10-08 12:08
+    version: 2.0.2
+    versioned_at: 2026-10-08 17:22
     description: Specification package structure, metadata, and versioning rules.
     entrypoint: README.md
-- release: macrostates-process@v3.0.0
+- release: macrostates-process@v3.0.2
   name: process
-  version: 3.0.0
+  version: 3.0.2
   metadata:
     name: process
-    version: 3.0.0
-    versioned_at: 2026-10-08 12:08
+    version: 3.0.2
+    versioned_at: 2026-10-08 17:22
     description: Specification-driven development process rules.
     entrypoint: README.md
     dependencies:
     - name: meta
-      version: 2.0.0
+      version: 2.0.2
       constraint: compatible
-- release: macrostates-python-1@v2.0.0
+- release: macrostates-python-1@v2.0.2
   name: python-1
-  version: 2.0.0
+  version: 2.0.2
   metadata:
     name: python-1
-    version: 2.0.0
-    versioned_at: 2026-10-08 12:08
+    version: 2.0.2
+    versioned_at: 2026-10-08 17:22
     description: Reusable Python language-level conventions.
     entrypoint: README.md
     dependencies:
     - name: meta
-      version: 2.0.0
+      version: 2.0.2
       constraint: compatible
-- release: macrostates-python-library-1@v1.0.0
+- release: macrostates-python-library-1@v1.0.2
   name: python-library-1
-  version: 1.0.0
+  version: 1.0.2
   metadata:
     name: python-library-1
-    version: 1.0.0
-    versioned_at: 2026-10-08 12:08
+    version: 1.0.2
+    versioned_at: 2026-10-08 17:22
     description: Reusable conventions for Python libraries with stable public APIs.
     entrypoint: README.md
     dependencies:
     - name: meta
-      version: 2.0.0
+      version: 2.0.2
       constraint: compatible
     - name: process
-      version: 3.0.0
+      version: 3.0.2
       constraint: compatible
     - name: repository-1
-      version: 2.0.0
+      version: 2.0.2
       constraint: compatible
     - name: python-1
-      version: 2.0.0
+      version: 2.0.2
       constraint: compatible
-- release: macrostates-python-project-1@v2.0.0
+- release: macrostates-python-project-1@v2.0.2
   name: python-project-1
-  version: 2.0.0
+  version: 2.0.2
   metadata:
     name: python-project-1
-    version: 2.0.0
-    versioned_at: 2026-10-08 12:08
+    version: 2.0.2
+    versioned_at: 2026-10-08 17:22
     description: Reusable Python project conventions.
     entrypoint: README.md
     dependencies:
     - name: meta
-      version: 2.0.0
+      version: 2.0.2
       constraint: compatible
     - name: process
-      version: 3.0.0
+      version: 3.0.2
       constraint: compatible
     - name: python-1
-      version: 2.0.0
+      version: 2.0.2
       constraint: compatible
     optional_dependencies:
     - name: docker-1
-      version: 2.0.0
+      version: 2.0.2
       constraint: compatible
-- release: macrostates-repository-1@v2.0.0
+- release: macrostates-repository-1@v2.0.2
   name: repository-1
-  version: 2.0.0
+  version: 2.0.2
   metadata:
     name: repository-1
-    version: 2.0.0
-    versioned_at: 2026-10-08 12:08
+    version: 2.0.2
+    versioned_at: 2026-10-08 17:22
     description: Reusable source repository conventions.
     entrypoint: README.md
     dependencies:
     - name: meta
-      version: 2.0.0
+      version: 2.0.2
       constraint: compatible
