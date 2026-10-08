@@ -1,0 +1,5 @@
+name: meta
+version: 1.7.0
+versioned_at: 2026-10-07 18:12
+description: Specification package structure, metadata, and versioning rules.
+entrypoint: README.md
