@@ -51,6 +51,10 @@ name/version/entrypoint must match metadata; the entrypoint must exist. Metadata
 owns dependencies; legacy selection copies, if present, must agree with it.
 
 Dependencies have name/version and constraint `exact`, `compatible` or `at_least`.
+Author new dependencies with explicit `at_least` by default; use `compatible` or
+`exact` deliberately for narrower requirements. The constraint field remains
+required, and an omitted constraint is invalid. Composition selections remain
+exact; the CLI does not automatically choose latest versions or add dependencies.
 Exact means equality; at_least means equal/higher numeric version; compatible
 additionally means the same Major. Reject duplicate names within each dependency
 list. Require selected required dependencies; check optional constraints only
