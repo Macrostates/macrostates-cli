@@ -3,13 +3,13 @@
 - Project phase: bootstrapping
 - Workflow type: Project bootstrapping
 - Status: in_progress
-- Delivery state: implementing
+- Delivery state: awaiting_acceptance
 - Change depth: systemic
 - Branch: main
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), explicitly supplied in this conversation.
 - Implementer: Model — GPT-6; exact revision and effort not exposed; agent: Codex; source: session metadata.
 - Started at: 2026-10-08 11:15 UTC
-- Last updated at: 2026-10-08 11:40 UTC
+- Last updated at: 2026-10-08 11:41 UTC
 
 ## Original request
 
@@ -54,10 +54,17 @@ Added user documentation, examples, architecture and adapter decision record.
 - Coverage reports 78%; subprocess console tests run separately from that
   in-process measurement. No percentage threshold substitutes for behavior tests.
 
+## Publication verification
+
+Published implementation commit 162e99959c91c059e3428bc2cf32fef9217bca3a to main.
+GitHub confirms Macrostates/macrostates-cli is private and main is the default
+branch. A fresh SSH clone matches that implementation. GitHub Actions run
+37771631616 completed successfully across Python 3.12, 3.13 and 3.14. Gitleaks
+also found no credentials in the committed history after publication.
+
 ## Remaining work
 
-Publish and verify the remote state and automated checks. Definer acceptance
-and explicit workflow closure remain separate. No consumer repository is being
+Definer acceptance and explicit workflow closure remain separate. No consumer repository is being
 updated by this task. No package has been published to PyPI or tagged as a release.
 
 ## Blockers
