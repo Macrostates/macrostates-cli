@@ -2,14 +2,13 @@
 
 - Workflow type: Implementation update
 - Project phase: bootstrapping
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
 - Change depth: systemic
 - Branch: main
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), supplied in this conversation.
 - Implementer: Codex — GPT-6; exact revision and effort not exposed.
 - Started at: 2026-10-08 12:07 UTC
-- Last updated at: 2026-10-08 12:36 UTC
+- Last updated at: 2026-10-08 13:00 UTC
 
 ## Original request and scope
 
@@ -84,4 +83,17 @@ installation from main or the package snapshots consumed here.
 
 ## Remaining work
 
-Definer review and explicit workflow closure. Earlier workflows remain open.
+None within this workflow. Baseline acceptance remains a separate phase decision.
+
+## Authorized closure
+
+Closed at 2026-10-08 13:00 UTC under the definer's explicit instruction:
+“you can then close all open workflows in the cli project and commit and push
+the repository.” The identified set is all four open CLI-project records,
+including specification capture. Earlier delivery evidence was reviewed, and
+current conformance verification passed before closure. Earlier statements about
+open related workflows describe their historical state; this closure supersedes
+that tracking state. No external workflow record is closed.
+
+Workflow closure is distinct from accepting the first implementation baseline;
+project phase remains bootstrapping pending that separate decision.

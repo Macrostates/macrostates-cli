@@ -2,14 +2,13 @@
 
 - Project phase: bootstrapping
 - Workflow type: Project bootstrapping
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
 - Change depth: systemic
 - Branch: main
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), explicitly supplied in this conversation.
 - Implementer: Model — GPT-6; exact revision and effort not exposed; agent: Codex; source: session metadata.
 - Started at: 2026-10-08 11:15 UTC
-- Last updated at: 2026-10-08 11:41 UTC
+- Last updated at: 2026-10-08 13:00 UTC
 
 ## Original request
 
@@ -64,13 +63,23 @@ also found no credentials in the committed history after publication.
 
 ## Remaining work
 
-Definer acceptance and explicit workflow closure remain separate. No consumer repository is being
-updated by this task. No package has been published to PyPI or tagged as a release.
+None within this workflow; completed work and validation are recorded above.
+Baseline acceptance remains a separate project-phase decision.
 
 ## Blockers
 
 None.
 
-## Suggested next step
 
-After publication checks, review the initial CLI and accept or request changes.
+## Authorized closure
+
+Closed at 2026-10-08 13:00 UTC under the definer's explicit instruction:
+“you can then close all open workflows in the cli project and commit and push
+the repository.” The identified set is all four open CLI-project records,
+including specification capture. Earlier delivery evidence was reviewed, and
+current conformance verification passed before closure. Earlier statements about
+open related workflows describe their historical state; this closure supersedes
+that tracking state. No external workflow record is closed.
+
+Workflow closure is distinct from accepting the first implementation baseline;
+project phase remains bootstrapping pending that separate decision.

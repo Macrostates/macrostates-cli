@@ -3,7 +3,8 @@
 Project phase: bootstrapping. Implementation version: 0.2.0.
 [release.yaml](release.yaml) is the authoritative declaration for spec-0.2.0.
 The definer requested both a CLI and a public Python API. Acceptance of this
-first baseline remains pending; passing automated checks does not change phase.
+first baseline remains a separate phase decision. All CLI workflows are closed
+under the definer’s explicit instruction; closure does not itself change phase.
 
 ## Current behavior
 
@@ -95,8 +96,9 @@ updates remain Git operations; archive install refuses implicit conversion.
 Semantic contradictions, implementation conformance, update planning, workflows,
 remote releases and automatic migrations remain outside supported CLI commands.
 
-Progress and validation evidence live in
-[the bootstrapping workflow](workflows/2026-10-08-cli-bootstrapping.md).
+Behavior-to-code verification is mapped in
+[specification conformance](specification-conformance.md). Workflow records own
+dated delivery and closure evidence.
 
-Current adoption/validation evidence is in the linked specification and CLI
-alignment workflows under [workflows](workflows/).
+Closed workflow records and dated verification are in
+[workflow history](workflows/history/). There are no open CLI workflows.

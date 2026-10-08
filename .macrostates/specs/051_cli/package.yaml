@@ -1,6 +1,6 @@
 name: cli
-version: 0.2.0
-versioned_at: 2026-10-08 12:31
+version: 0.3.0
+versioned_at: 2026-10-08 12:56
 description: Macrostates CLI public behavior and compatibility contract.
 entrypoint: README.md
 dependencies:

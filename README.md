@@ -198,6 +198,10 @@ from this discovery; inspect their applicable scopes manually. Scope authority,
 semantic requirements and workflow conformance always need specification reading.
 See [architecture](.macrostates/implementation/main.md) for adapter extension guidance and
 [project specifications](.macrostates/specs/main.md) for this repository's working rules.
+The [CLI specification package](.macrostates/specs/051_cli/README.md) defines the
+public library, commands, composition, integrity and versioning contracts;
+[conformance evidence](.macrostates/implementation/specification-conformance.md)
+maps those requirements to implementation and verification.
 
 ```bash
 uv sync --locked

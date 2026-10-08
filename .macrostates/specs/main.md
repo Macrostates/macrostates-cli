@@ -10,7 +10,7 @@ installing, inspecting and checking Macrostates specification packages.
 3. [Repository 2.0.0](010_repository-1/README.md)
 4. [Python 2.0.0](020_python-1/README.md)
 5. [Python-library 1.0.0](031_python-library-1/README.md)
-6. [CLI 0.2.0](051_cli/README.md)
+6. [CLI 0.3.0](051_cli/README.md)
 
 [composition.yaml](composition.yaml) records selection and sources;
 [composition.lock.yaml](composition.lock.yaml) records verified release contents.
@@ -26,12 +26,12 @@ CLI requirements. Numbering expresses browsing order, not authority.
 
 Meta owns `.macrostates/specs/` and immutable external package installation.
 Process owns `.macrostates/implementation/`, workflow and contract version rules.
-The specification baseline is `spec-0.2.0`; implementation declaration is
+The current specification revision is `spec-0.2.1`; implementation declaration is
 [release.yaml](../implementation/release.yaml). This adoption was explicitly
 requested, including new package major releases and migration from subtrees to
 archive snapshots. It does not migrate other consuming projects.
 
 The implementation remains in bootstrapping pending first-baseline acceptance.
-The directory migration and declaration do not accept a baseline or close
-workflows. The CLI is recommended but optional; equivalent manual verification
+Workflow closure was explicitly requested and is recorded in implementation
+history; it is distinct from first-baseline acceptance. The CLI is recommended but optional; equivalent manual verification
 preserves the requirements and reports coverage. MIT license applies.
