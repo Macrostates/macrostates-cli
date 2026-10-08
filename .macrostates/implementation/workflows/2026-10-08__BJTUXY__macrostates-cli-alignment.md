@@ -9,7 +9,7 @@
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), supplied in this conversation.
 - Implementer: Codex — GPT-6; exact revision and effort not exposed.
 - Started at: 2026-10-08 12:07 UTC
-- Last updated at: 2026-10-08 12:30 UTC
+- Last updated at: 2026-10-08 12:36 UTC
 
 ## Original request and scope
 
@@ -69,7 +69,18 @@ fixtures alongside 21 historical releases and maintained regression tests.
 - Measured coverage is 76%; console subprocesses and the isolated build-helper
   copies are exercised separately from that in-process coverage measurement.
 
-Publication/staged/remote CI verification will be recorded after final checks.
+Published implementation commit 1eacc30db0299694e1b02e5db134a1c00dfa2478.
+[GitHub CI run 37777622784](https://github.com/Macrostates/macrostates-cli/actions/runs/37777622784)
+passed all three Python jobs. A fresh remote clone matches the implementation and
+passes both working-tree and exact staged checks with the independently installed
+wheel. Live GitHub API reads verify private visibility, current main metadata and
+all latest dependency requirements across all nine repositories. Gitleaks also
+found no credentials in the CLI's committed history.
+
+The CLI update is published on main with distribution version 0.2.0. Package
+release tags were explicitly authorized and published; no CLI implementation or
+composition release tag was requested. That distinction does not affect source
+installation from main or the package snapshots consumed here.
 
 ## Remaining work
 
