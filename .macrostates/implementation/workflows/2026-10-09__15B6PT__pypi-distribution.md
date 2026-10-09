@@ -3,13 +3,13 @@
 - Workflow type: Implementation amendment
 - Project phase: bootstrapping
 - Status: in_progress
-- Delivery state: implementing
+- Delivery state: awaiting_acceptance
 - Change depth: medium
 - Branch: release/pypi-distribution
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), repository-local Git identity and this conversation.
 - Implementer: Model GPT-6; exact revision/identifier and effort not exposed; agent Codex; source: session metadata.
 - Started at: 2026-10-09 10:52 UTC
-- Last updated at: 2026-10-09 10:52 UTC
+- Last updated at: 2026-10-09 11:13 UTC
 
 ## Original request and scope
 
@@ -27,7 +27,7 @@ Use a PyPI pending trusted publisher bound to Macrostates/macrostates-cli, publi
 
 ## Remaining work and blockers
 
-All local candidate checks are complete; PR integration and PyPI publication remain. The definer is creating their personal PyPI account and will configure the pending publisher. No API token is requested or recorded. Do not claim that a candidate has been published. Workflow closure and phase acceptance are separate decisions.
+All requested implementation, package publication and verification is delivered. Definer acceptance and explicit workflow closure remain. The definer created their personal PyPI account and configured the pending publisher. No API token is requested or recorded. Publication evidence below identifies the delivered release. Workflow closure and phase acceptance are separate decisions.
 
 ## Candidate validation
 
@@ -35,8 +35,18 @@ Prepared implementation 0.3.1 against unchanged spec-0.3.0. Updated pip/PyPI ins
 
 Ruff lint/format, Pyright, all 190 tests on Python 3.14.7 and working self-check pass. Isolated sdist and wheel builds pass; Twine 7.0.0 strict metadata/rendering checks pass. Actionlint 1.7.12 validates both CI workflows. The initial installed-version test failed because it hard-coded 0.3.0; it now checks console output against installed distribution metadata, preserving the observable version contract across subsequent releases. No runtime source or selected package is changed.
 
-The definer is creating a personal PyPI account. Macrostates in the publisher form means the GitHub organization, not a separate PyPI account. Actual publication and index installation are still pending; no token or private account email is recorded.
+The definer configured the personal-account pending publisher with the exact GitHub repository, publish.yaml and pypi environment. No token or private account email is recorded. The successful upload converted it to a normal publisher.
 
 Both wheel and sdist install through real pip in separate clean Python 3.12.15 environments outside the checkout. Installed help, version and public API imports pass; MIT, typing marker, minimum Python, README metadata and sdist release declaration are present. The exact staged self-check passes.
 
 Gitleaks 8.30.1 scanned the exact staged source and unpacked wheel/sdist contents with zero findings. Existing launch tag identities and immutable installed package snapshots are preserved.
+
+## Delivered publication
+
+[Release PR 4](https://github.com/Macrostates/macrostates-cli/pull/4) merged as 07119d69cc324b3793ecb377926b232538efdb86. Its tree matches the reviewed d8ef1ef17d725c4df8bdf124fef82fe87db86a01 candidate. The [main checks](https://github.com/Macrostates/macrostates-cli/actions/runs/37921917348) passed on Python 3.12, 3.13 and 3.14. Published annotated v0.3.1 at that integrated commit, with unchanged spec-0.3.0 tag and specification snapshot. [GitHub release](https://github.com/Macrostates/macrostates-cli/releases/tag/v0.3.1).
+
+The [publishing workflow](https://github.com/Macrostates/macrostates-cli/actions/runs/37922032084) completed both build and publish successfully. [PyPI now provides version 0.3.1](https://pypi.org/project/macrostates-cli/0.3.1/), with wheel and source distribution matching the exact CI artifacts by SHA-256. Different archive timestamps from local builds do not change this published-artifact verification.
+
+Real pip installed macrostates-cli==0.3.1 from the public PyPI index in a fresh Python 3.12.15 environment without local package/cache fallback. Installed help/version and public API import checks passed. With GitHub credential variables removed and GitHub CLI lookup suppressed for the test process, a fresh project using Meta 2.1.0 initialized, installed and checked successfully. No real login/configuration was changed.
+
+The organization profile's pip guidance is integrated through its own PR after actual publication. Workflow closure and first-baseline phase acceptance remain separate; no canonical specification files or consumers were changed.
