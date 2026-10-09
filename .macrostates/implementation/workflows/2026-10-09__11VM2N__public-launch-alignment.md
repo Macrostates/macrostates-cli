@@ -1,6 +1,6 @@
 # Public launch alignment
 
-- Workflow type: Specification update and implementation update
+- Workflow type: Specification update
 - Project phase: bootstrapping
 - Status: in_progress
 - Delivery state: awaiting_acceptance
@@ -9,7 +9,7 @@
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), repository-local Git identity and this conversation.
 - Implementer: Model GPT-6; exact identifier/revision and effort not exposed; agent Codex; source: session metadata.
 - Started at: 2026-10-09 09:51 UTC
-- Last updated at: 2026-10-09 09:51 UTC
+- Last updated at: 2026-10-09 10:35 UTC
 
 ## Original request
 
