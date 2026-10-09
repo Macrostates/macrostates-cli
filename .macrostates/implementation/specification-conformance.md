@@ -3,11 +3,17 @@
 ## Reviewed baseline and scope
 
 The local CLI package 0.5.0 and composition spec-0.3.0 define the implementation
-0.3.0 contract. The additive change supports Meta 2.1 and Process 4.0/4.1, keeps
+0.3.x contract. The additive change supports Meta 2.1 and Process 4.0/4.1, keeps
 all earlier supported formats/policies, and adopts the latest canonical packages.
 The implementation declaration records this exact validated baseline. Branch/PR
 compliance remains manual; no command performs Git publication or migration.
 Canonical package adoption retains numeric minimums and explicit at_least rules.
+
+Implementation 0.3.1 keeps that specification baseline unchanged. Packaging and
+release infrastructure adds pip installation from PyPI without changing the
+public API, commands or persisted formats. Its scoped publication workflow owns
+artifact, integration and actual upload evidence; preparing a build is separate
+from completing index publication.
 
 Reviewed every source module, public root exports, command parser/rendering,
 project operations, formats, metadata/dependencies, scopes/links, Git index,

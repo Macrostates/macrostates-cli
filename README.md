@@ -5,28 +5,32 @@ numbered, version-controlled directories such as `000_meta/` and `001_process/`.
 The `macrostates` command and the `macrostates` Python API share the same core.
 
 Requires Python 3.12 or newer. Distribution name: `macrostates-cli`.
-Import package and executable name: `macrostates`. Version 0.3.0 is an initial
-API; compatibility changes will be documented. Licensed under [MIT](LICENSE).
+Import package and executable name: `macrostates`. Version 0.3.1 is an initial
+API; compatibility changes will be documented. Licensed under [MIT](https://github.com/Macrostates/macrostates-cli/blob/main/LICENSE).
 
 ## Installation
 
-The package is **not published to PyPI**. Install it directly from GitHub with
-[uv](https://docs.astral.sh/uv/):
+Install from [PyPI](https://pypi.org/project/macrostates-cli/) with pip in a
+Python 3.12 or newer environment:
 
 ```bash
-uv tool install 'git+https://github.com/Macrostates/macrostates-cli.git@v0.3.0'
+python -m pip install macrostates-cli
 macrostates --help
 ```
 
-Alternatively, clone the repository and install from its directory with
-`uv tool install .` or `pipx install .`. A user installation exposes the command
-without activating a project environment. Select a Git revision with the normal
-package install URL syntax when a team needs a fixed CLI version.
+Use `python -m pip install macrostates-cli==0.3.1` for a fixed version, or
+`python -m pip install --upgrade macrostates-cli` to update it. If your Python
+installation requires a virtual environment, create one with
+`python -m venv .venv` and activate it before installing.
+
+For a command available outside a project environment, use
+`pipx install macrostates-cli` or `uv tool install macrostates-cli`. Contributors
+can clone the repository and run `uv sync --locked` as described below.
 
 ## Start a project
 
 Supply a composition whose package versions, authority and reading orders you
-have selected. [The minimal composition](examples/composition.yaml) selects only
+have selected. [The minimal composition](https://github.com/Macrostates/macrostates-cli/blob/main/examples/composition.yaml) selects only
 Meta; add Process and the technology packages appropriate to your project.
 
 ```bash
@@ -198,11 +202,11 @@ verify branch discipline or authorize Git operations.
 Tool/cache/build/temporary and hidden implementation directories are excluded
 from this discovery; inspect their applicable scopes manually. Scope authority,
 semantic requirements and workflow conformance always need specification reading.
-See [architecture](.macrostates/implementation/main.md) for adapter extension guidance and
-[project specifications](.macrostates/specs/main.md) for this repository's working rules.
-The [CLI specification package](.macrostates/specs/051_cli/README.md) defines the
+See [architecture](https://github.com/Macrostates/macrostates-cli/blob/main/.macrostates/implementation/main.md) for adapter extension guidance and
+[project specifications](https://github.com/Macrostates/macrostates-cli/blob/main/.macrostates/specs/main.md) for this repository's working rules.
+The [CLI specification package](https://github.com/Macrostates/macrostates-cli/blob/main/.macrostates/specs/051_cli/README.md) defines the
 public library, commands, composition, integrity and versioning contracts;
-[conformance evidence](.macrostates/implementation/specification-conformance.md)
+[conformance evidence](https://github.com/Macrostates/macrostates-cli/blob/main/.macrostates/implementation/specification-conformance.md)
 maps those requirements to implementation and verification.
 
 ```bash
@@ -228,7 +232,7 @@ using Meta 2.1.0, Process 4.1.0, Repository 3.1.0, Python 2.1.0 and Python-libra
 This is also a real integration test of the supported package installation path.
 
 The implementation's single version declaration is
-[release.yaml](.macrostates/implementation/release.yaml); the specification baseline
+[release.yaml](https://github.com/Macrostates/macrostates-cli/blob/main/.macrostates/implementation/release.yaml); the specification baseline
 is `project.version` in the composition. Setuptools reads the declaration during
 isolated builds. The sdist includes that one declaration, while the wheel reports
 its installed distribution version. Builds do not edit declarations, create tags

@@ -1,6 +1,6 @@
 # Macrostates CLI implementation
 
-Project phase: bootstrapping. Implementation version: 0.3.0.
+Project phase: bootstrapping. Implementation version: 0.3.1.
 [release.yaml](release.yaml) is the authoritative declaration for spec-0.3.0.
 The definer requested both a CLI and a public Python API. Acceptance of this
 first baseline remains a separate phase decision. Earlier CLI workflows were
@@ -50,6 +50,11 @@ release declarations live under .macrostates/implementation. Source stays in src
 - `_mutations.py`: replacement transaction and rollback/recovery boundary.
 - `_staged.py`: exports the Git index for offline checks without changing Git.
 - `_cli.py`: arguments, output rendering and exit-code translation.
+- `.github/workflows/publish.yaml`: checks an integrated annotated release tag,
+  builds and validates wheel/sdist artifacts, and exercises pip installation
+  outside the checkout. A separate job uploads the verified artifacts through
+  PyPI's GitHub trusted publisher and the `pypi` environment; no long-lived
+  publishing token is stored in the repository.
 
 Ordinary imports perform no project-local or network I/O. Explicit __version__
 access reads installed distribution metadata lazily. Only install/lock use the network. Init and package
@@ -112,7 +117,7 @@ in [a separate workflow](workflows/2026-10-08__1VJQE4__ai-assistance-readme-note
 
 The local CLI package authors dependencies with explicit `at_least` constraints.
 Composition spec-0.3.0 adopts the latest published external snapshots.
-Implementation 0.3.0 supports their known policy releases and retains legacy
+Implementation 0.3.1 supports their known policy releases and retains legacy
 behavior, exact project pins, persisted formats and canonical integrity.
 Numeric dependency floors remain deliberate minima, not moving latest selectors.
 The dependency default work is tracked in
