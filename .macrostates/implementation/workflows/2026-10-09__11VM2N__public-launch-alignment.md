@@ -3,7 +3,7 @@
 - Workflow type: Specification update and implementation update
 - Project phase: bootstrapping
 - Status: in_progress
-- Delivery state: implementing
+- Delivery state: awaiting_acceptance
 - Change depth: large
 - Branch: release/public-launch-alignment
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), repository-local Git identity and this conversation.
@@ -35,7 +35,7 @@ Verify the newest and previous release policies, unknown-policy refusal, modern-
 
 ## Remaining work
 
-Implementation and publication checks, then definer acceptance and explicit closure.
+Code, package adoption and local checks are delivered. Integration/publication is tracked separately. Definer acceptance and explicit closure remain.
 
 ## Blockers
 
@@ -59,5 +59,10 @@ None. Private-repository protection becomes available after the explicitly autho
   eight snapshots are additional fixtures, with unchanged numeric dependency
   minimums and authored at_least constraints.
 
-Remaining technical steps: staged verification, release scan, PR/remote CI and
-publication verification. No workflow closure or phase transition is implied.
+The exact staged self-check and whitespace check pass. The complete staged tree,
+wheel and sdist have zero Gitleaks findings. Implementation commit 055d18208be3acf9d0af1ec803142862caa1e6f4
+passed [GitHub CI on all three Python versions](https://github.com/Macrostates/macrostates-cli/actions/runs/37915843814).
+This delivery record changes tracking only; the validated implementation and
+specification contract remain unchanged. Integration and public setup continue
+in the separate launch integration workflow. No workflow closure or phase
+transition is implied.
