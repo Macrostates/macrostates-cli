@@ -15,6 +15,8 @@ dependencies = ["PyYAML>=6.0.2,<7"]
 
 [project.urls]
 Repository = "https://github.com/Macrostates/macrostates-cli"
+Documentation = "https://github.com/Macrostates/macrostates-cli#readme"
+Issues = "https://github.com/Macrostates/macrostates-cli/issues"
 
 [project.scripts]
 macrostates = "macrostates._cli:main"

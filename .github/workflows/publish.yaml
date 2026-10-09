@@ -1,0 +1,94 @@
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pypi-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: >-
+      github.repository == 'Macrostates/macrostates-cli' &&
+      startsWith(github.event.release.tag_name, 'v') &&
+      !github.event.release.prerelease && !github.event.release.draft
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+        with:
+          version: '0.12.23'
+          python-version: '3.12'
+      - name: Verify integrated release identity
+        run: |
+          git merge-base --is-ancestor HEAD origin/main
+          test "$(git cat-file -t "refs/tags/$RELEASE_TAG")" = tag
+          uv sync --locked
+          uv run python - <<'PY'
+          import os
+          from pathlib import Path
+          import yaml
+
+          declaration = yaml.safe_load(Path('.macrostates/implementation/release.yaml').read_text())
+          if os.environ['RELEASE_TAG'] != 'v' + declaration['version']:
+              raise SystemExit('Release tag must match the implementation declaration')
+          PY
+      - name: Check the tagged source
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+          uv run pyright
+          uv run pytest
+          uv run macrostates check
+      - name: Build and validate distributions
+        run: |
+          uv build
+          uvx --from twine==7.0.0 twine check --strict dist/*
+      - name: Verify pip installation outside the checkout
+        run: |
+          uv venv --seed "$RUNNER_TEMP/pip-smoke"
+          "$RUNNER_TEMP/pip-smoke/bin/python" -m pip install dist/*.whl
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/pip-smoke/bin/macrostates" --help
+          "$RUNNER_TEMP/pip-smoke/bin/python" - <<'PY'
+          import os
+          from importlib.metadata import version
+          import macrostates
+
+          expected = os.environ['RELEASE_TAG'][1:]
+          assert version('macrostates-cli') == macrostates.__version__ == expected
+          assert callable(macrostates.Project.open)
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: python-distributions
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/macrostates-cli/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: python-distributions
+          path: dist/
+      - name: Publish verified distributions
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # release/v1
