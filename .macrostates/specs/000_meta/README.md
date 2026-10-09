@@ -23,6 +23,12 @@ development projects.
 - Optional CLI assistance and manual specification validation.
 - Progressive disclosure for package documents.
 
+Author dependencies with an explicit `at_least` constraint by default. Use
+`compatible` or `exact` when a package needs a stricter boundary. New compositions
+prefer the latest suitable published releases; numeric constraints supplement
+reading and semantic review, and compositions still pin exact versions. See
+[Concepts](001_concepts.md#package-paths) for dependency rules.
+
 ## Reading order
 
 1. [Concepts](001_concepts.md)

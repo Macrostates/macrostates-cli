@@ -42,6 +42,13 @@ from examples. Meta and Process are the common foundation; Repository is usually
 useful, while technology packages depend on intent. Python-library is the library
 alternative to Python-project. Optional dependencies do not select packages.
 
+For a new composition, prefer the latest verified published release of each
+appropriate package. Check the complete dependency set and read the selected
+rules together before proposing it. An `at_least` requirement permits later
+Majors numerically; it does not establish that their changed rules work together.
+Explicit `compatible` and `exact` requirements still restrict selection. Explain
+any reason to choose an earlier release rather than silently weakening a constraint.
+
 If no composition exists, settle choices and then prepare it. For an existing
 composition, preserve deliberate versions, sources, intent and explicit orders.
 Multiple spellings or layouts require an authority decision; do not merge or

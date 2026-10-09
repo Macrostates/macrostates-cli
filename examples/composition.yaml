@@ -4,13 +4,13 @@ project:
   entrypoint: main.md
 packages:
 - name: meta
-  version: 2.0.2
+  version: 2.1.0
   path: 000_meta
   entrypoint: README.md
   source:
     type: github-archive
     repository: https://github.com/Macrostates/macrostates-meta.git
-    tag: v2.0.2
+    tag: v2.1.0
 authority_order:
 - meta
 reading_order:

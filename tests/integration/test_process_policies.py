@@ -25,10 +25,11 @@ def test_older_process_does_not_inherit_new_declarations(tmp_path, selected):
     assert project.lint().ok
 
 
-def test_process_23_accepts_independent_revision_counters(tmp_path):
+@pytest.mark.parametrize("selected", ["2.3.0", "4.0.0", "4.1.0"])
+def test_known_process_accepts_independent_revision_counters(tmp_path, selected):
     project = prepare(
         tmp_path,
-        "2.3.0",
+        selected,
         release={"version": "1.2.8", "specification": "spec-1.2.1", "release_date": "2026-01-01"},
     )
     assert project.lint().ok
@@ -55,23 +56,26 @@ def test_process_23_accepts_independent_revision_counters(tmp_path):
         ),
     ],
 )
-def test_process_23_invalid_release_declarations(tmp_path, release, code):
-    project = prepare(tmp_path, "2.3.0", release=release)
+@pytest.mark.parametrize("selected", ["2.3.0", "4.0.0", "4.1.0"])
+def test_known_process_invalid_release_declarations(tmp_path, release, code, selected):
+    project = prepare(tmp_path, selected, release=release)
     assert code in {item.code for item in project.lint().diagnostics}
 
 
-def test_process_23_active_requires_release(tmp_path):
-    project = prepare(tmp_path, "2.3.0")
+@pytest.mark.parametrize("selected", ["2.3.0", "4.0.0", "4.1.0"])
+def test_known_process_active_requires_release(tmp_path, selected):
+    project = prepare(tmp_path, selected)
     (project.implementation / "main.md").write_text("Project phase: active\n")
     assert "process.release_missing" in {item.code for item in project.lint().diagnostics}
 
 
-def test_process_23_requires_composition_version(tmp_path):
-    project = prepare(tmp_path, "2.3.0", spec=None)
+@pytest.mark.parametrize("selected", ["2.3.0", "4.0.0", "4.1.0"])
+def test_known_process_requires_composition_version(tmp_path, selected):
+    project = prepare(tmp_path, selected, spec=None)
     assert "process.spec_version" in {item.code for item in project.lint().diagnostics}
 
 
-@pytest.mark.parametrize("selected", ["2.5.0", "3.1.0", "4.0.0"])
+@pytest.mark.parametrize("selected", ["2.5.0", "3.1.0", "4.2.0", "5.0.0"])
 def test_future_process_policy_is_not_guessed(tmp_path, selected):
     project = prepare(tmp_path, selected)
     assert "process.unsupported_policy" in {item.code for item in project.lint().diagnostics}

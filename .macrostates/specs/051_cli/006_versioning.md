@@ -30,22 +30,28 @@ choice. Branch-only/commit-selected sources need explicit tag migration.
 
 ## Release-selected policies
 
-Meta 2.0.x requires `.macrostates/specs/` and composition format 1. Earlier releases
-do not inherit those checks. Other Meta policies at Major 2 or above receive
-unsupported diagnostics; initialization refuses unknown Meta layout policies.
+Meta 2.0.x and 2.1.x require `.macrostates/specs/` and composition format 1.
+Meta 2.1's dependency authoring default does not make omitted constraints valid
+or select newer packages automatically. Earlier releases do not inherit these
+checks. Other Meta policies at Major 2 or above receive unsupported diagnostics;
+initialization refuses unknown Meta layout policies.
 
-Process 2.3.x, 2.4.x and 3.0.x require composition contract versions. When a release
-declaration exists, validate numeric implementation version, specification baseline
+Process 2.3.x, 2.4.x, 3.0.x, 4.0.x and 4.1.x require composition contract versions.
+When a release declaration exists, validate numeric implementation version, specification baseline
 and calendar-valid `release_date: YYYY-MM-DD`. Composition, implementation and
 baseline Major.Minor must match; baseline spec revision cannot exceed the current
 spec revision. Implementation revision is independent. An implementation `main.md`
 explicitly declaring `Project phase: active` without release declaration receives
 a missing-release diagnostic. This check does not infer acceptance or behavior.
 
-Process 3.0.x additionally requires `.macrostates/implementation/`; initialization
-refuses legacy layout. Process 1.x and 2.0–2.2 retain earlier checks; other policies
-receive unsupported diagnostics rather than guessed rules. Supplied-manifest
-initialization is not full process/package conformance; review, install and lint.
+Process 3.0.x, 4.0.x and 4.1.x additionally require
+`.macrostates/implementation/`; initialization refuses legacy layout.
+Process 4.0's feature-branch and PR requirements remain implementer responsibilities
+and require manual workflow review; a passing CLI check does not establish them.
+Process 4.1 changes dependency constraints without changing declaration validation.
+Process 1.x and 2.0–2.2 retain earlier checks; other policies receive unsupported
+diagnostics rather than guessed rules. Supplied-manifest initialization is not
+full process/package conformance; review, install and lint.
 
 ## Distribution version
 

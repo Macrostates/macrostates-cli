@@ -16,6 +16,8 @@ Before changing files:
 
 - Read the project-local specification entrypoint.
 - Discover and read applicable directory-scoped specifications before edits.
+- In Git repositories, identify the primary branch and verify that the working
+  branch is a suitable development branch before changing any file.
 - Check `.macrostates/implementation/workflows/` for open workflow records.
 - Decide whether the request starts, continues, switches, closes, or only
   reviews a workflow.
@@ -36,6 +38,43 @@ Any project file change requires an open workflow record. Read-only inspection,
 analysis, or explanation may happen without a workflow record, but creating,
 editing, moving, renaming, deleting, or generating any file in the project must
 first be covered by an open workflow record.
+
+### Branch responsibility
+
+In Git repositories, the implementer is responsible for never applying changes
+while checked out on the primary branch, normally `main`. This includes source,
+specifications, implementation documentation, workflow records, configuration,
+generated files and new files. Verify the actual repository and branch before
+the first write and after any branch or worktree context change. Read-only
+inspection on the primary branch is allowed.
+
+Identify the repository's actual primary branch rather than relying only on its
+name. If the primary branch or current branch cannot be determined, resolve that
+uncertainty before writing. A detached checkout is not a substitute for a
+development branch.
+
+Use a suitable existing development branch when its scope matches the requested
+work. A branch may contain a coherent set of related changes and linked workflows;
+do not require a new branch for every individual change. When a new branch or a
+switch to a suitable branch is needed and not already authorized, explain why,
+suggest the branch to the definer, and obtain its decision before changing files.
+The implementer creates or switches to the authorized branch; the definer does
+not need to perform the Git operation. Do not ask again for already authorized
+operations. Inspect and preserve existing work before switching.
+
+Establish the development branch before creating or updating project workflow
+records. Record the branch setup immediately afterward and before other edits.
+Never silently stash, discard, commit or transfer unrelated work to establish
+the branch. Finding existing changes on the primary branch does not authorize
+adding to them or publishing them there; resolve their placement with the definer.
+
+A request to implement changes alone does not authorize remote publication.
+When the definer requests pushing or publishing changes, publish the development
+branch and submit a PR targeting the primary branch unless another development
+target was explicitly identified. Never commit changes directly to the primary
+branch, push changes to it, or integrate into it through a local merge. Only a
+PR merge may update it. PR creation, PR merge, release publication and workflow
+closure remain distinct operations with their own authorization and checks.
 
 The implementer should pay attention to how familiar the definer appears to be
 with the process. If the definer repeatedly asks why a process step is needed,
@@ -65,6 +104,8 @@ context:
 
 - Read the project-local specification entrypoint.
 - Read relevant package entrypoints and specifications.
+- Identify the primary branch and establish a suitable authorized development
+  branch before any file write, including workflow tracking.
 - Discover directory-scoped specifications applicable to each target path.
 - Check for open workflow records.
 - Identify whether the request starts, continues, interrupts, closes, or reviews
@@ -646,10 +687,16 @@ refresh does not by itself require a new application release or runtime retest.
 Branch creation alone does not bump versions, authorize feature implementation,
 publish a branch, or create release tags. Follow repository authorization rules
 for each operation; prior explicit authorization remains valid.
+Creating and switching to the branch must precede any project file changes,
+including its setup record. Reusing an existing suitable branch does not require
+another creation workflow.
 
 ### Development branch merge
 
-Use this workflow for a definer-requested merge request/pull request or merge.
+Use this workflow for a definer-requested publication of development changes,
+merge request/pull request, or merge. A request to push or publish changes means
+pushing the development branch and submitting a PR, not pushing the primary
+branch. Primary-branch integration must use the PR.
 
 1. Identify source and target branches, repository/remote, the exact requested
    operation, related work and intended scope. Inspect the latest target state;
@@ -677,11 +724,13 @@ Use this workflow for a definer-requested merge request/pull request or merge.
    or claim readiness. Continue authorized corrective work when possible. A
    request to merge is not evidence that checks passed or permission to ignore
    them. Record the failed gate in the workflow.
-6. When ready, perform only the requested operation. A merge request includes a
-   concrete summary, version changes, validation and relevant limitations. Creating
-   it does not authorize merging it. Conversely, an authorized direct merge need
-   not create a remote request unless repository policy requires one. Do not add
-   redundant approval steps for operations already explicitly authorized.
+6. When ready, perform only the requested operation. For publication, push the
+   development branch and create the PR, or update its existing PR. A merge
+   request includes a concrete summary, version changes, validation and relevant
+   limitations. Creating it does not authorize merging it. An authorized merge
+   into the primary branch must merge the PR, never bypass it through a direct
+   push or local merge. Do not add redundant approval steps for operations
+   already explicitly authorized.
 7. Before the actual merge, confirm that the source and target still match the
    reviewed commits and that required reviews/checks remain satisfied. Reassess
    changed commits and rerun affected checks if either moved. After merging,
@@ -743,26 +792,20 @@ changes. This is not permission to change product requirements, bypass Meta's
 package-Major approval, or perform unrequested Git operations. Record the baseline,
 classification and any no-bump decision in the relevant workflow.
 
-#### Working directly on the primary branch
+#### Integration through pull requests
 
-Support solo and small projects that work directly on `main`. No branch-creation
-or branch-merge workflow is required for that approach. For a contract change,
-update specifications, implement the change, validate it, and commit both aligned
-declarations and their corresponding work together under the applicable commit
-authorization. Never create separate primary-branch commits that first introduce
-a contract gap and later repair it.
+Develop and commit changes on a development branch. For a contract change,
+update specifications, implement the change, validate it, and prepare both aligned
+declarations and their corresponding work for integration through the PR. Do not
+merge an incomplete contract first and repair it in a later primary-branch state.
 
-Temporary working-tree mismatches are allowed. Before every primary-branch commit,
-the implementer must inspect the proposed committed tree, including the staged
+Temporary working-tree mismatches and intermediate incomplete commits are allowed
+on development branches. Before submitting a PR or merging it into the primary
+branch, the implementer must inspect the proposed integrated tree, including the
 versions and actual scope, to ensure composition and implementation Major.Minor
 match, declarations are valid, and the implementation satisfies the contract.
 This responsibility remains even if no automated hook or CI check is installed.
-
-If intermediate incomplete states need to be committed, use a development branch.
-If creation or switching has not already been authorized, explain the need and
-obtain authorization for that operation. Otherwise continue authorized work toward
-an aligned commit without requiring a branch. Do not discard work or change a
-version number solely to pass alignment checks.
+Do not discard work or change a version number solely to pass alignment checks.
 
 Projects should automate declaration, alignment and release checks in their
 normal validation, and protect the primary branch with required checks when
@@ -929,7 +972,8 @@ outcome is recorded. If blocked, no merge request or merge was performed and the
 definer received the specific blockers and consequences.
 
 For all version-affecting work, verify the classification, declarations and
-primary-branch invariant before committing. For release work, verify the exact
+development-state declarations before committing, and the primary-branch invariant
+before PR submission or integration. For release work, verify the exact
 specification baseline, tags and any authorized remote publication separately.
 
 For `Exception`, check that the exception record explains why ordinary workflow

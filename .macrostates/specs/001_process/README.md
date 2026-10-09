@@ -25,6 +25,13 @@ and ensure an open workflow record covers the change. See
 [Artifacts](002_artifacts.md) for workflow record structure and
 [Execution](003_execution.md) for when and how to use workflow records.
 
+In Git repositories, the implementer must verify its branch before any file
+change, including workflow records, and never apply changes while checked out on
+the primary branch, normally `main`. Use a suitable development branch. When a
+new branch is needed, suggest it to the definer and create it once authorized.
+Existing authorization remains valid. See
+[Branch responsibility](003_execution.md#branch-responsibility).
+
 New workflow filenames use `YYYY-MM-DD__<time-id>__short-descriptive-name.md`,
 with the UTC date followed by a six-character Base32 ID encoding only milliseconds
 since midnight. Existing legacy filenames remain valid. See
@@ -43,7 +50,7 @@ the workflow open until the definer confirms. See [Execution](003_execution.md).
 
 The implementer maintains contract versions automatically: compositions use
 `spec-MAJOR.MINOR.REVISION`, implementations use `MAJOR.MINOR.REVISION`, with
-independent revisions. Direct primary-branch development is supported; committed
+independent revisions. Primary-branch integration happens only through PRs;
 integrated states must have matching Major.Minor and actual contract coverage.
 Development branches may hold provisional gaps. See [Concepts](001_concepts.md#contract-based-versioning),
 [Version declarations](002_artifacts.md#version-declarations) and
@@ -57,9 +64,12 @@ the selected requirements and reporting coverage. Meta owns tool guidance;
 [Specification verification](003_execution.md#specification-verification) defines
 when checks fit a workflow and a proposed commit.
 
-Development branch creation and merge are optional, explicit workflow types.
-On a definer-requested merge request or merge, check readiness first; if required
-checks fail or remain unavailable, clearly warn and do not perform that operation.
+Development branch creation and merge are explicit workflow types. When the
+definer asks to push or publish changes, push the development branch and submit a
+PR, never push changes directly to the primary branch. Creating a PR does not
+authorize merging it. On a definer-requested PR or merge, check readiness first;
+if required checks fail or remain unavailable, clearly warn and do not perform
+that operation.
 See [Development branch merge](003_execution.md#development-branch-merge).
 
 Specification edits stay within the project context of the request. After
@@ -84,7 +94,7 @@ handling. Read an annex only when a core document says the situation applies.
 - Documentation ownership and authority.
 - Common workflows and workflow continuity.
 - Contract-based composition/implementation versioning and release declarations.
-- Optional development branch creation and validated integration workflows.
+- Required development branches and validated integration through PRs.
 - Project scaffolding during specification.
 - Workflow execution against specifications.
 - Subproject coordination inside a parent project.

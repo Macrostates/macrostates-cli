@@ -128,6 +128,7 @@ class Process23Policy:
     """Process 2.3.x declaration policy; earlier releases retain their own rules."""
 
     label = "Process 2.3"
+    requires_modern_layout = False
 
     def check(self, composition: Composition, implementation: Path, report: Report) -> None:
         declared = composition.raw["project"].get("version")
@@ -183,17 +184,32 @@ class Process30Policy(Process23Policy):
     """3.0 retains contract versions and adopts Meta 2 artifact locations."""
 
     label = "Process 3.0"
+    requires_modern_layout = True
 
     def check(self, composition: Composition, implementation: Path, report: Report) -> None:
         if implementation.parent.name != ".macrostates":
-            report.add("process.layout", "Process 3.0 requires .macrostates/implementation/")
+            report.add("process.layout", f"{self.label} requires .macrostates/implementation/")
         super().check(composition, implementation, report)
+
+
+class Process40Policy(Process30Policy):
+    """4.0 retains declarations/layout; branch and PR compliance needs manual review."""
+
+    label = "Process 4.0"
+
+
+class Process41Policy(Process40Policy):
+    """4.1 expands dependency constraints without changing declaration checks."""
+
+    label = "Process 4.1"
 
 
 PROCESS_POLICIES = {
     (2, 3): Process23Policy(),
     (2, 4): Process24Policy(),
     (3, 0): Process30Policy(),
+    (4, 0): Process40Policy(),
+    (4, 1): Process41Policy(),
 }
 
 
@@ -202,18 +218,44 @@ def has_contract_version(process_version: str) -> bool:
     return version(process_version)[:2] in PROCESS_POLICIES
 
 
+def process_requires_modern_layout(process_version: str) -> bool:
+    policy = PROCESS_POLICIES.get(version(process_version)[:2])
+    return policy is not None and policy.requires_modern_layout
+
+
+class Meta20Policy:
+    """Meta 2.0 layout and explicit composition-format checks."""
+
+    label = "Meta 2.0"
+
+    def check(self, composition: Composition, specs: Path, root: Path, report: Report) -> None:
+        if specs != root / ".macrostates" / "specs":
+            report.add("meta.layout", f"{self.label} requires .macrostates/specs/")
+        if composition.schema_version != 1:
+            report.add(
+                "meta.composition_format", f"{self.label} requires composition schema_version: 1"
+            )
+
+
+class Meta21Policy(Meta20Policy):
+    """2.1 changes authoring guidance; explicit dependency constraints remain required."""
+
+    label = "Meta 2.1"
+
+
+META_POLICIES = {(2, 0): Meta20Policy(), (2, 1): Meta21Policy()}
+
+
 def check_meta(composition: Composition, specs: Path, root: Path, report: Report) -> None:
     """Release-selected layout policy; legacy projects keep their own conventions."""
     meta = next((item for item in composition.packages if item.name == "meta"), None)
     if meta is None or version(meta.version)[0] < 2:
         return
-    if version(meta.version)[:2] != (2, 0):
+    policy = META_POLICIES.get(version(meta.version)[:2])
+    if policy is None:
         report.add("meta.unsupported_policy", f"No layout-policy adapter for Meta {meta.version}")
         return
-    if specs != root / ".macrostates" / "specs":
-        report.add("meta.layout", "Meta 2.0 requires .macrostates/specs/")
-    if composition.schema_version != 1:
-        report.add("meta.composition_format", "Meta 2.0 requires composition schema_version: 1")
+    policy.check(composition, specs, root, report)
 
 
 def check_process(composition: Composition, implementation: Path, report: Report) -> None:

@@ -7,24 +7,45 @@ The repository uses Git for version control.
 The repository should have one primary branch that represents the current
 integrated state. Common names are `main` or `trunk`.
 
-Work may happen on short-lived topic branches when that helps review,
-experimentation, or collaboration. Branch names should be concise and describe
-the work.
+All changes must be developed on topic branches. Changes enter the primary
+branch only through pull requests (PRs). Direct commits, pushes and local merges
+into the primary branch are prohibited. Branch names should be concise and
+describe the work. Prefer short-lived branches containing a coherent set of
+related changes; a branch need not correspond to each individual request.
 
 Long-lived divergent branches should be avoided unless the repository has an
 explicit release or maintenance policy that requires them.
 
 ## Autonomous implementer Git behavior
 
-Autonomous implementers should work on the currently checked-out branch unless
-the definer explicitly asks them to create or switch branches.
+Autonomous implementers must identify the actual primary branch and verify that
+the current branch is a suitable topic branch before applying any file change,
+including documentation, workflow records, generated files and new files. They
+must never apply changes while checked out on the primary branch. Read-only
+inspection there is allowed. A detached checkout is not a topic branch.
+
+Reuse a suitable existing topic branch for related work. When a new branch or a
+switch is needed, suggest it to the definer and create or switch to it once
+authorized. The implementer performs the operation; the definer need not do it
+manually. Preserve existing work and do not silently stash, discard or transfer
+unrelated changes. Establish the topic branch before making any file changes.
 
 Autonomous implementers must not create, switch, merge, rebase, delete, or push
-branches unless the definer explicitly asks for that Git operation.
+branches unless the definer explicitly authorizes that Git operation, including
+through a previously authorized workflow. Do not ask again for authorization
+already provided.
 
 Autonomous implementers may inspect Git state when it is relevant to the work.
-If an autonomous implementer believes a branch operation would help, it should
-suggest the operation and ask before performing it.
+If a required branch operation is not authorized, suggest it and obtain the
+definer's decision before proceeding. A request to implement changes alone does
+not authorize remote publication.
+
+When the definer requests pushing or publishing changes, push the topic branch
+and submit a PR to the primary branch, or update that branch's existing PR.
+An explicitly requested development target may be used instead. Never interpret
+a request to push as permission to update the primary branch directly. PR
+creation does not authorize merging it; an authorized primary-branch merge must
+merge the PR. Release publication and branch deletion require their own scope.
 
 Merge strategy, release branch policy, and remote publishing are project or
 definer decisions unless explicitly delegated.
@@ -71,6 +92,10 @@ subtree repositories and the definer approves the history rewrite.
 After publishing a subtree for the first time, prefer follow-up commits over
 amending the source commit. If a correction is needed after publication, make a
 new commit and publish that new commit through the same subtree mechanism.
+
+Subtree publication must also respect the primary-branch PR rule. Publish the
+split history to a topic branch and submit a PR when the destination is a primary
+branch; subtree commands do not authorize bypassing that review path.
 
 If subtree history has already diverged, do not force-push the subtree
 repository by default. First prefer repairing the relationship by pulling or

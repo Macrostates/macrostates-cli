@@ -83,10 +83,12 @@ behavior or compatibility change that the definer has not approved.
 ### Integrated and development states
 
 The primary branch, normally `main`, represents the current integrated state.
-Direct development on it is supported; development branches are optional. Once
-an implementation baseline exists, every new primary-branch commit must have
-matching composition and implementation Major.Minor and implemented coverage of
-that contract. Temporary working-tree mismatches are allowed before committing.
+Implementers work on development branches and integrate changes into the primary
+branch only through PRs. They must never apply file changes while checked out on
+the primary branch. Once an implementation baseline exists, every new integrated
+primary-branch state must have matching composition and implementation Major.Minor
+and implemented coverage of that contract. Temporary working-tree mismatches are
+allowed on development branches.
 Changing numbers alone cannot establish compliance.
 
 A development branch may commit a provisional specification contract before its
@@ -95,7 +97,7 @@ honest, and do not release that state. Provisional versions must be reassessed
 against the latest target at integration, not reserved from an old branch baseline.
 The primary-branch invariant covers each integrated state on its first-parent
 history; development commits may remain reachable through a merge's side history.
-An ordinary merge is therefore permitted without rewriting all intermediate work.
+A PR merge is therefore permitted without rewriting all intermediate work.
 
 Before the first implementation exists, specification-only projects need only a
 composition version. Bootstrapping may contain documented incomplete work until
@@ -409,15 +411,18 @@ specification composition version and implementation version, and links the work
 to be done there. It does not itself authorize feature changes or remote publication.
 Specification and implementation work retain their corresponding workflow types.
 
-This workflow is optional. Direct primary-branch development remains valid when
-each committed result satisfies the integrated-state rules. Branch setup can be
-delivered and proposed for closure as soon as its baseline and links are recorded;
-it need not stay open for the lifetime of the branch.
+When no suitable development branch exists, the implementer suggests creating
+one to the definer and materializes it once authorized. Reuse a suitable existing
+branch for related changes; each individual change does not need its own branch.
+Branch setup can be delivered and proposed for closure as soon as its baseline
+and links are recorded; it need not stay open for the lifetime of the branch.
 
 ### Development branch merge
 
-Use this workflow when the definer requests a merge request (also called a pull
-request) or integration of a development branch into a designated target. It
+Use this workflow when the definer requests publishing development changes,
+a merge request (also called a pull request), or integration into a designated
+target. Publishing changes means pushing the development branch and submitting
+a PR. Primary-branch integration requires a PR. It
 checks the combined result against the latest target, establishes version and
 implementation readiness, and performs only the authorized integration operation.
 

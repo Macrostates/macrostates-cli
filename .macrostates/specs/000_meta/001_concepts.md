@@ -171,7 +171,7 @@ Required dependency entries should use this structure:
 dependencies:
   - name: meta
     version: 1.0.0
-    constraint: compatible
+    constraint: at_least
 ```
 
 Optional dependency entries should use the same structure under
@@ -181,7 +181,7 @@ Optional dependency entries should use the same structure under
 optional_dependencies:
   - name: docker-1
     version: 1.0.0
-    constraint: compatible
+    constraint: at_least
 ```
 
 Use `optional_dependencies` when a package contains conditional guidance for
@@ -202,10 +202,33 @@ Use these dependency constraints:
 - `at_least`: the dependency must be greater than or equal to the stated
   version, even across major versions.
 
-Use `compatible` by default for reusable specification packages. Use `exact`
-when any change in the dependency could alter the meaning of the dependent
-package. Use `at_least` only when the dependent package is known to tolerate
-future major versions of the dependency.
+Use `at_least` as the default when authoring reusable specification package
+dependencies. State the minimum release that supplies the rules the package
+needs, and write `constraint: at_least` explicitly. The same default applies to
+required and optional dependencies. Omitting the constraint remains a metadata
+gap; it does not silently select a default.
+
+Keep the minimum at the earliest release that supplies the rules the package
+actually needs. A new upstream release alone does not require raising that
+minimum or publishing another dependent package version. Raise the minimum when
+the package starts relying on newer rules; tighten the constraint when an
+integration requires a narrower boundary.
+
+Use `compatible` deliberately when a dependency's Major boundary matters to the
+package's meaning or integration rules. Use `exact` when only one specific release
+is acceptable. Both remain valid overrides of the authoring default.
+
+`at_least` establishes a numeric minimum, not a guarantee that later releases
+preserve all earlier rules. A future Major may remove or replace requirements.
+Read the selected releases and check their actual interaction when composing a
+project, even when the numeric constraints pass. Add an explicit restriction
+when the package relies on behavior that later Majors may change.
+
+Dependency constraints describe allowed choices, not automatic upgrades. The
+composition selects an exact version and release tag for each package. Prefer
+the latest published releases appropriate to a new project's intent, subject to
+all declared constraints and semantic review. Preserve an existing project's
+deliberate selections until an update is authorized.
 
 If an implementer finds that a package dependency is missing a version or
 constraint, it should treat that as a specification metadata gap and ask or
