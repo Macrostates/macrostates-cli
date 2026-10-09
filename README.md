@@ -5,7 +5,7 @@ numbered, version-controlled directories such as `000_meta/` and `001_process/`.
 The `macrostates` command and the `macrostates` Python API share the same core.
 
 Requires Python 3.12 or newer. Distribution name: `macrostates-cli`.
-Import package and executable name: `macrostates`. Version 0.2.0 is an initial
+Import package and executable name: `macrostates`. Version 0.3.0 is an initial
 API; compatibility changes will be documented. Licensed under [MIT](LICENSE).
 
 ## Installation
@@ -14,7 +14,7 @@ The package is **not published to PyPI**. Install it directly from GitHub with
 [uv](https://docs.astral.sh/uv/):
 
 ```bash
-uv tool install 'git+https://github.com/Macrostates/macrostates-cli.git'
+uv tool install 'git+https://github.com/Macrostates/macrostates-cli.git@v0.3.0'
 macrostates --help
 ```
 
@@ -36,7 +36,7 @@ macrostates info
 macrostates check
 ```
 
-For a short setup, `macrostates init --name my-project --package meta@2.0.2`
+For a short setup, `macrostates init --name my-project --package meta@2.1.0`
 creates a composition. Repeat `--package NAME@VERSION` for additional packages.
 This shorthand uses the order you supplied for both reading and authority
 (highest first); review those orders before installation. It does not select
@@ -61,7 +61,7 @@ AGENTS.md
 Commit the manifest, lockfile, package directories and project specifications.
 Initialization preserves existing agent instructions and refuses to overwrite
 project files. It prepares specification files; it does not implement an app.
-Meta 2.0 and Process 3.0 define this layout. Their numbered packages and locks
+Meta 2.0/2.1 and Process 3.0/4.0/4.1 define this layout. Their numbered packages and locks
 remain tracked in Git. The CLI is strongly recommended and optional; reading
 specifications and manual checks remain necessary for requirements beyond its
 coverage. Existing projects keep their selected policies until explicitly migrated.
@@ -185,10 +185,12 @@ tag migration and are reported instead of being silently reinterpreted.
 Package release versions are independent of format versions. Existing package
 metadata is format 1, as is an explicit `schema_version: 1`. Unknown manifest,
 metadata or lock formats fail clearly. Release policy adapters support Meta
-2.0.x and Process 2.3.x, 2.4.x and 3.0.x. Modern policies require the modern
+2.0.x/2.1.x and Process 2.3.x/2.4.x/3.0.x/4.0.x/4.1.x. Modern policies require the modern
 layout; Meta 2 also requires composition format 1. Earlier Meta releases and
 Process 1.x/2.0–2.2 retain their existing checks. Future policy releases receive
-explicit unsupported diagnostics rather than guessed requirements.
+explicit unsupported diagnostics rather than guessed requirements. Process 4's
+feature-branch and PR rules require manual workflow review; CLI checks do not
+verify branch discipline or authorize Git operations.
 
 `info` lists directory-scoped specifications under visible component directories;
 `lint` checks their local file links. The scope root is the component containing
@@ -220,8 +222,8 @@ are future features.
 ## This repository's specifications and version
 
 The CLI manages its own specification composition under `.macrostates/specs/`,
-using Meta 2.0.2, Process 3.0.2, Repository 2.0.2, Python 2.0.2 and Python-library
-1.0.1 as canonical archive snapshots. Its local CLI requirements remain editable.
+using Meta 2.1.0, Process 4.1.0, Repository 3.1.0, Python 2.1.0 and Python-library
+1.1.0 as canonical archive snapshots. Its local CLI requirements remain editable.
 `macrostates check` and `check --staged` validate the same files contributors use.
 This is also a real integration test of the supported package installation path.
 

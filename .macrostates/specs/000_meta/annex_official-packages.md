@@ -30,6 +30,11 @@ different project-shape packages even when they share a language. Typical paths
 do not define authority or make optional technologies mandatory.
 
 Read every proposed release's entrypoint and `package.yaml` before selecting it.
+For a new composition, start with the latest published releases appropriate to
+the project's intent and validate the whole selection. `at_least` is the
+dependency authoring default; explicit `compatible` or `exact` declarations
+remain binding. Passing a numeric minimum does not prove semantic compatibility
+with a later Major. Existing deliberate selections require an authorized update.
 Find a published `v<version>` tag in its canonical repository, verify its identity,
 and resolve required dependencies against the complete proposed composition.
 Check optional constraints only for selected optional packages. The catalog does

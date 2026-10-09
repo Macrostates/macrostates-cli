@@ -1,7 +1,7 @@
 # Macrostates CLI implementation
 
-Project phase: bootstrapping. Implementation version: 0.2.0.
-[release.yaml](release.yaml) is the authoritative declaration for spec-0.2.0.
+Project phase: bootstrapping. Implementation version: 0.3.0.
+[release.yaml](release.yaml) is the authoritative declaration for spec-0.3.0.
 The definer requested both a CLI and a public Python API. Acceptance of this
 first baseline remains a separate phase decision. Earlier CLI workflows were
 closed under the definer’s explicit instruction. Public onboarding and dependency
@@ -20,8 +20,8 @@ Unchanged selections reject moved tags. `lock` checks canonical bytes before
 recording existing copies, including Git-subtree copies. `verify` is offline.
 Project-owned packages are linted but remain editable.
 
-The CLI's own composition uses .macrostates/specs with Meta 2.0, Process 3.0,
-Repository 2.0, Python 2.0 and Python-library 1.0 as verified archive snapshots.
+The CLI's own composition uses .macrostates/specs with Meta 2.1, Process 4.1,
+Repository 3.1, Python 2.1 and Python-library 1.1 as verified archive snapshots.
 Its local CLI requirements remain editable. Implementation documentation and
 release declarations live under .macrostates/implementation. Source stays in src.
 
@@ -32,8 +32,10 @@ release declarations live under .macrostates/implementation. Source stays in src
   `v0.py` retains unversioned compositions; `v1.py` owns format-1 conventions.
   `common.py` contains established field primitives shared by those formats.
 - `_validation.py`: pure dependency checks, structural links and a release-selected
-  policy registry: Meta 2.0 layout/format and Process 2.3/2.4/3.0 declarations.
-  Process 3.0 also requires modern artifact locations. Earlier selected releases
+  policy registry: Meta 2.0/2.1 layout/format and Process 2.3/2.4/3.0/4.0/4.1
+  declarations. Process 3.0 and 4.x also require modern artifact locations.
+  Known later policies reuse unchanged checks explicitly; unknown policies fail.
+  Process branch/PR compliance remains manual. Earlier selected releases
   retain their own checks; unknown later policies return explicit diagnostics.
 - `_scopes.py`: component entrypoint discovery and independent-composition
   boundaries. Scope roots contain .macrostates; local file links are linted.
@@ -79,7 +81,7 @@ existing documented use should still be treated carefully.
 
 Run the documented uv checks, build a wheel/sdist and exercise the installed
 console entrypoint and Python API from a clean location. Tests include actual
-metadata from all 37 prior releases and eight current Macrostates package releases, both manifest
+metadata from all 45 prior releases and eight current Macrostates package releases, both manifest
 formats/layouts, safe installation failure, staged-file integrity and Process
 policy isolation. Test fixtures contain synthetic package content only, except
 for public-intended specification package metadata.
@@ -109,7 +111,14 @@ The short README disclosure identifies AI assistance. Its addition is tracked
 in [a separate workflow](workflows/2026-10-08__1VJQE4__ai-assistance-readme-note.md).
 
 The local CLI package authors dependencies with explicit `at_least` constraints.
-Composition spec-0.2.3 retains the same external release selections and runtime
-contract. Exact project pins and canonical package integrity remain unchanged.
+Composition spec-0.3.0 adopts the latest published external snapshots.
+Implementation 0.3.0 supports their known policy releases and retains legacy
+behavior, exact project pins, persisted formats and canonical integrity.
+Numeric dependency floors remain deliberate minima, not moving latest selectors.
 The dependency default work is tracked in
 [its workflow](workflows/2026-10-08__1XHKTJ__at-least-dependency-default.md).
+
+The current release alignment and canonical adoption are tracked in
+[the launch workflow](workflows/2026-10-09__11VM2N__public-launch-alignment.md).
+PR integration, release publication and public branch protection are tracked
+[separately](workflows/2026-10-09__11VM2N__public-launch-integration.md).

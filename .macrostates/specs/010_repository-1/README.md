@@ -17,12 +17,16 @@ development projects.
 - Generated and local file boundaries.
 - Root repository contents.
 - Repository documentation.
-- Git usage.
+- Git feature branches and integration through pull requests.
 - Compatibility surfaces.
 - Commit hygiene.
 
 Language-specific rules, process rules, and domain-specific behavior are out of
 scope for this package.
+
+All changes are developed on topic branches and enter the primary branch only
+through PRs. Implementers must not change files while checked out on the primary
+branch. See [Technology](004_technology.md) for Git behavior and authorization.
 
 ## Macrostates artifacts
 

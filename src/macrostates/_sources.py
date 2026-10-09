@@ -5,6 +5,7 @@ import os
 import re
 import shutil
 import subprocess
+from importlib.metadata import PackageNotFoundError, version
 from typing import Any, Protocol
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlparse
@@ -90,9 +91,13 @@ class GitHubSource:
         return None
 
     def _request(self, endpoint: str, *, archive: bool = False) -> bytes:
+        try:
+            user_agent = "macrostates-cli/" + version("macrostates-cli")
+        except PackageNotFoundError:
+            user_agent = "macrostates-cli"
         headers = {
             "Accept": "application/vnd.github+json",
-            "User-Agent": "macrostates-cli/0.1.0",
+            "User-Agent": user_agent,
             "X-GitHub-Api-Version": "2022-11-28",
         }
         token = self._token()

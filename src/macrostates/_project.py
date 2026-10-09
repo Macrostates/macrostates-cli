@@ -22,6 +22,7 @@ from ._validation import (
     check_meta,
     check_process,
     has_contract_version,
+    process_requires_modern_layout,
     validate_packages,
 )
 
@@ -162,8 +163,10 @@ class Project:
         if not layout_report.ok:
             raise MacrostatesError("; ".join(item.message for item in layout_report.diagnostics))
         process = next((item for item in composition.packages if item.name == "process"), None)
-        if process and version(process.version)[:2] == (3, 0) and layout != "modern":
-            raise MacrostatesError("Process 3.0 requires the modern .macrostates/ layout")
+        if process and process_requires_modern_layout(process.version) and layout != "modern":
+            raise MacrostatesError(
+                f"Process {process.version} requires the modern .macrostates/ layout"
+            )
         package_lines = "\n".join(
             f"- [{package.name} {package.version}]({package.path}/{package.entrypoint})"
             for package in composition.packages
@@ -179,7 +182,7 @@ class Project:
             meta = next((item for item in composition.packages if item.name == "meta"), None)
             guidance = (
                 "These locations and snapshot sources follow the selected Meta 2 layout."
-                if meta and version(meta.version)[:2] == (2, 0)
+                if meta and version(meta.version)[0] == 2
                 else "These explicit project-level location and transport choices take precedence over selected packages' older layout and subtree conventions."
             )
             overview += f"\n## Layout and verification\n\nSpecification files live under `{specs.relative_to(directory).as_posix()}/`; implementation documentation lives under `{project.implementation.relative_to(directory).as_posix()}/`. Packages marked `github-archive` are tracked release snapshots checked against `composition.lock.yaml`. {guidance} Local packages remain editable. Process, when selected, owns composition/implementation version policy. CLI checks supplement specification reading and do not establish implementation conformance.\n"

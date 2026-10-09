@@ -1,9 +1,9 @@
 name: repository-1
-version: 2.0.2
-versioned_at: 2026-10-08 17:22
+version: 3.1.0
+versioned_at: 2026-10-08 17:57
 description: Reusable source repository conventions.
 entrypoint: README.md
 dependencies:
 - name: meta
   version: 2.0.2
-  constraint: compatible
+  constraint: at_least
