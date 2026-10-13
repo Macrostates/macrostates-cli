@@ -3,7 +3,7 @@
 - Project phase: bootstrapping
 - Workflow type: Release preparation; Integration preparation (one release outcome, scopes below)
 - Status: in_progress
-- Delivery state: implementing
+- Delivery state: awaiting_acceptance
 - Change depth: systemic
 - Branch: release/baselines-1.0.0
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com) - Obtained from repository-local Git identity and current conversation
@@ -29,7 +29,7 @@ The plan computes the approved candidate once from reviewed impacts. Declaration
 
 ## Work done and evidence
 
-Release branch starts from freshly fetched merged main 32c1cf2a993fadd2ce152c02e1e946e9218c2ea4. All six feature push/PR matrix checks succeeded. The captured release work retains that origin before source-input updates. The reviewed plan binds source commit da4287ece3cd689ed207e05638c2168528b1487f, the integration target, original declarations and both consumed record hashes. Preparation proposes specs-1.0.0 / imp-1.0.0 from aggregate Major/Major scope and preserves both consumed records unchanged in history. Application 0.4.0 independently declares candidate status, matching baselines, date and future immutable tag v0.4.0. Its verified shipped-input fingerprint is add414d530542993e6805a29a04e52c253e44bec69111d28bc6f887d19d19328.
+Release branch starts from freshly fetched merged main 32c1cf2a993fadd2ce152c02e1e946e9218c2ea4. All six feature push/PR matrix checks succeeded. The captured release work retains that origin before source-input updates. The reviewed plan binds source commit 4e4ab0601524371215b91d37916e90e5abe9f924, the integration target, original declarations and both consumed record hashes. Preparation proposes specs-1.0.0 / imp-1.0.0 from aggregate Major/Major scope and preserves both consumed records unchanged in history. Application 0.4.0 independently declares candidate status, matching baselines, date and future immutable tag v0.4.0. Its verified shipped-input fingerprint is add414d530542993e6805a29a04e52c253e44bec69111d28bc6f887d19d19328.
 
 All 393 tests passed separately on Python 3.12.15, 3.13.16 and 3.14.7 against the prepared candidate. Ruff lint and formatting passed across 115 files; Pyright reported zero errors and warnings. The 0.4.0 wheel and source distribution each passed clean installation, public API/command/version probes, exact shipped-source verification and strict distribution metadata checks. Project conformance returned zero diagnostics. No new tag, application publication, external release-PR check or phase acceptance is claimed by these local results.
 
@@ -48,3 +48,5 @@ Complete the actual release candidate and collect its verification, then present
 ## Exact source-plan reassessment
 
 The committed candidate check correctly rejected a conformance-document update made after planning. Preserve that reviewed documentation as a new planning input, return declarations and byte-identical consumed records to their pending state, and calculate a fresh plan. Runtime code and final shipped inputs are unchanged; their completed tests and artifact verification remain applicable. The earlier candidate is unintegrated and no new immutable tag exists. No history is rewritten.
+
+The fresh plan includes the conformance document in its exact committed source inputs. Candidate preparation again preserves both record hashes and proposes the same approved versions. The rebuilt declaration has the same verified shipped-input fingerprint, so existing 0.4.0 artifact/test evidence applies. Exact committed-tree validation follows before the closure petition.

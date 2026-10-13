@@ -66,7 +66,7 @@ The separate [release work record](work/baseline-release-1-0-0.yaml) captures
 the merged main commit as its origin. Its
 [archived bookkeeping record](changes/history/baseline-release-1-0-0.yaml)
 declares no additional baseline impact. The candidate plan binds source commit
-`da4287ece3cd689ed207e05638c2168528b1487f`, cached integration target
+`4e4ab0601524371215b91d37916e90e5abe9f924`, cached integration target
 `32c1cf2a993fadd2ce152c02e1e946e9218c2ea4`, declaration hashes, and both
 consumed record hashes. Reviewed aggregate Major/Major scope determines the
 1.0.0 candidates; ordinary feature work did not reserve those official versions.
