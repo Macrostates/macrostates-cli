@@ -3,13 +3,13 @@
 - Project phase: bootstrapping
 - Workflow type: Release preparation; Integration preparation (one release outcome, scopes below)
 - Status: in_progress
-- Delivery state: implementing
+- Delivery state: awaiting_acceptance
 - Change depth: systemic
 - Branch: release/baselines-1.0.0
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com) - Obtained from repository-local Git identity and current conversation
 - Implementer: Model: GPT-6; exact revision/effort: not exposed; agent: Codex; source: runtime instructions
 - Started at: 2026-10-13 20:37:29.541 UTC
-- Last updated at: 2026-10-13 20:37:29.541 UTC
+- Last updated at: 2026-10-13 20:47:17 UTC
 
 ## Original request and objective
 
@@ -29,15 +29,17 @@ The plan computes the approved candidate once from reviewed impacts. Declaration
 
 ## Work done and evidence
 
-Release branch starts from freshly fetched merged main 32c1cf2a993fadd2ce152c02e1e946e9218c2ea4. All feature branch/PR matrix checks succeeded. Release origin captured before source-input updates. Numeric baselines are still 0.3.0/0.3.1 at this checkpoint; pending Major/Major feature scope remains unconsumed.
+Release branch starts from freshly fetched merged main 32c1cf2a993fadd2ce152c02e1e946e9218c2ea4. All six feature push/PR matrix checks succeeded. The captured release work retains that origin before source-input updates. The reviewed plan binds source commit da4287ece3cd689ed207e05638c2168528b1487f, the integration target, original declarations and both consumed record hashes. Preparation proposes specs-1.0.0 / imp-1.0.0 from aggregate Major/Major scope and preserves both consumed records unchanged in history. Application 0.4.0 independently declares candidate status, matching baselines, date and future immutable tag v0.4.0. Its verified shipped-input fingerprint is add414d530542993e6805a29a04e52c253e44bec69111d28bc6f887d19d19328.
+
+All 393 tests passed separately on Python 3.12.15, 3.13.16 and 3.14.7 against the prepared candidate. Ruff lint and formatting passed across 115 files; Pyright reported zero errors and warnings. The 0.4.0 wheel and source distribution each passed clean installation, public API/command/version probes, exact shipped-source verification and strict distribution metadata checks. Project conformance returned zero diagnostics. No new tag, application publication, external release-PR check or phase acceptance is claimed by these local results.
 
 ## Remaining work
 
-Finish source inputs, commit and review the exact plan, prepare 1.0 candidates, declare independent app 0.4 with verified source fingerprint, and run affected verification. Then request closure of this record and explicit first-baseline acceptance/phase activation. Submit the release PR only after the closed-tree gates pass; external CI precedes merge and tags/publication.
+Review the exact committed candidate and combined target tree, then obtain explicit closure of this record and first-baseline acceptance/phase activation. Submit the release PR only after the closed-tree gates pass; external CI precedes merge and tags/publication.
 
 ## Blockers and unresolved questions
 
-No architecture blocker identified. Local preparation is in progress. Bootstrapping remains until the definer explicitly accepts the verified first implementation baseline. No closure, phase acceptance or new release publication is inferred.
+No architecture blocker identified. Candidate implementation and applicable local tests/build checks are complete. Exact source/target checks and the explicit definer acceptance decisions remain before proposal submission. Bootstrapping remains until the definer explicitly accepts the verified first implementation baseline. No closure, phase acceptance or new release publication is inferred.
 
 ## Suggested next step
 
