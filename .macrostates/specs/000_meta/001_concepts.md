@@ -11,7 +11,7 @@ projects.
 
 ## Project layout
 
-Projects using Meta 2 place their composition and numbered package directories
+Projects using Meta 2 or 3 place their composition and numbered package directories
 under `./.macrostates/specs/`. Process-owned implementation artifacts live
 beside them under `./.macrostates/implementation/`. Track these documents,
 installed packages and integrity locks in Git; a leading dot does not make them
@@ -251,11 +251,12 @@ specification work:
 - Increment `major` for breaking changes to meaning, authority, required
   workflow, required files, compatibility, or implementer permissions.
 
-Implementers may increment `patch` or `minor` as part of requested
-specification package work.
-
-Implementers must not increment `major` unless the definer explicitly asks for a
-major version change. If unsure whether a change is major, ask the definer.
+Implementers determine and apply the required `patch`, `minor`, or `major`
+increment as part of requested specification package work. A Major increment
+does not require separate definer approval. Classify the actual compatibility
+impact and explain the chosen increment in the change record or review proposal.
+Ask the definer when the requested requirements or compatibility expectations
+are unclear; a Major increment alone is not a reason to pause.
 
 ### Project and application identities
 

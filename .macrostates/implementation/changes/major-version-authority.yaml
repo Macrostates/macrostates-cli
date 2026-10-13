@@ -1,0 +1,49 @@
+schema_version: 1
+id: major-version-authority
+summary: Remove the separate Major-consent boundary from the CLI development contract
+  and adopt explicit Meta 3.0 / Process 5.1 support.
+origin:
+  commit: fe6e36989b0a3c5c274b9fe2a03f7a7673ffff09
+  specification: specs-1.0.0
+  implementation: imp-1.0.0
+impact:
+  specification: major
+  implementation: major
+deliverables:
+- macrostates-cli
+requirements:
+- requirement: Use released Meta 3.0.0 and Process 5.1.0 so Major classification within
+    requested work requires no separate version approval.
+  implementation: Exact canonical snapshots and local CLI 2.0 requirements remove
+    the previous authority boundary; ordinary scope, closure, integration and publication
+    gates remain.
+  verification: Semantic rule review, actual canonical Git installation/integrity
+    lock and Major planning tests without a consent field.
+- requirement: Explicitly support the new reviewed policy families in initialization,
+    declarations and baseline operations.
+  implementation: Explicit Meta 3.0 and Process 5.1 adapters reuse their unchanged
+    technical formats; one reviewed capability consistently gates the seed, declaration
+    reader and public methods.
+  verification: New selected-policy/patch/specification-only/active/operation/plan
+    tests, retained older selections and unknown-future refusal cases.
+- requirement: Preserve public API compatibility, older release policies and original
+    provenance.
+  implementation: Existing adapters remain; captured work retains finalized fe6e369
+    origin; independent application 0.5 development separates source changes from
+    the published 0.4 release.
+  verification: Full regression matrix, origin/record-byte tests, clean artifact probes
+    and immutable prior-tag verification.
+evidence:
+- Canonical Meta 3.0.0 and Process 5.1.0 were normally merged and published as immutable
+  annotated tags; previous tags and PR protection were verified preserved.
+- Actual generic Git installation and locked reinstallation of the exact new selected
+  package snapshots returned zero diagnostics.
+- All 407 tests passed independently on Python 3.12.15, 3.13.16 and 3.14.7, including
+  new policy/Major planning and unchanged closure/origin/legacy/future-refusal cases.
+- Ruff lint and formatting across 117 files passed; Pyright reported zero errors and
+  warnings; project/change-readiness checks and whitespace validation passed.
+- Authority and dependency-minimum changes require Major/Major for the composed development
+  contract; executable interfaces and older selected-policy behavior remain compatible
+  under independent application 0.5.0.
+gaps: []
+work: major-version-authority

@@ -10,8 +10,10 @@ operations. Requires Python 3.12 or newer. Distribution name: `macrostates-cli`.
 Import package and executable name: `macrostates`.
 Licensed under [MIT](https://github.com/Macrostates/macrostates-cli/blob/main/LICENSE).
 
-This release introduces application version `0.4.0` and support for the released
-Meta 2.2, Process 5, Repository 4, Python 2.1.1 and Python-library 2 packages.
+Application version `0.5.0` supports Meta 3.0 and Process 5.1 alongside earlier
+selected policies. Its own composition uses released Meta 3.0.0, Process 5.1.0,
+Repository 4, Python 2.1.1 and Python-library 2 packages. Within requested work,
+implementers choose version impact without a separate Major-number approval.
 The CLI application version is independent from its Macrostates specification
 and implementation baselines. Older projects retain their selected formats and
 policies until explicitly adopted and migrated.
@@ -23,13 +25,13 @@ Install the published package from
 newer environment:
 
 ```bash
-python -m pip install "macrostates-cli>=0.4.0"
+python -m pip install "macrostates-cli>=0.5.0"
 macrostates --help
 ```
 
-Use `python -m pip install macrostates-cli==0.4.0` to select this release, or
-`python -m pip install --upgrade macrostates-cli` to update. The older `0.3.1`
-release remains available for projects that deliberately retain it. A virtual environment can be created with
+Use `python -m pip install macrostates-cli==0.5.0` to select this release, or
+`python -m pip install --upgrade macrostates-cli` to update. The older `0.3.1` and `0.4.0`
+releases remain available for projects that deliberately retain it. A virtual environment can be created with
 `python -m venv .venv`; activate it before installing when your environment
 requires one. For a command outside a project environment, use
 `pipx install macrostates-cli` or `uv tool install macrostates-cli`.
@@ -54,7 +56,7 @@ macrostates info
 macrostates check
 ```
 
-The shorthand `macrostates init --name my-project --package meta@2.2.0`
+The shorthand `macrostates init --name my-project --package meta@3.0.0`
 creates a composition. Repeat `--package NAME@VERSION` for additional packages.
 Input order supplies both reading order and authority, highest first; review them
 before installation. No dependency or latest release is selected automatically.
@@ -143,7 +145,7 @@ inspection before retrying. See
 ## Development And Baseline Releases
 
 The following development commands require explicit selection of supported
-Process 5.0. `branch-status` and `branch-sync` also serve projects retaining older
+Process 5.0 or 5.1. `branch-status` and `branch-sync` also serve projects retaining older
 version policies. Core operations work with Git refs and commits; your repository
 policy defines the review/integration mechanism and required external checks.
 
@@ -304,7 +306,7 @@ The CLI tracks its own composition under `.macrostates/specs/`. Adoption of the
 new official releases, exact selections, lock, and final baseline declarations
 will be verified separately. This development branch uses an independent
 [application declaration](https://github.com/Macrostates/macrostates-cli/blob/main/.macrostates/implementation/application.yaml)
-for independent build version `0.4.0`; the Macrostates implementation declaration is a
+for independent build version `0.5.0`; the Macrostates implementation declaration is a
 separate identity. Candidate/finalized builds bind verified shipped source and
 rebuild from source distributions without Git. Builds do not mutate declarations
 or publish artifacts.

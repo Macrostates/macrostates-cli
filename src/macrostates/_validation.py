@@ -216,7 +216,7 @@ class Process50Policy:
         from ._versioning import baselines
 
         if implementation.parent.name != ".macrostates":
-            report.add("process.layout", "Process 5.0 requires .macrostates/implementation/")
+            report.add("process.layout", f"{self.label} requires .macrostates/implementation/")
             return
         root = implementation.parent.parent
         try:
@@ -237,6 +237,12 @@ class Process50Policy:
             report.add("process.release_invalid", str(exc))
 
 
+class Process51Policy(Process50Policy):
+    """5.1 relaxes Major assignment authority without changing baseline formats."""
+
+    label = "Process 5.1"
+
+
 PROCESS_POLICIES = {
     (2, 3): Process23Policy(),
     (2, 4): Process24Policy(),
@@ -244,6 +250,7 @@ PROCESS_POLICIES = {
     (4, 0): Process40Policy(),
     (4, 1): Process41Policy(),
     (5, 0): Process50Policy(),
+    (5, 1): Process51Policy(),
 }
 
 
@@ -255,6 +262,11 @@ def has_contract_version(process_version: str) -> bool:
 def process_requires_modern_layout(process_version: str) -> bool:
     policy = PROCESS_POLICIES.get(version(process_version)[:2])
     return policy is not None and policy.requires_modern_layout
+
+
+def process_uses_prefixed_baselines(process_version: str) -> bool:
+    """Opt only explicitly reviewed policies into the schema-2 baseline operations."""
+    return isinstance(PROCESS_POLICIES.get(version(process_version)[:2]), Process50Policy)
 
 
 class Meta20Policy:
@@ -283,7 +295,18 @@ class Meta22Policy(Meta21Policy):
     label = "Meta 2.2"
 
 
-META_POLICIES = {(2, 0): Meta20Policy(), (2, 1): Meta21Policy(), (2, 2): Meta22Policy()}
+class Meta30Policy(Meta22Policy):
+    """3.0 relaxes package Major assignment authority, retaining layout and formats."""
+
+    label = "Meta 3.0"
+
+
+META_POLICIES = {
+    (2, 0): Meta20Policy(),
+    (2, 1): Meta21Policy(),
+    (2, 2): Meta22Policy(),
+    (3, 0): Meta30Policy(),
+}
 
 
 def check_meta(composition: Composition, specs: Path, root: Path, report: Report) -> None:

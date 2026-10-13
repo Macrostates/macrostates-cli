@@ -23,6 +23,7 @@ from ._validation import (
     check_process,
     has_contract_version,
     process_requires_modern_layout,
+    process_uses_prefixed_baselines,
     validate_packages,
 )
 
@@ -154,7 +155,9 @@ class Project:
             }
             process = next((item for item in selection if item["name"] == "process"), None)
             if process and has_contract_version(process["version"]):
-                prefix = "specs-" if version(process["version"])[:2] == (5, 0) else "spec-"
+                prefix = (
+                    "specs-" if process_uses_prefixed_baselines(process["version"]) else "spec-"
+                )
                 data["project"]["version"] = prefix + "0.1.0"
         composition = read_composition(data)
         specs = safe_path(directory, LAYOUTS[layout])
@@ -183,8 +186,8 @@ class Project:
         if composition.schema_version == 1:
             meta = next((item for item in composition.packages if item.name == "meta"), None)
             guidance = (
-                "These locations and snapshot sources follow the selected Meta 2 layout."
-                if meta and version(meta.version)[0] == 2
+                "These locations and snapshot sources follow the selected Meta layout."
+                if meta and version(meta.version)[0] >= 2
                 else "These explicit project-level location and transport choices take precedence over selected packages' older layout and subtree conventions."
             )
             overview += f"\n## Layout and verification\n\nSpecification files live under `{specs.relative_to(directory).as_posix()}/`; implementation documentation lives under `{project.implementation.relative_to(directory).as_posix()}/`. Packages marked `github-archive` are tracked release snapshots checked against `composition.lock.yaml`. {guidance} Local packages remain editable. Process, when selected, owns composition/implementation version policy. CLI checks supplement specification reading and do not establish implementation conformance.\n"
@@ -399,9 +402,9 @@ class Project:
         selected = next(
             (item for item in self._composition().packages if item.name == "process"), None
         )
-        if selected is None or version(selected.version)[:2] != (5, 0):
+        if selected is None or not process_uses_prefixed_baselines(selected.version):
             raise MacrostatesError(
-                "This operation requires an explicitly selected Process 5.0 policy; older projects are not migrated implicitly"
+                "This operation requires an explicitly selected Process 5.0 or 5.1 policy; older projects are not migrated implicitly"
             )
         if git_scope:
             from ._git import git
