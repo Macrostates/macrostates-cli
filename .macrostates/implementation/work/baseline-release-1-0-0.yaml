@@ -1,0 +1,6 @@
+schema_version: 1
+id: baseline-release-1-0-0
+origin:
+  commit: 32c1cf2a993fadd2ce152c02e1e946e9218c2ea4
+  specification: specs-0.3.0
+  implementation: imp-0.3.1

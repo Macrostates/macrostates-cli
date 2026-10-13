@@ -1,19 +1,23 @@
 # Macrostates CLI Implementation
 
-Project phase: bootstrapping.
+Project phase: active.
 
-The source branch develops independent application version `0.4.0.dev0`, declared
-in [application.yaml](application.yaml). The current tracked composition and
-[release.yaml](release.yaml) have been explicitly migrated to the preserved
-historical `specs-0.3.0` and `imp-0.3.1` identities. This spelling migration
-retains the original implementation release date, `2026-10-09`, and published
-legacy tags; it does not finalize the changed development source. The proposed
-next baseline finalization is `specs-1.0.0`/`imp-1.0.0`, with a separate independent
-CLI application release `0.4.0`. Those upcoming identities are not integrated or
-published. The definer accepted and confirmed closure of the local implementation
-and integration-preparation scopes. First-baseline phase acceptance remains
-pending, so the project stays in bootstrapping. Earlier closures are preserved
-in their historical artifacts.
+The release branch prepares independent application version `0.4.0`, declared
+with candidate status in [application.yaml](application.yaml). The tracked
+composition and [release.yaml](release.yaml) now declare the linked candidate
+baselines `specs-1.0.0` and `imp-1.0.0`, dated `2026-10-13`, under the bound
+[release plan](release-plan.yaml). Application source tag `v0.4.0` is a declared
+future immutable source identity; it does not yet exist as a published release.
+No new baseline tag or application publication is claimed.
+
+Explicit earlier migration preserved the historical `specs-0.3.0`/`imp-0.3.1`
+numbers, original implementation release date `2026-10-09`, and legacy tags before
+this separate finalization proposal. The definer accepted closure of the feature
+implementation and integration-preparation scopes. On 2026-10-13 the definer separately accepted the verified implementation
+represented by the imp-1.0.0 candidate as the first baseline good enough and
+authorized moving to active. The release/integration preparation workflow is
+completed with explicit closure confirmation. Numerical finalization still
+requires the passing release proposal integration; publication remains separate.
 
 ## Current Behavior And Adoption State
 
@@ -49,14 +53,25 @@ entrypoint, and integrity lock reflect those releases. Offline project checks an
 change-readiness checks also returned zero diagnostics after adoption and
 explicit identity migration.
 
-The current feature is ordinary pending Major specification and implementation
-work. Its [captured work record](work/versioning-system.yaml) explicitly preserves
+The versioning feature was integrated through PR #6 after all six feature
+push/PR checks passed, producing main commit
+`32c1cf2a993fadd2ce152c02e1e946e9218c2ea4`. Its
+[captured work record](work/versioning-system.yaml) preserves
 origin commit `96a467c448f6fc5abf3ca9f8b19a29d976725c93`, with the original
 `specs-0.3.0`/`imp-0.3.1` identities. The
-[change record](changes/versioning-system.yaml) declares Major impact for both
-baselines, requirement/implementation/verification coverage, evidence, and no open
-gaps. It is not a prepared release candidate. A later reviewed baseline
-finalization will consume the pending record.
+[archived change record](changes/history/versioning-system.yaml) declares Major
+impact for both baselines, requirement/implementation/verification coverage,
+evidence, and no open gaps. Candidate preparation preserves its consumed bytes in
+history.
+
+The separate [release work record](work/baseline-release-1-0-0.yaml) captures
+the merged main commit as its origin. Its
+[archived bookkeeping record](changes/history/baseline-release-1-0-0.yaml)
+declares no additional baseline impact. The candidate plan binds source commit
+`4e4ab0601524371215b91d37916e90e5abe9f924`, cached integration target
+`32c1cf2a993fadd2ce152c02e1e946e9218c2ea4`, declaration hashes, and both
+consumed record hashes. Reviewed aggregate Major/Major scope determines the
+1.0.0 candidates; ordinary feature work did not reserve those official versions.
 
 ## Architecture
 
@@ -100,9 +115,11 @@ automatically closes a workflow or infers definer approval.
 
 The project composition identifies its Macrostates specification baseline.
 Process 5's schema-2 `release.yaml` identifies the implementation baseline;
-adoption of that format is explicit and preserves the preceding baseline numbers,
-original release date, and legacy refs. The independent application declaration
-identifies the CLI distribution version and development/candidate/finalized state.
+the current candidate links it to exactly `specs-1.0.0`. Earlier explicit migration
+preserved historical baseline numbers/date and legacy refs. The application
+candidate independently declares `0.4.0`, matching baseline references, its future
+source tag, and the shipped-source fingerprint. The independent application
+declaration identifies the CLI distribution version and development/candidate/finalized state.
 Source-only projects do not gain an invented implementation from initialization.
 
 The standalone build reader validates application version syntax, state,
@@ -144,20 +161,24 @@ legacy fixtures, local canonical Git remotes/tags, captured provenance,
 independent counters, exact integration snapshots, stale targets, documentary
 workflow/history gates, migrations, plans/candidates, and isolated application
 build metadata. The full 393-test suite passed separately on Python 3.12, 3.13,
-and 3.14, retaining the legacy regression suite; all 393 tests passed again on
-Python 3.14 after canonical adoption. Ruff checks and formatting passed across
-114 Python files, and Pyright reported zero errors. Rebuilt development wheel and
-source-distribution artifacts passed clean API/command installation probes,
-shipped-source byte checks, and Twine metadata checks.
+and 3.14 against the prepared 0.4.0 candidate, retaining the legacy regression
+suite. Ruff checks and formatting passed across 115 Python files; Pyright reported
+zero errors and warnings. The candidate wheel and source distribution passed clean
+API/command/version installation probes, shipped-source byte checks, and strict
+Twine metadata checks.
 
 Dated verification and adoption evidence belongs to
 [the implementation workflow](workflows/history/2026-10-13__1A1GXH__versioning-system.md).
 That workflow and
 [integration preparation](workflows/history/2026-10-13__1RPQX8__integration-preparation.md)
-are closed with explicit confirmation. Verify the closed source/index before
-proposal submission. Remote CI, feature integration, the new global baseline,
-stable application publication and first-baseline phase acceptance remain
-separate pending outcomes.
+are closed with explicit confirmation. The closed feature source/index was
+verified, and all six feature checks passed before its normal PR integration.
+Candidate-specific local tests and build verification are recorded in
+[release preparation](workflows/history/2026-10-13__26SXA5__baseline-release-preparation.md).
+The definer confirmed its completion and closure and separately accepted the
+first implementation baseline. Final proposed-tree checks, release PR
+CI/integration, immutable new baseline/application tags and application
+publication remain separate outcomes; no future delivery is claimed.
 
 Structural checks cannot prove semantic classification, truth of approval,
 requirement coverage, or independent application policy decisions. External
@@ -183,6 +204,12 @@ contract map and remaining integration/release checks. Historical workflows reta
 their dated evidence and individual statuses; a history location does not imply
 definer-authorized closure.
 
-## Confirmed Local Workflow Closure
+## Workflow State
 
-The definer explicitly accepted and authorized closing the versioning implementation and feature-integration preparation scopes. Both records are completed in history with the actual scoped confirmation. No current workflow remains open. This does not accept a project-phase transition or close future release work; bootstrapping remains unchanged. Verify the actual closed committed tree before submitting the authorized feature PR, and require external checks before integration.
+The definer explicitly accepted closure of the versioning implementation and
+feature-integration preparation scopes. Both records remain completed in history
+with their scoped confirmation. The separate release/integration preparation
+workflow is completed in history with the definer's 2026-10-13 confirmation.
+The same response explicitly accepted the verified first implementation baseline
+and authorized the active phase. These decisions do not substitute for passing
+external checks, normal integration, immutable tags or actual publication.

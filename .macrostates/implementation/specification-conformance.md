@@ -3,10 +3,14 @@
 ## Scope And Current State
 
 This document maps the revised local CLI contract to current source and
-verification. The development application declaration is `0.4.0.dev0`. Explicit
-migration preserves the historical baseline numbers as `specs-0.3.0` and
-`imp-0.3.1`, the original implementation release date `2026-10-09`, and published
-legacy tags. Those preserved identities do not finalize this development source.
+verification. The current application declaration is candidate `0.4.0`, separately
+linked to candidate baselines `specs-1.0.0` and `imp-1.0.0`, dated `2026-10-13`.
+The bound [release plan](release-plan.yaml) records the reviewed source, target,
+declarations, and consumed records. The application declares future source tag
+`v0.4.0` and its shipped-source fingerprint; neither a new tag nor publication
+has occurred. Earlier explicit migration preserved the historical 0.3.0/0.3.1
+baseline numbers, implementation date `2026-10-09`, and legacy tags before this
+separate finalization proposal.
 
 The approved canonical releases are published: Meta 2.2.0, Process 5.0.0,
 Repository-1 4.0.0, Python 2.1.1, Python-project-1 3.0.0, Python-library-1 2.0.0,
@@ -17,17 +21,24 @@ Python-library-1 2.0.0, and local CLI 1.0.0, using canonical external
 installation and locked reinstallation both returned zero diagnostics, as did
 offline project checks and change-readiness checks after migration.
 
-The current feature is ordinary pending Major specification/implementation work.
+The feature was integrated through PR #6 after all six feature push/PR checks
+passed, producing main commit `32c1cf2a993fadd2ce152c02e1e946e9218c2ea4`.
 Its [work record](work/versioning-system.yaml) explicitly captures original commit
 `96a467c448f6fc5abf3ca9f8b19a29d976725c93`; the
-[change record](changes/versioning-system.yaml) preserves the original baseline
-identities, declares Major/Major impacts, records requirements and verification
-evidence, and has no open gaps. The upcoming baseline
-release `specs-1.0.0`/`imp-1.0.0` and independent application release `0.4.0`
-have not been integrated or published. The project remains in bootstrapping;
-first-baseline phase acceptance remains pending. The definer accepted and
-confirmed closure of both local scopes; earlier requested closures remain
-recorded in history.
+[archived change record](changes/history/versioning-system.yaml) preserves the
+original baseline identities, declares Major/Major impacts, records requirements
+and verification evidence, and has no open gaps. The separate
+[release work record](work/baseline-release-1-0-0.yaml) captures merged main as its
+origin; its [archived bookkeeping record](changes/history/baseline-release-1-0-0.yaml)
+adds no baseline impact. The [release plan](release-plan.yaml) binds its exact
+source commit and cached target
+`32c1cf2a993fadd2ce152c02e1e946e9218c2ea4`, preserves both consumed record
+hashes, and derives 1.0.0 candidates from aggregate Major/Major scope.
+
+This review verifies the release candidate before proposal integration and
+publication. The definer confirmed closure of both feature scopes, preserved
+in history. Current release delivery and separate first-baseline phase acceptance
+are recorded in [the implementation entrypoint](main.md) and the release workflow.
 
 The preceding published application remains valid under its earlier selected
 policies. New APIs and flat commands implement Process 5's captured provenance,
@@ -66,7 +77,7 @@ they do not imply every conceivable edge has independent automated coverage.
 | Development exact combined readiness | `_integration`, project/domain checks | Explicit scope records, inherited target workflows, gaps, merge conflicts, stale expected/during-check targets |
 | Development release plans/preparation | `_release`, `_versioning`, `_mutations` | `test_release_records.py`: aggregation, explicit target refs, commit/tree/record binding, candidate/history checks and retained baseline plans/tags for metadata-only application release |
 | Development release identity/publication checks | `_release`, `_deliverables` | `test_deliverable_sources.py`: declared source tags/commits, agreement, source declarations/baselines and custom-source manual warnings; final artifacts and external authorization remain separate |
-| [Verification](../specs/051_cli/007_verification.md) | Contributor tooling, tests, build and CI | Full 393-test suite passed on Python 3.12/3.13/3.14 and again on 3.14 after adoption; canonical self-install/reinstall, offline/readiness checks, Ruff/formatting, Pyright and development artifact probes passed; remote CI remains pending |
+| [Verification](../specs/051_cli/007_verification.md) | Contributor tooling, tests, build and CI | Full 393-test suite passed on Python 3.12/3.13/3.14 and again on 3.14 after adoption; self-install/reinstall, offline/readiness, Ruff/formatting, Pyright and development artifact probes passed; all six feature push/PR checks passed; current release candidate checks are recorded separately |
 | [Recovery](../specs/051_cli/annex_recovery.md) | Transport, synchronization, migration and replacement boundaries | Preserved package edits/conflicts/provenance, stale plans, markers/recovery-data review |
 
 ## Verified Development Evidence
@@ -86,27 +97,34 @@ self-referential application metadata, and that source archives preserve the
 verified build identity without Git.
 
 Actual canonical install/reinstall and offline/readiness checks passed after
-adoption. Rebuilt development wheel and source-distribution artifacts passed clean
-API/command installation probes, shipped-source byte comparisons, and Twine
-metadata checks. These development artifacts do not finalize or publish
-application `0.4.0`.
+adoption. All 393 tests passed separately on Python 3.12, 3.13 and 3.14 against the
+prepared candidate. Its 0.4.0 wheel and source distribution passed clean
+API/command/version installation probes, shipped-source byte comparisons, and
+strict Twine metadata checks. These local candidate artifacts do not finalize or
+publish application `0.4.0`.
 
 Dated verification and adoption evidence belongs in
 [the implementation workflow](workflows/history/2026-10-13__1A1GXH__versioning-system.md)
 and [integration preparation](workflows/history/2026-10-13__1RPQX8__integration-preparation.md).
 Both local scopes are explicitly closed. Final source/staged verification
-precedes proposal submission; remote feature CI/integration, stable baseline and
-application releases, and phase acceptance remain pending. Historical publication
-evidence stays in its original records.
+preceded feature proposal submission; all six feature push/PR checks passed before
+normal integration. Current candidate-specific local test and build verification
+is recorded in
+[release preparation records](workflows/), under filename
+`2026-10-13__26SXA5__baseline-release-preparation.md` in current work or history.
+Release proposal closure/CI/integration, stable baseline and application
+tags/publication, and phase acceptance require their own evidence. Historical
+publication evidence stays in its original records.
 
-## Integration And Release Work Still Required
+## Integration And Release Gates
 
-- Verify the final closed proposed source and Git index against the primary
-  target, submit the feature proposal, and require remote checks before integration.
-- Prepare a current target/tree-bound baseline candidate, review/integrate it
-  through the repository policy, and perform separately authorized baseline
-  tagging and independent application `0.4.0` publication. Repeat affected checks
-  for those finalized declarations and artifacts.
+- Verify the exact committed candidate and combined target tree with its bound
+  plan, declarations, source fingerprint and archived records.
+- Obtain explicit closure of the release/integration preparation workflow and
+  verify its closed proposed source/index against the current primary target.
+- Submit the candidate proposal and require remote checks before normal
+  integration, then verify immutable baseline/application tags and independently
+  publish application `0.4.0` through the authorized procedure.
 - Retain bootstrapping until the definer explicitly accepts the first-baseline
   phase transition.
 
@@ -132,6 +150,11 @@ provide ordinary-failure recovery, not power-loss atomicity or arbitrary-writer
 isolation. Source archives use declared build metadata and honestly report
 unavailable computed Git identity.
 
-## Confirmed Local Workflow Closure
+## Workflow State
 
-The definer explicitly accepted and authorized closing the versioning implementation and feature-integration preparation scopes. Both records are completed in history with the actual scoped confirmation. No current workflow remains open. This does not accept a project-phase transition or close future release work; bootstrapping remains unchanged. Verify the actual closed committed tree before submitting the authorized feature PR, and require external checks before integration.
+Feature implementation and integration preparation are explicitly closed in
+history. The separate release/integration workflow records candidate gates and
+actual outcomes, without changing normative specifications to describe operational
+progress. Closure, phase acceptance and publication are separate evidenced
+decisions. Consult [the implementation entrypoint](main.md) for the current phase
+and the workflow records for the actual scoped acceptance and delivery state.
