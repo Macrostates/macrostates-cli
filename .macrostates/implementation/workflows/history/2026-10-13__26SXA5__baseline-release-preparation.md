@@ -2,14 +2,14 @@
 
 - Project phase: bootstrapping
 - Workflow type: Release preparation; Integration preparation (one release outcome, scopes below)
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Change depth: systemic
 - Branch: release/baselines-1.0.0
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com) - Obtained from repository-local Git identity and current conversation
 - Implementer: Model: GPT-6; exact revision/effort: not exposed; agent: Codex; source: runtime instructions
 - Started at: 2026-10-13 20:37:29.541 UTC
-- Last updated at: 2026-10-13 20:47:17 UTC
+- Last updated at: 2026-10-13 21:00:01 UTC
 
 ## Original request and objective
 
@@ -50,3 +50,15 @@ Complete the actual release candidate and collect its verification, then present
 The committed candidate check correctly rejected a conformance-document update made after planning. Preserve that reviewed documentation as a new planning input, return declarations and byte-identical consumed records to their pending state, and calculate a fresh plan. Runtime code and final shipped inputs are unchanged; their completed tests and artifact verification remain applicable. The earlier candidate is unintegrated and no new immutable tag exists. No history is rewritten.
 
 The fresh plan includes the conformance document in its exact committed source inputs. Candidate preparation again preserves both record hashes and proposes the same approved versions. The rebuilt declaration has the same verified shipped-input fingerprint, so existing 0.4.0 artifact/test evidence applies. Exact committed-tree validation follows before the closure petition.
+
+## Definer-confirmed closure
+
+At 2026-10-13 21:00 UTC, Lucas Lopez replied “confirmed, please complete the process” to the petition explicitly listing both decisions. The definer confirms closing this sole open release/integration preparation workflow as completed. This accepts its bound candidate and completed local verification and authorizes archival. The subsequent release PR, external checks, normal integration, tags and application publication retain their already authorized separate procedure. No future external result is asserted by this closure.
+
+## First implementation baseline acceptance
+
+The same explicit confirmation separately accepts the verified implementation represented by candidate imp-1.0.0 as the first baseline good enough and authorizes recording the project phase transition from bootstrapping to active in this release proposal. The implementation entrypoint records active. Official numerical finalization remains contingent on the passing release PR and normal integration; this consent does not claim tags or distribution already exist.
+
+## Closed scope outcome and remaining delivery
+
+The candidate, source/target binding, consumed record preservation, tests, clean artifacts and package conformance are locally verified. An independent isolated simulation of closure/archival and separate phase acceptance passed release and combined-tree gates without changing record hashes or shipped inputs. The actual closed committed tree and current primary target must now be verified, followed by the authorized proposal and external delivery procedure. No open local workflow remains after this archive move.

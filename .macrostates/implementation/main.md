@@ -1,6 +1,6 @@
 # Macrostates CLI Implementation
 
-Project phase: bootstrapping.
+Project phase: active.
 
 The release branch prepares independent application version `0.4.0`, declared
 with candidate status in [application.yaml](application.yaml). The tracked
@@ -13,9 +13,11 @@ No new baseline tag or application publication is claimed.
 Explicit earlier migration preserved the historical `specs-0.3.0`/`imp-0.3.1`
 numbers, original implementation release date `2026-10-09`, and legacy tags before
 this separate finalization proposal. The definer accepted closure of the feature
-implementation and integration-preparation scopes. The current release and
-integration workflow remains open, and first-baseline phase acceptance remains
-pending, so the project stays in bootstrapping.
+implementation and integration-preparation scopes. On 2026-10-13 the definer separately accepted the verified implementation
+represented by the imp-1.0.0 candidate as the first baseline good enough and
+authorized moving to active. The release/integration preparation workflow is
+completed with explicit closure confirmation. Numerical finalization still
+requires the passing release proposal integration; publication remains separate.
 
 ## Current Behavior And Adoption State
 
@@ -172,10 +174,11 @@ That workflow and
 are closed with explicit confirmation. The closed feature source/index was
 verified, and all six feature checks passed before its normal PR integration.
 Candidate-specific local tests and build verification are recorded in
-[release preparation](workflows/2026-10-13__26SXA5__baseline-release-preparation.md).
-That workflow remains open. Its closure, final proposed-tree checks, release PR
-CI/integration, immutable new baseline/application tags, application publication,
-and first-baseline phase acceptance remain separate pending outcomes.
+[release preparation](workflows/history/2026-10-13__26SXA5__baseline-release-preparation.md).
+The definer confirmed its completion and closure and separately accepted the
+first implementation baseline. Final proposed-tree checks, release PR
+CI/integration, immutable new baseline/application tags and application
+publication remain separate outcomes; no future delivery is claimed.
 
 Structural checks cannot prove semantic classification, truth of approval,
 requirement coverage, or independent application policy decisions. External
@@ -206,6 +209,7 @@ definer-authorized closure.
 The definer explicitly accepted closure of the versioning implementation and
 feature-integration preparation scopes. Both records remain completed in history
 with their scoped confirmation. The separate release/integration preparation
-workflow is open; previous closure does not close it or accept a project-phase
-transition. Candidate verification, closure and publication gates belong to that
-workflow. Bootstrapping remains unchanged until explicit phase acceptance.
+workflow is completed in history with the definer's 2026-10-13 confirmation.
+The same response explicitly accepted the verified first implementation baseline
+and authorized the active phase. These decisions do not substitute for passing
+external checks, normal integration, immutable tags or actual publication.
