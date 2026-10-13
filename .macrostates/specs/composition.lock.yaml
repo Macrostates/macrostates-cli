@@ -3,18 +3,18 @@ packages:
   meta:
     selection:
       name: meta
-      version: 2.2.0
+      version: 3.0.0
       path: 000_meta
       entrypoint: README.md
       source:
         type: git-archive
         repository: https://github.com/Macrostates/macrostates-meta.git
-        tag: v2.2.0
-    commit: 2b5b5904daf98b62607586e71c01ba9f86f571b5
-    content_sha256: c3dd0a60536caaa068a7fd366a3e51bd0f2909079f11b3b63a5c7aeef1427679
+        tag: v3.0.0
+    commit: 2f3500aa14203e8b324c901d399ae831ce5570a6
+    content_sha256: 5886a1ba4e43909205ad91630caaf939f54567c9c3530839c52a624f27d8ec99
     files:
       001_concepts.md:
-        sha256: bb99fed8d250b50fa87080dda0b9759e328d0739eb1c4b401b9f12a50473a392
+        sha256: a3b58d35ecf3f846ea4b394ac33fba3e7f588d9966ab13936aca61ba9ee96ef7
         executable: false
       002_project-composition.md:
         sha256: a21e48cf91eca8f4acb57338bc97f9bca6e6c03e8dc7803723671d29edaecb07
@@ -41,7 +41,7 @@ packages:
         sha256: 7b42ce066c9f689afb61bc393be7e0034094113b1a14c16fee839a8df46fb5c3
         executable: false
       package.yaml:
-        sha256: 3253bed9005d30a83f0ce30b22d58d07533b70875efccca8f315e27fa80d25a2
+        sha256: e3b6228e0a5f6efe7b220608ba062d233c245a608265021e8efaf4a35cc88fa8
         executable: false
       resources/project-kickoff.md:
         sha256: ba4a4f0a1942a69b88135e6d23b023e68ce19336b52a64cb7be560cce5ae7b07
@@ -49,18 +49,18 @@ packages:
   process:
     selection:
       name: process
-      version: 5.0.0
+      version: 5.1.0
       path: 001_process
       entrypoint: README.md
       source:
         type: git-archive
         repository: https://github.com/Macrostates/macrostates-process.git
-        tag: v5.0.0
-    commit: 99bec8d2377a14d0e1b8b1e99f671d63b22f5740
-    content_sha256: 4b21a5bf7b42293189b59a091b7b113391f98e5ccab52cd59372d15ddf89ff5e
+        tag: v5.1.0
+    commit: 6a6cfd19f01a7d7265f315b1237f75c8db5e5d4d
+    content_sha256: d8bc82b6c27837d2ea768435787499c4958095c610ad4dfae92f4ce731c40e9c
     files:
       001_concepts.md:
-        sha256: 1a4acc3e0528742d104c2b70b0045cb8c32cbecab818871e0831d0504800a82e
+        sha256: 7cae598a8250fbbd71a60e69eaeafb457ec82bd152529b3883320e3b7027eb87
         executable: false
       002_artifacts.md:
         sha256: 4c3b3a9e69f5e3967e7b68593400c15d100f09d6764055aba9827ca4d9f5ed36
@@ -87,7 +87,7 @@ packages:
         sha256: 780f90c64b700fcbd2aba7fc3b35597b48d7cd0b31c1b1fed14292a0b2132dac
         executable: false
       package.yaml:
-        sha256: 39bba1f4078868e2934995e54e2ad49ab3c8b5104d5f8047d8b1576e2dbdd641
+        sha256: e3afae84310fa60df68191aea971cf6a6f4a45323bcde909cb27f7463f596726
         executable: false
   repository-1:
     selection:

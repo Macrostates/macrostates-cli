@@ -2,76 +2,43 @@
 
 Project phase: active.
 
-The release branch prepares independent application version `0.4.0`, declared
-with candidate status in [application.yaml](application.yaml). The tracked
-composition and [release.yaml](release.yaml) now declare the linked candidate
-baselines `specs-1.0.0` and `imp-1.0.0`, dated `2026-10-13`, under the bound
-[release plan](release-plan.yaml). Application source tag `v0.4.0` is a declared
-future immutable source identity; it does not yet exist as a published release.
-No new baseline tag or application publication is claimed.
+Current source prepares independent application version `0.5.0`, with candidate
+state recorded in [application.yaml](application.yaml). The composition and
+[release.yaml](release.yaml) now propose `specs-2.0.0` / `imp-2.0.0` under the
+[bound release plan](release-plan.yaml). Ordinary feature work retained the earlier
+1.0.0 numbers; separate release preparation computes the Major/Major scope once. The immutable 0.4.0 release identifies source
+`fe6e36989b0a3c5c274b9fe2a03f7a7673ffff09`; its baselines, provenance and published
+artifacts remain unchanged. New source is unreleased until its reviewed baseline
+and application procedures complete.
 
-Explicit earlier migration preserved the historical `specs-0.3.0`/`imp-0.3.1`
-numbers, original implementation release date `2026-10-09`, and legacy tags before
-this separate finalization proposal. The definer accepted closure of the feature
-implementation and integration-preparation scopes. On 2026-10-13 the definer separately accepted the verified implementation
-represented by the imp-1.0.0 candidate as the first baseline good enough and
-authorized moving to active. The release/integration preparation workflow is
-completed with explicit closure confirmation. Numerical finalization still
-requires the passing release proposal integration; publication remains separate.
+## Current Behavior And Adoption
 
-## Current Behavior And Adoption State
+The console command and public Python API share project initialization,
+installation, locking, inspection, structural checks and exact staged-index
+checks. Git-based baseline operations capture work origins, record independent
+change impacts and evidence, inspect optional applications, synchronize branches,
+verify combined integration snapshots and prepare bound release candidates.
 
-The console command and public Python API support package initialization,
-installation, canonical locking, inspection, structural checks, inventory checks,
-and exact staged-index checks. Legacy persisted formats, source adapters, and
-selected-policy behavior remain supported.
+The current selection adopts released Meta 3.0.0 and Process 5.1.0 alongside
+Repository 4.0.0, Python 2.1.1 and Python-library 2.0.0. The local CLI contract is
+listed in its [package metadata](../specs/051_cli/package.yaml). External packages
+remain unchanged tagged Git snapshots under the exact integrity lock. The new
+policies retain the modern layouts and technical record formats. They remove the
+separate Major-number consent requirement within authorized work; ordinary
+workflow closure, integration, publication and scope authorization remain distinct.
 
-New source behavior adds generic `git-archive` transport and public `GitSource`.
-It fetches an explicit annotated package tag into temporary Git storage and
-archives the resolved commit. Package destinations contain tracked source files,
-not upstream Git metadata. Existing selections reject moved locked commits and
-edited inventories. The prior transport remains available for older selections.
+Explicit adapters support Meta 3.0 and Process 5.1 without accepting unreviewed
+future versions. Process capabilities consistently select initialization seeds,
+record declarations and public baseline operations. Earlier selected policies
+retain their original validation and source-format behavior. Major changes use
+the existing impact/evidence aggregation; the CLI does not invent a Major-specific
+permission token or automatically authorize any operation.
 
-The development API additionally implements captured work origins, change impact
-records, optional deliverable inspection, documentary workflow closure requests,
-Git synchronization, exact combined integration checks, bound baseline release
-planning/preparation/checking, and explicit declaration migration. Process 5.0
-selection gates the versioning-specific operations. Git synchronization inspects
-configured refs and optionally fetches, merges, or rebases only when requested.
-It preserves original work provenance and unresolved conflicts.
-
-The eight canonical specification repositories have been reviewed, merged, and
-released as Meta 2.2.0, Process 5.0.0, Repository-1 4.0.0, Python 2.1.1,
-Python-project-1 3.0.0, Python-library-1 2.0.0, Android-app-1 5.0.0, and Docker-1
-3.0.0. Their previously published tags remain unchanged.
-
-The verified CLI adoption uses Meta 2.2.0, Process 5.0.0, Repository-1 4.0.0,
-Python 2.1.1, Python-library-1 2.0.0, and local CLI 1.0.0, with canonical
-`git-archive` sources for external packages. Actual canonical installation and
-locked reinstallation both returned zero diagnostics. The exact composition,
-entrypoint, and integrity lock reflect those releases. Offline project checks and
-change-readiness checks also returned zero diagnostics after adoption and
-explicit identity migration.
-
-The versioning feature was integrated through PR #6 after all six feature
-push/PR checks passed, producing main commit
-`32c1cf2a993fadd2ce152c02e1e946e9218c2ea4`. Its
-[captured work record](work/versioning-system.yaml) preserves
-origin commit `96a467c448f6fc5abf3ca9f8b19a29d976725c93`, with the original
-`specs-0.3.0`/`imp-0.3.1` identities. The
-[archived change record](changes/history/versioning-system.yaml) declares Major
-impact for both baselines, requirement/implementation/verification coverage,
-evidence, and no open gaps. Candidate preparation preserves its consumed bytes in
-history.
-
-The separate [release work record](work/baseline-release-1-0-0.yaml) captures
-the merged main commit as its origin. Its
-[archived bookkeeping record](changes/history/baseline-release-1-0-0.yaml)
-declares no additional baseline impact. The candidate plan binds source commit
-`4e4ab0601524371215b91d37916e90e5abe9f924`, cached integration target
-`32c1cf2a993fadd2ce152c02e1e946e9218c2ea4`, declaration hashes, and both
-consumed record hashes. Reviewed aggregate Major/Major scope determines the
-1.0.0 candidates; ordinary feature work did not reserve those official versions.
+The [captured work origin](work/major-version-authority.yaml) retains finalized
+starting commit and baselines. Pending scope and later consumed records live under
+[changes](changes/). Current work and scoped acceptance belong to
+[workflow records](workflows/); no historical closure grants this new scope.
+The project's previously accepted active phase is preserved.
 
 ## Architecture
 
@@ -79,7 +46,7 @@ consumed record hashes. Reviewed aggregate Major/Major scope determines the
 | --- | --- |
 | `_models.py` | Normalized package/composition models, public diagnostics, reports, and controlled errors |
 | `_formats/` and `_io.py` | Explicit composition/metadata readers, strict YAML, field/path primitives, and retained formats |
-| `_validation.py` | Metadata/dependency/link checks and explicit Meta 2.0/2.1/2.2 and Process 2.3/2.4/3.0/4.0/4.1/5.0 policy adapters |
+| `_validation.py` | Metadata/dependency/link checks and explicit Meta 2.0/2.1/2.2/3.0 and Process 2.3/2.4/3.0/4.0/4.1/5.0/5.1 policy adapters |
 | `_scopes.py` | Visible directory-scoped specification discovery and independent-composition boundaries |
 | `_sources.py` | Injectable transport boundary, generic Git provider, and retained legacy HTTP provider/authentication |
 | `_integrity.py` | Bounded archive extraction, inventories, content identities, and integrity lock reader |
@@ -95,121 +62,72 @@ consumed record hashes. Reviewed aggregate Major/Major scope determines the
 | `_build_version.py` | Standalone application-version reader, shipped-source validation, and retained legacy build declaration support |
 | `_cli.py` | Flat command arguments, public method calls, human/JSON rendering, and exit-code translation |
 
-Core project/versioning operations have no hosting API dependency. External
-reviews, protection, CI scheduling, tagging, and artifact distribution belong to
-repository/application procedures. The repository's existing publication workflow
-is provider-specific infrastructure. It now checks the application version
-against the publication tag, checks its declared global baseline identities,
-and invokes publication readiness checks before building and uploading artifacts.
-It has not published application `0.4.0`. Core CLI portability does not depend on
-that provider.
+Core project/versioning operations have no hosting API dependency. Reviews,
+branch protection, CI scheduling and artifact distribution use repository and
+application procedures. The existing trusted-publisher workflow verifies the
+application tag, linked baselines, source completeness and publication readiness,
+then builds, tests and uploads the same verified artifact set. Its existing
+publisher identifiers are preserved.
 
 Ordinary imports have no project/network/subprocess side effects. Explicit
-`__version__` access reads installed distribution metadata. Only package source
-operations and explicitly requested remote fetch access remote sources.
-Synchronization can update Git history under the requested merge/rebase strategy;
-planning/checks do not commit, tag, submit proposals, or publish. No operation
-automatically closes a workflow or infers definer approval.
+version access uses installed distribution metadata. Git synchronization only
+fetches or changes history when requested. Checks and planning do not commit,
+close workflows, tag, submit proposals or publish.
 
-## Version And Build Sources
+## Build And Release Identity
 
-The project composition identifies its Macrostates specification baseline.
-Process 5's schema-2 `release.yaml` identifies the implementation baseline;
-the current candidate links it to exactly `specs-1.0.0`. Earlier explicit migration
-preserved historical baseline numbers/date and legacy refs. The application
-candidate independently declares `0.4.0`, matching baseline references, its future
-source tag, and the shipped-source fingerprint. The independent application
-declaration identifies the CLI distribution version and development/candidate/finalized state.
-Source-only projects do not gain an invented implementation from initialization.
+[Composition](../specs/composition.yaml) owns the specification baseline;
+[release.yaml](release.yaml) identifies implementation and exact implemented
+specification. [Application metadata](application.yaml) independently supplies
+the Python distribution version. Development source uses a development identity;
+prepared or finalized builds bind their shipped inputs with a verified fingerprint.
+Published tags and distributions remain immutable.
 
-The standalone build reader validates application version syntax, state,
-baseline relation, and canonical calendar date. Development source uses a Python
-development representation. Candidate/finalized builds require `source_sha256`
-to match shipped inputs. The current fingerprint covers README, license,
-pyproject, manifest, implementation release declaration, and package source,
-including executable identity while excluding caches and the application
-declaration's own bytes. Workflow/specification-only artifacts are not shipped
-inputs. This avoids a self-hash and permits isolated source-archive rebuilding.
-
-The source distribution includes both application and implementation declarations.
-It needs no installed CLI, selected package snapshots, Git, or release lookup to
-derive its build version. The wheel reports its installed distribution metadata.
-Builds do not edit declarations, allocate versions, tag, or publish. Normal
-dependency installation may still require package indexes.
+The standalone build reader validates version, state, baseline relation, date and
+candidate fingerprint. Shipped inputs include README, license, pyproject,
+manifest, implementation release declaration and package source bytes/executable
+identity. The application declaration itself and unshipped specification/workflow
+documents are excluded to avoid a self-hash. Source archives rebuild without Git,
+installed specification snapshots or release lookup. Ordinary builds never finalize,
+allocate, tag or publish.
 
 ## Extension And Compatibility
 
-Read [the adapter decision](decisions/0001-versioned-format-adapters.md) and
-[modern package adoption](decisions/0002-modern-package-adoption.md) as historical
-design records. New persisted formats need explicit readers and normalization;
-retain old readers and regression fixtures. New source types need explicit
-validation and transport support. New Process policies need release-selected
-adapters rather than modifying prior projects' rules in place.
-
-Public exports/signatures, command options/results, persisted artifact shapes,
-and source authentication interfaces are compatibility surfaces. Exact internal
-algorithms, module layout, resource limits, and diagnostic wording remain
-implementation choices. Initial 0.x application versioning does not justify
-silently breaking existing documented use. Migrations remain explicit and
-preserve published refs; baseline finalization does not assign independent app
-versions or replace unchanged application provenance.
+See [versioned format adapters](decisions/0001-versioned-format-adapters.md) and
+[modern adoption](decisions/0002-modern-package-adoption.md) for earlier decisions.
+New policies and formats receive explicit adapters and regression coverage.
+Unknown future policies fail clearly. Existing public commands, APIs, legacy
+formats and old release policies remain supported. Migrations are explicit and
+preserve published provenance. The application's 0.x version does not justify
+silently breaking documented interfaces.
 
 ## Verification And Limits
 
-Use the README's contributor checks and artifact probes. Coverage includes
-legacy fixtures, local canonical Git remotes/tags, captured provenance,
-independent counters, exact integration snapshots, stale targets, documentary
-workflow/history gates, migrations, plans/candidates, and isolated application
-build metadata. The full 393-test suite passed separately on Python 3.12, 3.13,
-and 3.14 against the prepared 0.4.0 candidate, retaining the legacy regression
-suite. Ruff checks and formatting passed across 115 Python files; Pyright reported
-zero errors and warnings. The candidate wheel and source distribution passed clean
-API/command/version installation probes, shipped-source byte checks, and strict
-Twine metadata checks.
+[Specification conformance](specification-conformance.md) maps requirements to
+implementation and verification. The new policy tests cover exact new selections,
+initialization, Major release planning without a consent flag, retained closure
+requirements, older policies and refusal of unreviewed future versions. Dated
+results, package adoption and release checks belong to the current workflow;
+All 407 tests pass on Python 3.12, 3.13 and 3.14 after adoption and again on
+Python 3.14 against the candidate. Static checks, actual installation/locked
+reinstallation and clean candidate artifact probes pass. External proposal and
+publication results remain separate; no historical consent closes this work.
 
-Dated verification and adoption evidence belongs to
-[the implementation workflow](workflows/history/2026-10-13__1A1GXH__versioning-system.md).
-That workflow and
-[integration preparation](workflows/history/2026-10-13__1RPQX8__integration-preparation.md)
-are closed with explicit confirmation. The closed feature source/index was
-verified, and all six feature checks passed before its normal PR integration.
-Candidate-specific local tests and build verification are recorded in
-[release preparation](workflows/history/2026-10-13__26SXA5__baseline-release-preparation.md).
-The definer confirmed its completion and closure and separately accepted the
-first implementation baseline. Final proposed-tree checks, release PR
-CI/integration, immutable new baseline/application tags and application
-publication remain separate outcomes; no future delivery is claimed.
+Structural checks cannot prove semantic classification, truthful consent or
+requirement coverage. Cached refs do not establish current remote state. Final
+proposal checks cover the actual combined tree, and required external checks
+precede integration. Transactions recover ordinary failures but do not guarantee
+power-loss atomicity or isolation from arbitrary external writes. Integrity locks
+are reviewable baselines rather than signatures. Scope discovery and staged
+snapshots have documented exclusions; separately composed subprojects and
+submodules need their own review. Source archives honestly report unavailable
+Git identity rather than inventing a release claim.
 
-Structural checks cannot prove semantic classification, truth of approval,
-requirement coverage, or independent application policy decisions. External
-checks/reviews and fresh remote state remain separate gates. Workflow checks
-inspect status and recorded confirmation; they do not authorize closure.
-Declarative source references and artifact metadata need project-specific release
-review in addition to structural validation.
+## Current Workflow Acceptance
 
-Transactions roll back ordinary failures, with retained recovery files on rollback
-failure. They do not guarantee power-loss/crash atomicity or complete isolation
-from arbitrary external writes. Locks are reviewable baselines, not signatures.
-Local link checks target files rather than full Markdown semantics/heading
-anchors. Scope discovery omits hidden/tool/cache/build/temp directories and
-separately composed subprojects. Index snapshots omit submodule contents.
-
-Current resource bounds remain implementation choices: YAML/API documents 2 MiB,
-archive inputs 32 MiB, extracted archives/index snapshots 128 MiB, and archive
-entries 10,000. The legacy HTTP tag resolver bounds annotation nesting.
-Interrupted package/release operations require inspection and manual recovery.
-
-See [specification conformance](specification-conformance.md) for the current
-contract map and remaining integration/release checks. Historical workflows retain
-their dated evidence and individual statuses; a history location does not imply
-definer-authorized closure.
-
-## Workflow State
-
-The definer explicitly accepted closure of the versioning implementation and
-feature-integration preparation scopes. Both records remain completed in history
-with their scoped confirmation. The separate release/integration preparation
-workflow is completed in history with the definer's 2026-10-13 confirmation.
-The same response explicitly accepted the verified first implementation baseline
-and authorized the active phase. These decisions do not substitute for passing
-external checks, normal integration, immutable tags or actual publication.
+The definer explicitly confirmed completion and closure of the policy-adoption,
+release-preparation and integration-preparation workflows. Their records are
+archived with the actual scoped confirmation. No open workflow remains. The
+complete release proposal still requires passing external checks and normal
+integration before immutable tags and application publication. These future
+results are not inferred from local acceptance. The active phase remains unchanged.

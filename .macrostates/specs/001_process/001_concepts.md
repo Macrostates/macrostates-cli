@@ -80,8 +80,11 @@ integrated without manufacturing a release. A contradictory semantic impact
 requires review rather than blindly trusting a field.
 
 Release candidates propose official numbers; approved integration finalizes them.
-Version assignment does not authorize unapproved behavior, package Major changes,
-tag creation or publication. Reusable package versions remain under Meta's
+Implementers classify Major, Minor or Patch impact from the actual changes. A
+Major classification or baseline increase does not require separate definer
+approval. Clarify unclear requirements or compatibility expectations with the
+definer. Version assignment does not authorize additional scope, tag creation or
+publication. Reusable package versions remain under Meta's
 separate `major.minor.patch` and `v<version>` rules.
 
 ### Development, pending and candidate states

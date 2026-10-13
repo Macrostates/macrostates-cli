@@ -2,12 +2,19 @@
 
 ## Policy And Responsibility
 
-These operations implement the supported Process 5.0 policy. Core behavior uses
+These operations implement the supported Process 5.0 and 5.1 policies with the
+same technical formats and structural readiness checks. Core behavior uses
 Git repositories, refs, commits, and reviewed integration without requiring a
 particular hosting platform or external changeset product. Projects define their
 integration/review policy and may define independent application release policies.
 The CLI never infers semantic impact from changed files or treats a matching
 version pair as proof of conformance.
+
+Process 5.1 does not require separate definer approval solely for a Major impact
+classification or baseline increase within authorized work. This does not close
+a workflow or authorize additional scope, integration, tags, or publication.
+Apply the selected authority rules in
+[Versioning and compatibility](006_versioning.md#release-selected-policies).
 
 Application policy is optional. The default stable application version is the
 numeric part of its selected finalized implementation baseline. A monorepo can
