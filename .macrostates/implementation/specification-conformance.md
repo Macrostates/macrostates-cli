@@ -30,15 +30,15 @@ original baseline identities, declares Major/Major impacts, records requirements
 and verification evidence, and has no open gaps. The separate
 [release work record](work/baseline-release-1-0-0.yaml) captures merged main as its
 origin; its [archived bookkeeping record](changes/history/baseline-release-1-0-0.yaml)
-adds no baseline impact. The plan binds source
-`da4287ece3cd689ed207e05638c2168528b1487f` and cached target
+adds no baseline impact. The [release plan](release-plan.yaml) binds its exact
+source commit and cached target
 `32c1cf2a993fadd2ce152c02e1e946e9218c2ea4`, preserves both consumed record
 hashes, and derives 1.0.0 candidates from aggregate Major/Major scope.
 
-The release proposal and application publication have not been integrated or
-completed. The project remains in bootstrapping; first-baseline phase acceptance
-remains pending. The definer confirmed closure of both feature scopes, preserved
-in history. The new combined release/integration workflow remains open.
+This review verifies the release candidate before proposal integration and
+publication. The definer confirmed closure of both feature scopes, preserved
+in history. Current release delivery and separate first-baseline phase acceptance
+are recorded in [the implementation entrypoint](main.md) and the release workflow.
 
 The preceding published application remains valid under its earlier selected
 policies. New APIs and flat commands implement Process 5's captured provenance,
@@ -110,12 +110,13 @@ Both local scopes are explicitly closed. Final source/staged verification
 preceded feature proposal submission; all six feature push/PR checks passed before
 normal integration. Current candidate-specific local test and build verification
 is recorded in
-[release preparation](workflows/2026-10-13__26SXA5__baseline-release-preparation.md).
-That workflow is open; release proposal closure/CI/integration, stable baseline and
-application tags/publication, and phase acceptance remain pending. Historical
+[release preparation records](workflows/), under filename
+`2026-10-13__26SXA5__baseline-release-preparation.md` in current work or history.
+Release proposal closure/CI/integration, stable baseline and application
+tags/publication, and phase acceptance require their own evidence. Historical
 publication evidence stays in its original records.
 
-## Integration And Release Work Still Required
+## Integration And Release Gates
 
 - Verify the exact committed candidate and combined target tree with its bound
   plan, declarations, source fingerprint and archived records.
@@ -152,7 +153,8 @@ unavailable computed Git identity.
 ## Workflow State
 
 Feature implementation and integration preparation are explicitly closed in
-history. The separate release/integration workflow remains open. Its candidate
-gates and actual outcomes belong in that workflow, without changing normative
-specifications to describe operational progress. Closure, phase acceptance and
-publication are separate evidenced decisions; bootstrapping remains unchanged.
+history. The separate release/integration workflow records candidate gates and
+actual outcomes, without changing normative specifications to describe operational
+progress. Closure, phase acceptance and publication are separate evidenced
+decisions. Consult [the implementation entrypoint](main.md) for the current phase
+and the workflow records for the actual scoped acceptance and delivery state.
