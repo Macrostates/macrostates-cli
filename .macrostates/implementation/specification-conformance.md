@@ -25,9 +25,9 @@ identities, declares Major/Major impacts, records requirements and verification
 evidence, and has no open gaps. The upcoming baseline
 release `specs-1.0.0`/`imp-1.0.0` and independent application release `0.4.0`
 have not been integrated or published. The project remains in bootstrapping;
-first-baseline phase acceptance and closure of the two current workflows have not
-been granted. The nine earlier requested closures are explicitly recorded in
-historical workflows.
+first-baseline phase acceptance remains pending. The definer accepted and
+confirmed closure of both local scopes; earlier requested closures remain
+recorded in history.
 
 The preceding published application remains valid under its earlier selected
 policies. New APIs and flat commands implement Process 5's captured provenance,
@@ -92,17 +92,15 @@ metadata checks. These development artifacts do not finalize or publish
 application `0.4.0`.
 
 Dated verification and adoption evidence belongs in
-[the implementation workflow](workflows/2026-10-13__1A1GXH__versioning-system.md)
-and [integration preparation](workflows/2026-10-13__1RPQX8__integration-preparation.md).
-Only those two workflows remain open. Final closed-source/staged checks follow
-explicit closure; remote feature CI/integration, stable baseline/application
-releases, and phase acceptance remain pending. Historical publication and launch
-evidence remains in its original workflow records.
+[the implementation workflow](workflows/history/2026-10-13__1A1GXH__versioning-system.md)
+and [integration preparation](workflows/history/2026-10-13__1RPQX8__integration-preparation.md).
+Both local scopes are explicitly closed. Final source/staged verification
+precedes proposal submission; remote feature CI/integration, stable baseline and
+application releases, and phase acceptance remain pending. Historical publication
+evidence stays in its original records.
 
 ## Integration And Release Work Still Required
 
-- Obtain explicit definer closure of the current implementation and integration
-  preparation workflows once their work is accepted.
 - Verify the final closed proposed source and Git index against the primary
   target, submit the feature proposal, and require remote checks before integration.
 - Prepare a current target/tree-bound baseline candidate, review/integrate it
@@ -133,3 +131,7 @@ bits other than executable identity. Locks are not signatures. Transactions
 provide ordinary-failure recovery, not power-loss atomicity or arbitrary-writer
 isolation. Source archives use declared build metadata and honestly report
 unavailable computed Git identity.
+
+## Confirmed Local Workflow Closure
+
+The definer explicitly accepted and authorized closing the versioning implementation and feature-integration preparation scopes. Both records are completed in history with the actual scoped confirmation. No current workflow remains open. This does not accept a project-phase transition or close future release work; bootstrapping remains unchanged. Verify the actual closed committed tree before submitting the authorized feature PR, and require external checks before integration.

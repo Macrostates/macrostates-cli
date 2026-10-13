@@ -2,14 +2,14 @@
 
 - Project phase: bootstrapping
 - Workflow type: Specification update; Implementation update (one definer-authorized outcome, scopes below)
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Change depth: systemic
 - Branch: feature/versioning-system
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com) - Obtained from approved repository Git identity and current conversation
 - Implementer: Model: GPT-6; exact revision/effort: not exposed; agent: Codex; source: runtime instructions
 - Started at: 2026-10-13 12:14 UTC
-- Last updated at: 2026-10-13 16:39 UTC
+- Last updated at: 2026-10-13 20:30 UTC
 
 ## Original request and objective
 
@@ -21,7 +21,7 @@ Implement prefixed specs/imp baselines, original development provenance and comp
 
 ## Progress
 
-Specification drafts and CLI implementation are complete locally in isolated feature branches across all ten repositories. They include independent specification/implementation baselines, immutable work origins, change records, integration and release gates, explicit synchronization, deliverable policies, and arbitrary tagged Git sources. Earlier accepted workflows are archived with their explicit closure evidence. The current workflow remains open.
+Specification drafts and CLI implementation are complete locally in isolated feature branches across all ten repositories. They include independent specification/implementation baselines, immutable work origins, change records, integration and release gates, explicit synchronization, deliverable policies, and arbitrary tagged Git sources. Earlier accepted workflows are archived with their explicit closure evidence. At that local checkpoint the current workflow remained open; confirmed closure is recorded below.
 
 Verification completed:
 
@@ -66,6 +66,10 @@ Present the two current workflows with their completed outcomes and request expl
 
 ## Final local adoption evidence
 
-Actual generic-Git installation and locked reinstall of Meta 2.2.0, Process 5.0.0, Repository 4.0.0, Python 2.1.1 and Python-library 2.0.0 passed with zero diagnostics. Local CLI 1.0.0 metadata uses current at_least minima. Offline project and change-readiness checks pass. [Original work](../work/versioning-system.yaml) and [Major/Major change](../changes/versioning-system.yaml) preserve the full original 96a467c448f6fc5abf3ca9f8b19a29d976725c93 provenance, requirements/evidence and no gaps. Existing annotated aliases and the original release date remain preserved.
+Actual generic-Git installation and locked reinstall of Meta 2.2.0, Process 5.0.0, Repository 4.0.0, Python 2.1.1 and Python-library 2.0.0 passed with zero diagnostics. Local CLI 1.0.0 metadata uses current at_least minima. Offline project and change-readiness checks pass. [Original work](../../work/versioning-system.yaml) and [Major/Major change](../../changes/versioning-system.yaml) preserve the full original 96a467c448f6fc5abf3ca9f8b19a29d976725c93 provenance, requirements/evidence and no gaps. Existing annotated aliases and the original release date remain preserved.
 
 All 393 tests passed again on Python 3.14 after actual adoption; the prior 3.12/3.13/3.14 matrix passed. Ruff/formatting of 114 files and Pyright pass. Rebuilt development wheel/sdist clean installations, public API/command/version probes, source-byte checks and strict Twine metadata checks pass. Semantic conformance and documentary review completed; external review/CI and closure remain separate gates. Related [integration preparation](2026-10-13__1RPQX8__integration-preparation.md) records final local source/target checks.
+
+## Definer-confirmed closure
+
+At 2026-10-13 20:30 UTC, Lucas Lopez explicitly approved closing both named workflows as completed in response to the numbered closure petition. This accepts the local implementation and integration-preparation outcomes and authorizes their archival. It does not grant first-baseline phase acceptance or close the later release-preparation workflow. External checks and the already authorized reviewed integration remain separate.

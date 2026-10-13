@@ -2,14 +2,14 @@
 
 - Project phase: bootstrapping
 - Workflow type: Integration preparation
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Change depth: systemic
 - Branch: feature/versioning-system
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com) - Obtained from repository-local Git identity and current conversation
 - Implementer: Model: GPT-6; exact revision/effort: not exposed; agent: Codex; source: runtime instructions
 - Started at: 2026-10-13 16:31:05.640 UTC
-- Last updated at: 2026-10-13 16:39 UTC
+- Last updated at: 2026-10-13 20:30 UTC
 
 ## Original request
 
@@ -42,3 +42,7 @@ Finish local checks, then give the definer a short numbered summary of all open 
 ## Completed local verification
 
 Offline project/change readiness checks, exact canonical installation and locked reinstall pass without diagnostics. 393 tests passed after adoption on Python 3.14; the preceding 3.12/3.13/3.14 matrix passed. Ruff, formatting, Pyright and whitespace checks pass. Rebuilt development distributions passed clean installation, public API/command/version probes, exact shipped-source bytes and strict metadata checks. Existing remote tags are preserved. Before submission, the final committed tree must pass staged and exact integration checks after definer-confirmed closure; current open workflows remain deliberate documentary blockers.
+
+## Definer-confirmed closure
+
+At 2026-10-13 20:30 UTC, Lucas Lopez explicitly approved closing both named workflows as completed in response to the numbered closure petition. This accepts the local implementation and integration-preparation outcomes and authorizes their archival. It does not grant first-baseline phase acceptance or close the later release-preparation workflow. External checks and the already authorized reviewed integration remain separate.

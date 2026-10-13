@@ -10,10 +10,10 @@ retains the original implementation release date, `2026-10-09`, and published
 legacy tags; it does not finalize the changed development source. The proposed
 next baseline finalization is `specs-1.0.0`/`imp-1.0.0`, with a separate independent
 CLI application release `0.4.0`. Those upcoming identities are not integrated or
-published. First-baseline phase acceptance and closure of the current implementation
-and integration-preparation workflows have not been granted; the project remains
-in bootstrapping. The nine earlier requested workflow closures are explicitly
-recorded in their historical artifacts.
+published. The definer accepted and confirmed closure of the local implementation
+and integration-preparation scopes. First-baseline phase acceptance remains
+pending, so the project stays in bootstrapping. Earlier closures are preserved
+in their historical artifacts.
 
 ## Current Behavior And Adoption State
 
@@ -151,12 +151,12 @@ source-distribution artifacts passed clean API/command installation probes,
 shipped-source byte checks, and Twine metadata checks.
 
 Dated verification and adoption evidence belongs to
-[the implementation workflow](workflows/2026-10-13__1A1GXH__versioning-system.md).
-Only that workflow and
-[integration preparation](workflows/2026-10-13__1RPQX8__integration-preparation.md)
-remain open. Closure must precede the final closed-source/staged checks and
-feature proposal. Remote CI, feature integration, the new global baseline,
-stable application publication, and first-baseline phase acceptance remain
+[the implementation workflow](workflows/history/2026-10-13__1A1GXH__versioning-system.md).
+That workflow and
+[integration preparation](workflows/history/2026-10-13__1RPQX8__integration-preparation.md)
+are closed with explicit confirmation. Verify the closed source/index before
+proposal submission. Remote CI, feature integration, the new global baseline,
+stable application publication and first-baseline phase acceptance remain
 separate pending outcomes.
 
 Structural checks cannot prove semantic classification, truth of approval,
@@ -182,3 +182,7 @@ See [specification conformance](specification-conformance.md) for the current
 contract map and remaining integration/release checks. Historical workflows retain
 their dated evidence and individual statuses; a history location does not imply
 definer-authorized closure.
+
+## Confirmed Local Workflow Closure
+
+The definer explicitly accepted and authorized closing the versioning implementation and feature-integration preparation scopes. Both records are completed in history with the actual scoped confirmation. No current workflow remains open. This does not accept a project-phase transition or close future release work; bootstrapping remains unchanged. Verify the actual closed committed tree before submitting the authorized feature PR, and require external checks before integration.
