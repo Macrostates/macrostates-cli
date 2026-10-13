@@ -2,8 +2,8 @@
 
 - Project phase: active
 - Workflow type: Specification update; Implementation update (one adoption outcome)
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Change depth: targeted
 - Branch: feature/major-version-authority
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com) - Repository-local Git identity and current conversation
@@ -38,3 +38,7 @@ The local CLI package is 2.0.0 and the pending project scope is Major/Major. The
 ## Delivered implementation and verification
 
 Explicit Meta 3.0 and Process 5.1 adapters now consistently govern initialization, internal baseline declaration reading and public baseline operations, preserving earlier selected policies and refusing unreviewed future ones. The CLI adopts exact released snapshots, local CLI 2.0.0 metadata and verified external inventories. Actual installation and locked reinstallation returned zero diagnostics. All 407 tests passed independently on Python 3.12.15, 3.13.16 and 3.14.7. Ruff lint/format across 117 files, Pyright, project/readiness and whitespace checks passed. The change record retains original finalized source fe6e369 and its 1.0.0 baselines, explicit Major/Major rationale, coverage/evidence and no gaps. The complete source remains an unmerged feature; no new stable application, baseline or workflow closure is claimed.
+
+## Definer-confirmed closure
+
+At 2026-10-14 00:23:44 Europe/Madrid (2026-10-13 22:23:44 UTC), Lucas Lopez explicitly replied “Close all three and finish the release” to the numbered petition naming policy adoption, release preparation and integration preparation. This confirms completion and scoped closure of this record, accepts its completed local outcome and authorizes archival. The user also explicitly authorizes finishing the reviewed CLI release through passing protected checks, normal integration, immutable tags and verified PyPI publication. No external result is claimed in advance. The existing active phase is unchanged; no separate Major-version consent is needed.

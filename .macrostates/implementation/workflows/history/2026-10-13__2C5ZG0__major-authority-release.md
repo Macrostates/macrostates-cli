@@ -2,8 +2,8 @@
 
 - Project phase: active
 - Workflow type: Release preparation
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Change depth: targeted
 - Branch: release/major-version-authority-2.0.0
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com) - Repository-local Git identity and current conversation
@@ -40,3 +40,7 @@ All 407 source tests passed independently on Python 3.12.15, 3.13.16 and 3.14.7 
 ## Remaining external and consent gates
 
 Obtain explicit definer closure of all three named workflows, record scoped consent and archive them; then verify the exact closed committed candidate and current combined target tree before proposal submission. Required external checks precede normal integration. Immutable baseline/application tags and verified PyPI publication follow their existing authorized procedure. Existing active phase stays unchanged.
+
+## Definer-confirmed closure
+
+At 2026-10-14 00:23:44 Europe/Madrid (2026-10-13 22:23:44 UTC), Lucas Lopez explicitly replied “Close all three and finish the release” to the numbered petition naming policy adoption, release preparation and integration preparation. This confirms completion and scoped closure of this record, accepts its completed local outcome and authorizes archival. The user also explicitly authorizes finishing the reviewed CLI release through passing protected checks, normal integration, immutable tags and verified PyPI publication. No external result is claimed in advance. The existing active phase is unchanged; no separate Major-version consent is needed.

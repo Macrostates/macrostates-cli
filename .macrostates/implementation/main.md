@@ -122,3 +122,12 @@ are reviewable baselines rather than signatures. Scope discovery and staged
 snapshots have documented exclusions; separately composed subprojects and
 submodules need their own review. Source archives honestly report unavailable
 Git identity rather than inventing a release claim.
+
+## Current Workflow Acceptance
+
+The definer explicitly confirmed completion and closure of the policy-adoption,
+release-preparation and integration-preparation workflows. Their records are
+archived with the actual scoped confirmation. No open workflow remains. The
+complete release proposal still requires passing external checks and normal
+integration before immutable tags and application publication. These future
+results are not inferred from local acceptance. The active phase remains unchanged.
