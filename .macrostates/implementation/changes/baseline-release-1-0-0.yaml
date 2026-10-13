@@ -1,0 +1,23 @@
+schema_version: 1
+id: baseline-release-1-0-0
+summary: Prepare the reviewed aggregate baseline release and independent application
+  release metadata without adding runtime behavior.
+origin:
+  commit: 32c1cf2a993fadd2ce152c02e1e946e9218c2ea4
+  specification: specs-0.3.0
+  implementation: imp-0.3.1
+impact:
+  specification: none
+  implementation: none
+deliverables:
+- macrostates-cli
+requirements: []
+evidence:
+- 'Feature PR #6 was normally integrated after all Python 3.12/3.13/3.14 push and
+  PR checks succeeded.'
+- Release branch starts from the freshly fetched merged snapshot; work origin and
+  existing Macrostates legacy tags/declarations reviewed.
+- This scope changes release documentation, provenance and candidate bookkeeping;
+  the previously recorded Major/Major contract scope determines new global versions.
+gaps: []
+work: baseline-release-1-0-0

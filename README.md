@@ -10,12 +10,11 @@ operations. Requires Python 3.12 or newer. Distribution name: `macrostates-cli`.
 Import package and executable name: `macrostates`.
 Licensed under [MIT](https://github.com/Macrostates/macrostates-cli/blob/main/LICENSE).
 
-This branch develops application version `0.4.0.dev0`. The published `0.3.1`
-release provides the existing package-management commands. The new development
-and release commands described below are available from this source branch and
-have not yet been published as a new stable release. This source adopts the released
+This release introduces application version `0.4.0` and support for the released
 Meta 2.2, Process 5, Repository 4, Python 2.1.1 and Python-library 2 packages.
-Its new baseline finalization remains a separate reviewed release step.
+The CLI application version is independent from its Macrostates specification
+and implementation baselines. Older projects retain their selected formats and
+policies until explicitly adopted and migrated.
 
 ## Installation
 
@@ -24,18 +23,18 @@ Install the published package from
 newer environment:
 
 ```bash
-python -m pip install macrostates-cli
+python -m pip install "macrostates-cli>=0.4.0"
 macrostates --help
 ```
 
-Use `python -m pip install macrostates-cli==0.3.1` to select that published
-version, or `python -m pip install --upgrade macrostates-cli` to update to the
-available release. A virtual environment can be created with
+Use `python -m pip install macrostates-cli==0.4.0` to select this release, or
+`python -m pip install --upgrade macrostates-cli` to update. The older `0.3.1`
+release remains available for projects that deliberately retain it. A virtual environment can be created with
 `python -m venv .venv`; activate it before installing when your environment
 requires one. For a command outside a project environment, use
 `pipx install macrostates-cli` or `uv tool install macrostates-cli`.
 
-To exercise this development branch, clone it and run `uv sync --locked`.
+To work from source, clone the repository and run `uv sync --locked`.
 Use `uv run macrostates ...` from that environment. Installed version reporting
 uses distribution metadata; source development identities are inspected through
 the separate `identity` command.
@@ -114,7 +113,7 @@ locks preserve downloaded package identities.
 
 ## Git Package Sources And Recovery
 
-This development version supports `source.type: git-archive` with an explicitly
+This version supports `source.type: git-archive` with an explicitly
 configured Git URL, SSH remote, or local repository and an annotated
 `vMAJOR.MINOR.PATCH` tag. It materializes the exact resolved commit as tracked
 files, using externally configured Git authentication. Installed packages are
@@ -305,7 +304,7 @@ The CLI tracks its own composition under `.macrostates/specs/`. Adoption of the
 new official releases, exact selections, lock, and final baseline declarations
 will be verified separately. This development branch uses an independent
 [application declaration](https://github.com/Macrostates/macrostates-cli/blob/main/.macrostates/implementation/application.yaml)
-for build version `0.4.0.dev0`; the Macrostates implementation declaration is a
+for independent build version `0.4.0`; the Macrostates implementation declaration is a
 separate identity. Candidate/finalized builds bind verified shipped source and
 rebuild from source distributions without Git. Builds do not mutate declarations
 or publish artifacts.
