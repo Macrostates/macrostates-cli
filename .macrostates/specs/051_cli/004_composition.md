@@ -39,10 +39,15 @@ interpreting them as support for new formats/source types.
 
 ## Sources, metadata and dependencies
 
-`local` means project-owned content. `github-archive` requires credential-free
-GitHub HTTPS/SSH repository URL and `tag: v<selected-version>`. Tagged
-`git-subtree` also records `branch` and a project-relative `prefix` matching its
-destination. Branch-only/commit-selected legacy sources need explicit migration.
+`local` means project-owned content. `git-archive` selects an explicitly
+configured Git remote or local repository and `tag: v<selected-version>`.
+The release tag is annotated. Repository addresses and external authentication
+follow the generic [source boundary](002_library.md#source-boundary).
+
+Retain legacy archive and tagged `git-subtree` source behavior through their
+existing transport adapter described under the source boundary. Tagged subtrees
+also record `branch` and a project-relative `prefix` matching their destination.
+Branch-only/commit-selected legacy sources need explicit migration.
 Missing source type can be inspected but cannot establish a canonical lock.
 
 Package `package.yaml` requires name, three-part version, nonempty description,

@@ -2,8 +2,8 @@
 
 - Workflow type: Specification update
 - Project phase: bootstrapping
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Branch: spec/at-least-dependency-default in macrostates-cli
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), supplied in this conversation.
 - Implementer: Codex, GPT-6; exact revision and effort not exposed.
@@ -97,3 +97,7 @@ New selections remain deliberate. Before adopting Meta 2.1 or Process 4.x throug
 CLI checks, add the corresponding release-policy adapters and fixtures while
 preserving older selected policies. No installed project snapshot was rewritten
 to adopt an unpublished package. Explicit workflow closure remains outstanding.
+
+## Definer-confirmed closure
+
+On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.

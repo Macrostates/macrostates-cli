@@ -25,7 +25,7 @@ No separate CLI specification package is required in a project composition.
 
 ## Choosing an operation
 
-The following commands exist in the initial CLI. Use them only for the scope and
+The following commands are supported by applicable CLI releases. Use them only for the scope and
 formats that its documentation supports:
 
 | Operation | CLI assistance | Manual equivalent |
@@ -36,18 +36,37 @@ formats that its documentation supports:
 | Check a proposed commit | `macrostates check --staged` | Inspect the exact staged composition, package files and declarations, and apply the relevant structural and integrity checks to that tree. |
 | Record a verified baseline | `macrostates lock` | Verify existing files against the canonical selected release before recording provenance and integrity evidence in a documented format. |
 
-`info`, `lint`, `verify` and `check` are read-only and offline in the initial CLI.
+`info`, `lint`, `verify` and `check` perform local inspection and validation.
+Consult the installed version for any options requiring Git or source access.
 `lock` contacts sources and writes a lockfile. `init` creates project files;
 `install` downloads and writes supported archive-based packages. Use writing
 commands within authorized setup or synchronization work; verification by itself
 does not authorize changing package selections or replacing local files.
 
-Meta 2 uses `.macrostates/specs/` and tracked GitHub release snapshots by
-default. The CLI supports this layout and its integrity lock. Git-subtree
+Meta 2 uses `.macrostates/specs/` and tracked release snapshots.
+Generic `git-archive` imports work with configured Git transports; the legacy
+provider archive adapter remains optional. The CLI supports this layout and its integrity lock. Git-subtree
 selections remain an explicit alternative; `install` does not maintain them.
 Follow the selected source's import/update procedure. Tool availability never
 authorizes a layout or source migration; projects selecting older releases
 retain their selected rules.
+
+## Process assistance
+
+When the selected Process policy defines change records, development identities,
+branch synchronization and release preparation, use the installed CLI's help and
+supported-policy documentation for those operations. Distinguish read-only
+identity, change checking and release planning from writes such as creating a
+change record, preparing declarations or synchronizing a development branch.
+Never infer authorization to fetch, merge, rebase, commit, submit a proposal,
+close workflows, tag or publish from a passing check.
+
+Manual equivalents read the recorded origin, classify both specification and
+implementation impact, inspect the actual combined target result, collect pending
+records and calculate a release once. Validate stored declarations and exact
+source identities, retain evidence, and follow definer-confirmed workflow closure.
+A CLI can check structure and stale input; semantic impact and requirement
+coverage remain implementer responsibilities. No hosting integration is required.
 
 ## Manual verification
 

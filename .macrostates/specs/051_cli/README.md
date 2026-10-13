@@ -2,7 +2,8 @@
 
 This local package defines the observable contract of the Macrostates command
 and supported Python library: discovery, composition, installation, inspection,
-verification and compatibility. Internal modules, algorithms and tooling
+verification, development provenance, integration preparation, release planning,
+and compatibility. Internal modules, algorithms and tooling
 constants remain implementation choices.
 
 Read it after the packages selected by the project entrypoint. Meta owns package
@@ -19,6 +20,7 @@ CLI-specific requirements within that composition.
 5. [Installation and integrity](005_integrity.md)
 6. [Versioning and compatibility](006_versioning.md)
 7. [Verification expectations](007_verification.md)
+8. [Development and releases](008_development-and-releases.md)
 
 ## Conditional guidance
 

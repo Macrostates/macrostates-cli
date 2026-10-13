@@ -1,0 +1,7 @@
+schema_version: 1
+name: macrostates-cli
+version: "0.4.0.dev0"
+status: development
+specification: "specs-0.3.0"
+implementation: "imp-0.3.1"
+release_date: "2026-10-13"

@@ -1,0 +1,11 @@
+schema_version: 1
+specification:
+  identity: specs-0.3.0
+  legacy_tag: spec-0.3.0
+  commit: 040585e1c50f1e3d899a6f86732912df33858af0
+note: Identity spelling migration preserves existing tags; it does not finalize current
+  development contents.
+implementation:
+  identity: imp-0.3.1
+  legacy_tag: v0.3.1
+  commit: 07119d69cc324b3793ecb377926b232538efdb86

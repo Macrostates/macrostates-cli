@@ -67,7 +67,7 @@ def test_meta2_requires_explicit_composition_format(tmp_path, selected):
     assert not list(tmp_path.iterdir())
 
 
-@pytest.mark.parametrize("selected", ["2.2.0", "3.0.0"])
+@pytest.mark.parametrize("selected", ["2.3.0", "3.0.0"])
 def test_future_meta_policy_is_not_assumed(tmp_path, selected):
     with pytest.raises(MacrostatesError, match="adapter"):
         Project.initialize(tmp_path, manifest=composition(versions={"meta": selected}))

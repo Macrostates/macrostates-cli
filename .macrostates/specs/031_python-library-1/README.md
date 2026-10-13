@@ -17,12 +17,26 @@ specification packages into specs-driven development projects.
 - Library repository layout and dependency posture.
 - Formatting, linting, and type-checking expectations.
 - Library packaging and metadata expectations.
+- Independent library API versioning, authoritative build metadata, and release provenance.
 - README and usage documentation expectations.
 - Example code placement and maintenance expectations.
 - Test expectations for reusable behavior.
 
 Application runtime behavior, service deployment, and domain-specific API
 details are out of scope for this package.
+
+The stable public API uses this package's explicit semantic-versioning policy
+unless an effective project specification overrides it. Macrostates `specs-*`
+and `imp-*` baseline versions remain separate. Process's numeric implementation
+default applies only when no explicit application policy governs the release.
+Repository integration follows the selected repository policy; library releases
+and publication follow the application's policy and authorization.
+
+This release requires Process 5.0.0 and Repository-1 4.0.0 or later, with the
+remaining minima declared in `package.yaml`. Earlier package releases retain
+their original policies. Explicit `at_least` constraints permit newer selected
+majors; review their meaning rather than assuming numeric eligibility proves
+semantic compatibility.
 
 ## Macrostates artifacts
 

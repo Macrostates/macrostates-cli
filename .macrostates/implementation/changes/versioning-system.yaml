@@ -1,0 +1,71 @@
+schema_version: 1
+id: versioning-system
+summary: Introduce independent project baselines, recorded Git development/integration/release
+  workflows and arbitrary tagged Git specification sources.
+origin:
+  commit: 96a467c448f6fc5abf3ca9f8b19a29d976725c93
+  specification: specs-0.3.0
+  implementation: imp-0.3.1
+impact:
+  specification: major
+  implementation: major
+deliverables:
+- macrostates-cli
+requirements:
+- requirement: Adopt latest Meta/Process/Repository/Python/Python-library with explicit
+    exact selections and at_least minima.
+  implementation: Tracked canonical git-archive snapshots, immutable composition lock,
+    local CLI1 metadata and modern policy adapters.
+  verification: Actual canonical install and offline Project.check, plus prospective
+    graph install/reinstall validations.
+- requirement: Keep official numeric baselines unchanged on ordinary feature work
+    and retain original provenance across synchronization.
+  implementation: Explicit declaration migration preserves 0.3.0/0.3.1 and legacy tags;
+    start_work and computed identity bind original full commit and scope.
+  verification: test_version_migration, test_release_records, test_integration_sync;
+    original 96a467c baseline receipt.
+- requirement: Record separate specification/implementation impacts, evidence and
+    requirement coverage; finalize combined scope only in a reviewed release proposal.
+  implementation: Change record public API and release plan/prepare/check preserve
+    origin, source/target/tree/declarations/record hashes and transactional safety.
+  verification: 47 release record integration cases and CLI contract integration tests.
+- requirement: Require definer-confirmed workflow closure and validate exact proposed
+    integration before submission or merge.
+  implementation: Read-only numbered closure requests and workflow/combined-tree/stale-target
+    gates; no automatic closure or hosting API operations.
+  verification: test_integration_sync, test_cli_versioning and document review; actual
+    closure remains pending.
+- requirement: Permit applications to follow independent policies or default numeric
+    imp identity, including shared-baseline monorepos.
+  implementation: Deliverable parsing/publication/source/counter checks, application
+    policy override and immutable baseline reuse for metadata-only publication.
+  verification: test_deliverables, test_deliverable_sources and complete app-only
+    lifecycle integration cases.
+- requirement: Download tagged specification snapshots from arbitrary accessible Git
+    remotes without editable upstream clones.
+  implementation: Public GitSource and git-archive selection, annotated-tag/full-commit
+    inventories, moved-tag refusal and sanitized transport errors.
+  verification: test_git_sources and actual five-package canonical git-archive install.
+- requirement: Build the independent Python application version from explicit metadata
+    without Git, installed specs or network at runtime/build metadata evaluation.
+  implementation: application.yaml build authority, shipped-source candidate fingerprint,
+    source-distribution metadata and trusted publisher checks.
+  verification: test_application_build; clean wheel/sdist installs and strict metadata/source-byte
+    checks.
+- requirement: Preserve supported older projects and public API behavior while adding
+    future policy adapters.
+  implementation: Existing methods/commands and older selected policy adapters retained;
+    newoperations explicitly requireProcess 5.
+  verification: All 190 pre-existing tests retained within 393 tests passing independently
+    onPython 3.12/3.13/3.14.
+evidence:
+- 393 tests passed on Python 3.12.15,3.13.16,3.14.7; Ruff, formatting and Pyright pass.
+- Canonical8 packages integrated viaPRs and tagged; all original remote tag identities
+  preserved.
+- Clean development wheel and sdist installs, strict metadata checks and exact shipped-source
+  byte comparison passed.
+- Cross-agent semantic/specification review found no remaining architecture blocker;
+  coverage is structural plus meaningful Git regression cases, not automatic approval
+  evidence.
+gaps: []
+work: versioning-system

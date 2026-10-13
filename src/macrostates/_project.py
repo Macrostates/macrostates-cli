@@ -15,7 +15,7 @@ from ._io import dump_yaml, read_yaml, safe_path, string, version
 from ._models import Composition, MacrostatesError, Report
 from ._mutations import replace_paths
 from ._scopes import directory_scopes
-from ._sources import GitHubSource, SourceProvider, github_repository
+from ._sources import GitHubSource, GitSource, SourceProvider, git_repository, github_repository
 from ._staged import export_index
 from ._validation import (
     check_links,
@@ -51,6 +51,7 @@ class Project:
             else root / "implementation"
         )
         self.source: SourceProvider = source if source is not None else GitHubSource()
+        self._source_injected = source is not None
 
     @classmethod
     def open(cls, path: str | Path = ".", *, source: SourceProvider | None = None) -> "Project":
@@ -153,7 +154,8 @@ class Project:
             }
             process = next((item for item in selection if item["name"] == "process"), None)
             if process and has_contract_version(process["version"]):
-                data["project"]["version"] = "spec-0.1.0"
+                prefix = "specs-" if version(process["version"])[:2] == (5, 0) else "spec-"
+                data["project"]["version"] = prefix + "0.1.0"
         composition = read_composition(data)
         specs = safe_path(directory, LAYOUTS[layout])
         project = cls(directory, specs, specs / "composition.yaml", source=source)
@@ -245,8 +247,10 @@ class Project:
                 for path in reserved
             ):
                 raise MacrostatesError("Package destination overlaps a composition control file")
-            if package.source.get("type") in ("github-archive", "git-subtree"):
+            if package.source.get("type") == "github-archive":
                 github_repository(package.source["repository"])
+            if package.source.get("type") in {"git-archive", "git-subtree"}:
+                git_repository(package.source["repository"])
             if package.source.get("type") == "git-subtree":
                 actual = (self.specs.relative_to(self.root) / package.path).as_posix()
                 if package.source["prefix"] != actual:
@@ -391,6 +395,150 @@ class Project:
         """
         return self._synchronize(lock_only=False, locked=locked)
 
+    def _versioning_policy(self, *, git_scope: bool = False) -> None:
+        selected = next(
+            (item for item in self._composition().packages if item.name == "process"), None
+        )
+        if selected is None or version(selected.version)[:2] != (5, 0):
+            raise MacrostatesError(
+                "This operation requires an explicitly selected Process 5.0 policy; older projects are not migrated implicitly"
+            )
+        if git_scope:
+            from ._git import git
+
+            if (
+                Path(git(self.root, "rev-parse", "--show-toplevel")).resolve()
+                != self.root.resolve()
+            ):
+                raise MacrostatesError(
+                    "Git baseline operations require the shared composition at the repository root; independently composed nested projects need their own review and manual baseline procedure"
+                )
+
+    def identity(self, *, work: str | None = None) -> dict[str, Any]:
+        """Inspect finalized and computed development identities without mutation."""
+        from ._versioning import identity
+
+        self._versioning_policy()
+        return identity(self.root, work)
+
+    def start_work(self, identifier: str, *, origin_commit: str | None = None) -> Path:
+        """Capture original work provenance once before synchronization can obscure it."""
+        from ._changes import start_work
+
+        self._versioning_policy(git_scope=True)
+        return start_work(self.root, identifier, origin_commit=origin_commit)
+
+    def deliverables(self) -> dict[str, dict[str, Any]]:
+        """Inspect optional application policies without allocating application versions."""
+        from ._deliverables import inspect_deliverables
+
+        self._versioning_policy()
+        return inspect_deliverables(self.root)
+
+    def create_change(
+        self,
+        identifier: str,
+        summary: str,
+        *,
+        specification: str,
+        implementation: str,
+        deliverables: list[str] | None = None,
+        requirements: list[dict[str, str]] | None = None,
+        evidence: list[str] | None = None,
+        gaps: list[str] | None = None,
+        work: str | None = None,
+        origin_commit: str | None = None,
+    ) -> Path:
+        """Author a unique impact record; this does not classify meaning or allocate versions."""
+        from ._changes import create_change
+
+        self._versioning_policy(git_scope=True)
+        return create_change(
+            self.root,
+            identifier,
+            summary,
+            specification,
+            implementation,
+            deliverables=deliverables,
+            requirements=requirements,
+            evidence=evidence,
+            gaps=gaps,
+            work=work,
+            origin_commit=origin_commit,
+        )
+
+    def check_changes(self) -> Report:
+        """Check explicit change coverage, evidence and unresolved gaps."""
+        from ._changes import check_changes
+
+        self._versioning_policy()
+        return check_changes(self.root)
+
+    def closure_request(self) -> dict[str, Any]:
+        """List workflows requiring definer authorization; never close them automatically."""
+        from ._integration import closure_request
+
+        self._versioning_policy()
+        return closure_request(self.root)
+
+    def check_integration(
+        self, *, target: str | None = None, expected_target: str | None = None
+    ) -> Report:
+        """Check exact combined contents; external checks/approvals are still required."""
+        from ._integration import check_integration
+
+        self._versioning_policy(git_scope=True)
+        return check_integration(self.root, target=target, expected_target=expected_target)
+
+    def branch_status(self, *, target: str | None = None) -> dict[str, Any]:
+        """Inspect divergence against cached refs without fetching."""
+        from ._sync import branch_status
+
+        return branch_status(self.root, target=target)
+
+    def sync_branch(
+        self,
+        *,
+        target: str,
+        strategy: str,
+        primary: str | None = None,
+        fetch_remote: str | None = None,
+    ) -> dict[str, Any]:
+        """Explicitly fetch and merge/rebase on a clean development branch."""
+        from ._sync import synchronize
+
+        return synchronize(
+            self.root, target=target, strategy=strategy, primary=primary, fetch_remote=fetch_remote
+        )
+
+    def plan_release(self, *, target: str | None = None) -> dict[str, Any]:
+        """Calculate a target-bound baseline plan without file or Git mutations."""
+        from ._release import plan_release
+
+        self._versioning_policy(git_scope=True)
+        return plan_release(self.root, target=target)
+
+    def prepare_release(self, plan: dict[str, Any], *, date: str) -> dict[str, Any]:
+        """Prepare reviewed candidate files on a branch; never commit, tag or publish."""
+        from ._release import prepare_release
+
+        self._versioning_policy(git_scope=True)
+        return prepare_release(self.root, plan, date=date)
+
+    def check_release(self, *, target: str | None = None, publication: bool = False) -> Report:
+        """Validate a candidate, optionally requiring its integrated immutable release tags."""
+        from ._release import check_release
+
+        self._versioning_policy(git_scope=True)
+        return check_release(self.root, target=target, publication=publication)
+
+    def migrate_versioning(self) -> dict[str, Any]:
+        """Explicitly migrate legacy declarations after deliberately adopting Process 5."""
+        from ._migration import migrate_versioning
+
+        self._versioning_policy(git_scope=True)
+        return migrate_versioning(self.root)
+
     def lock(self) -> Report:
         """Record integrity only after existing copies match canonical release contents."""
         return self._synchronize(lock_only=True, locked=False)
@@ -405,7 +553,7 @@ class Project:
         ]
         for package in external:
             kind = package.source.get("type")
-            if kind not in ("github-archive", "git-subtree"):
+            if kind not in ("github-archive", "git-archive", "git-subtree"):
                 raise MacrostatesError(f"{package.name} has no installable source")
             if kind == "git-subtree" and not lock_only:
                 raise MacrostatesError(
@@ -437,7 +585,23 @@ class Project:
             originals: dict[Path, dict[str, Any]] = {}
             for index, package in enumerate(external):
                 previous = records.get(package.name)
-                selected = self.source.resolve(package.source["repository"], package.source["tag"])
+                transport: SourceProvider = (
+                    GitSource()
+                    if package.source.get("type") == "git-archive" and not self._source_injected
+                    else self.source
+                )
+                if package.source.get("type") == "git-subtree" and not self._source_injected:
+                    try:
+                        github_repository(package.source["repository"])
+                    except MacrostatesError:
+                        transport = GitSource()
+                repository = package.source["repository"]
+                # Explicit relative local repositories resolve from the consuming project.
+                if package.source.get("type") == "git-archive" and repository.startswith(
+                    ("./", "../")
+                ):
+                    repository = str((self.root / repository).resolve())
+                selected = transport.resolve(repository, package.source["tag"])
                 if not re.fullmatch(r"[0-9a-f]{40}|[0-9a-f]{64}", selected):
                     raise MacrostatesError("Source returned an invalid commit ID")
                 if (
@@ -451,9 +615,7 @@ class Project:
                 destination = roots[package.name]
                 prepared = workspace / f"package-{index}"
                 prepared.mkdir()
-                extract_archive(
-                    self.source.download(package.source["repository"], selected), prepared
-                )
+                extract_archive(transport.download(repository, selected), prepared)
                 files = inventory(prepared)
                 if (
                     previous

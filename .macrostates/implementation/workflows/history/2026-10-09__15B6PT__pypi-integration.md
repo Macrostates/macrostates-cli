@@ -2,8 +2,8 @@
 
 - Workflow type: Development branch merge
 - Project phase: bootstrapping
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Change depth: medium
 - Branch: release/pypi-distribution
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), repository-local Git identity and this conversation.
@@ -22,3 +22,7 @@ Candidate implementation 0.3.1 references existing spec-0.3.0. Review against cu
 [Release PR](https://github.com/Macrostates/macrostates-cli/pull/4), [organization installation PR](https://github.com/Macrostates/.github/pull/1), [PyPI](https://pypi.org/project/macrostates-cli/0.3.1/) and [publication CI](https://github.com/Macrostates/macrostates-cli/actions/runs/37922032084) identify the delivery. The follow-up PR records evidence only and leaves product/specification versions and released tags unchanged. Acceptance and explicit workflow closure remain.
 
 Organization profile PR 1 merged at 9fb46ec546f3218a281513c0357b333ae009ee0b after PyPI installation verification. Main protection remains enforced; no bypass or direct primary-branch push was used.
+
+## Definer-confirmed closure
+
+On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.

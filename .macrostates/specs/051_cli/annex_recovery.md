@@ -29,6 +29,36 @@ removing a stale marker or retrying. Rollback failure identifies retained data;
 initialization can retain `.macrostates-init-*` files. Automatic crash recovery
 and power-loss atomicity are not promised.
 
+Release preparation similarly preserves recoverable files when ordinary rollback
+fails. A `.release-operation` marker and `.macrostates-release-*` directory can
+remain after an interrupted preparation. Verify the exact plan, declarations,
+pending/history records, and Git state before retrying; never delete evidence to
+make an altered plan appear current.
+
+## Development And Release Recovery
+
+Inspect and resolve synchronization conflicts on the development branch, then
+rerun affected readiness checks. The CLI does not automatically stash, discard,
+abort, or force-push work. Preserve captured origins when incorporating upstream
+changes. If provenance was not captured before development, supply the actual
+original full commit explicitly instead of guessing it from today's target.
+
+An open or unconfirmed historical workflow needs explicit definer-authorized
+closure; moving or renaming it does not bypass integration readiness. Review
+corrections create their own workflows and scope records before integration.
+
+Changed release inputs or target state require a fresh reviewed plan. A prepared
+candidate must not be silently retargeted to changed source. Preserve consumed
+records when returning work to pending state under the project procedure.
+Baseline finalization, tags, and application distribution may complete separately;
+report partial publication accurately and preserve already published identities.
+
+Explicit version migration preserves original refs and records verified aliases.
+Repair mixed/invalid declaration state separately; do not move old tags or overwrite
+migration provenance to force success. Application source-validation failures need
+reviewed preparation of the actual candidate, not a fallback to an old stable
+distribution version.
+
 ## Coverage limits
 
 Resolve index conflicts before staged checks; check submodules separately.

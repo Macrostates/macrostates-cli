@@ -40,9 +40,14 @@ jobs:
           from pathlib import Path
           import yaml
 
-          declaration = yaml.safe_load(Path('.macrostates/implementation/release.yaml').read_text())
+          declaration = yaml.safe_load(Path('.macrostates/implementation/application.yaml').read_text())
+          if declaration['status'] not in ('candidate', 'finalized'):
+              raise SystemExit('Application declaration is still in development')
           if os.environ['RELEASE_TAG'] != 'v' + declaration['version']:
-              raise SystemExit('Release tag must match the implementation declaration')
+              raise SystemExit('Release tag must match the application distribution declaration')
+          baseline = yaml.safe_load(Path('.macrostates/implementation/release.yaml').read_text())
+          if declaration['implementation'] != baseline['version'] or declaration['specification'] != baseline['specification']:
+              raise SystemExit('Application provenance must match its implementation baseline')
           PY
       - name: Check the tagged source
         run: |
@@ -51,6 +56,7 @@ jobs:
           uv run pyright
           uv run pytest
           uv run macrostates check
+          uv run macrostates release-check --target origin/main --publication
       - name: Build and validate distributions
         run: |
           uv build

@@ -29,8 +29,9 @@ Before changing files:
 
 The implementer is responsible for maintaining workflow records, following the
 versioning rules, and keeping work inside the process. It must classify changes,
-maintain declarations and check alignment without waiting for the definer to ask
-for a version bump. The definer has authority over intent and direction,
+record impact and check readiness without waiting for the definer to ask.
+Ordinary development does not advance finalized numeric versions; release
+preparation proposes them from pending records. The definer has authority over intent and direction,
 but the implementer must find a process-valid way to reflect that intent before
 changing files.
 
@@ -69,12 +70,12 @@ the branch. Finding existing changes on the primary branch does not authorize
 adding to them or publishing them there; resolve their placement with the definer.
 
 A request to implement changes alone does not authorize remote publication.
-When the definer requests pushing or publishing changes, publish the development
-branch and submit a PR targeting the primary branch unless another development
-target was explicitly identified. Never commit changes directly to the primary
-branch, push changes to it, or integrate into it through a local merge. Only a
-PR merge may update it. PR creation, PR merge, release publication and workflow
-closure remain distinct operations with their own authorization and checks.
+When the definer requests publication of development changes, use the project's
+reviewed integration procedure. A hosting service may provide pull/merge requests;
+a native Git repository may use an explicitly defined equivalent review record
+and authorized integration operation. Submission, integration, tagging,
+application publication and workflow closure remain separate scopes. Never infer
+permission for direct authored changes on the primary branch or bypass review.
 
 The implementer should pay attention to how familiar the definer appears to be
 with the process. If the definer repeatedly asks why a process step is needed,
@@ -667,80 +668,161 @@ refresh does not by itself require a new application release or runtime retest.
 
 ### Development branch creation
 
-1. Establish the definer-authorized objective, starting branch and repository.
-   Read current Git state and the applicable repository rules. A request to create
-   a branch and implement a feature authorizes both scopes; do not ask again for
-   already authorized operations. Track setup separately from feature work.
-2. Inspect the starting commit, existing branch names and uncommitted changes.
-   Preserve existing work. Do not silently stash, discard, commit, or carry unrelated
-   edits into the new branch. Resolve material uncertainty about which work belongs
-   there before changing its context.
-3. Choose a concise descriptive branch name unless the definer supplied one.
-   Check for an existing branch; do not reset or overwrite it. Create and switch
-   to the authorized branch from the agreed baseline.
-4. Record its name, starting branch and commit, composition version, implementation
-   version if present, and any deliberately carried uncommitted work. Explicitly
-   record unavailable legacy declarations or incomplete bootstrapping state.
-5. Link the specification/implementation workflows that will use it. Mark branch
-   setup delivered once established; propose closure under the normal rules.
+1. Establish the authorized objective, repository, starting branch and commit.
+   Inspect applicable repository rules and existing local work. Preserve unrelated
+   changes; do not silently stash, discard, commit or relocate them.
+2. Create and switch to a suitable authorized development branch before any file
+   write. Never overwrite an existing branch or use a detached checkout as an
+   editable development context. Reuse a suitable branch for related work.
+3. Capture a unique per-work starting commit, specification baseline and
+   implementation baseline when it exists before feature edits. Record a stable
+   work ID and deliberately carried changes. Use supported `start-work` tooling or equivalent
+   manual provenance; do not maintain a global active-branch file that later
+   branches inherit. Explicitly record
+   missing legacy declarations rather than inventing them.
+4. Link the scoped feature workflows. Propose branch-setup closure once its
+   baseline is recorded; it need not remain open for the lifetime of the branch.
 
-Branch creation alone does not bump versions, authorize feature implementation,
-publish a branch, or create release tags. Follow repository authorization rules
-for each operation; prior explicit authorization remains valid.
-Creating and switching to the branch must precede any project file changes,
-including its setup record. Reusing an existing suitable branch does not require
-another creation workflow.
+Creation does not allocate numeric versions, publish a branch or authorize tags.
+A request authorizing both creation and implementation covers both scopes;
+existing authorization must not be requested again.
+
+### Development branch synchronization
+
+1. Identify the authoritative remote/target, current source and project-selected
+   merge/rebase policy. Distinguish synchronizing a fork's primary mirror from
+   incorporating the target into a feature or release branch. Inspect local
+   state and establish applicable operation authorization.
+2. Report whether refs are cached or explicitly fetched. A cached ref is not
+   evidence of latest remote state. If source access fails, report uncertainty;
+   do not silently claim current integration readiness.
+3. Synchronizing a primary mirror copies reviewed upstream history without
+   authored file edits. It does not change the separate feature branch. Do not
+   reset divergent or locally modified mirror state; resolve that scope first.
+4. Incorporate the approved target by merge or rebase on the development branch.
+   Preserve work, respect shared-history restrictions and retain conflicts for
+   explicit resolution. Never force-push, discard conflicts or stash implicitly.
+5. Resolve semantic conflicts within approved scope. Read changed requirements,
+   review affected deliverables, update relevant evidence and rerun proportionate
+   checks. Recompute the current commit suffix and validation target; retain each
+   change record's original origin. This operation does not allocate a version.
+6. For a release branch, invalidate the stale plan and recalculate candidate
+   scope/versions against the updated target. Avoid combining newly pending work
+   with archived records from an obsolete candidate without deliberate replanning.
+   Record the outcome and request workflow closure through the normal rules.
+
+### Integration preparation
+
+1. Identify source/target refs, exact commits, intended scope and requested
+   operation. Inspect the proposed combined tree against the current target,
+   including indirectly inherited package requirements and shared-code effects.
+2. Complete scoped change records using their captured original work provenance
+   or an explicitly selected, verified original commit. Never guess origin from
+   current HEAD after development/synchronization. Classify both impacts, including
+   `none`, and
+   link requirement coverage, actual verification and affected applications.
+   Authored integration scope needs a new or deliberately updated pending change
+   record; missing declarations are not no-bump decisions. A release-preparation-
+   only scope is exempt only when its new exact candidate plan has been validated.
+   Inspect changed specifications and implementation; matching numbers or passing
+   structural checks do not establish conformance.
+3. Resolve required implementation gaps, conflicts and missing local prerequisites.
+   Run appropriate tests, builds and metadata/integrity checks. Record failures,
+   limitations and the exact source/target under review. Do not demand release
+   qualification for unrelated tracking-only changes.
+4. Review every open workflow, including preparation itself, and its remaining
+   acceptance/closure criteria. If any work or required acceptance remains, report
+   the blocker. Do not close, archive or relabel it merely to pass the gate.
+5. Request explicit definer closure permission with a **short numbered summary of
+   all open workflows**, naming each record, its outcome and any remaining items.
+   State plainly that closing them is a prerequisite for submitting the integration
+   proposal. The definer decides completed, abandoned or superseded status for
+   each identified scope; previously explicit authorization for that same set
+   remains valid. Silence, passing checks and implementation requests are not
+   closure confirmation. Do not request merge/publication authorization as if
+   granting it would also close the records.
+6. After authorized closure, record the confirmation, move closed records to
+   history and inspect both open and history locations. Verify the actual
+   proposed tree has no open workflows and no malformed or falsely archived
+   statuses. Apply relevant staged/tree checks after the closing edits.
+7. Submit only the authorized integration proposal. Use a pull/merge request when
+   available or the project's native Git review procedure. Required external CI
+   or review may remain pending until proposal creation; say which checks are
+   pending and do not claim merge readiness. A draft can exist with those external
+   checks or review pending once local preparation and closure gates pass.
+
+Submission does not authorize integration. If local prerequisites or closure are
+missing, report **Not ready for proposal** and the concrete blockers. Continue
+only authorized corrective work. The closed preparation record describes local
+preparation; approval and integration state belong to the review system or native
+review record rather than a permanently open committed workflow.
 
 ### Development branch merge
 
-Use this workflow for a definer-requested publication of development changes,
-merge request/pull request, or merge. A request to push or publish changes means
-pushing the development branch and submitting a PR, not pushing the primary
-branch. Primary-branch integration must use the PR.
+1. Confirm the exact authorized integration operation and current source/target
+   commits. Review the proposed combined result. Required behavior must be
+   implemented; pending change records may remain for future release preparation.
+2. Require all specified reviews and checks, valid declarations/records and no
+   open workflows in the combined tree, including history. Missing, failed or
+   unavailable required merge checks block integration, not earlier proposal
+   creation when those checks can only start after submission.
+3. If review requires edits, open a new scoped correction workflow on the source
+   branch, perform the edits, validate and obtain explicit closure. Refresh the
+   proposal. Do not reopen a closed record silently or merge it while open.
+4. Recheck identity and evidence immediately before integration. Any changed
+   source or target invalidates affected evidence; reassess the actual combined
+   result and rerun checks. Use a platform up-to-date requirement, merge queue,
+   native hook or equivalent serialized manual procedure where available. A
+   tracked PR-status file or moving tag is not a concurrency lock.
+5. Perform the authorized reviewed integration, verify the resulting target and
+   retain review/commit evidence. Never directly author changes on the primary
+   branch. A repository's explicit native Git integration procedure may update
+   it through an authorized merge, rather than requiring a provider-specific API.
+   Tags, publication and branch deletion have separate scope.
 
-1. Identify source and target branches, repository/remote, the exact requested
-   operation, related work and intended scope. Inspect the latest target state;
-   if its currency cannot be established, report the missing readiness evidence.
-2. Review the whole proposed change relative to that target, including selected
-   packages, effective contract changes, implementation coverage, data/format
-   compatibility, declarations, documentation and unresolved work. Do not trust
-   a branch's provisional version, earlier intention, or old review in place of
-   assessing the actual combined result.
-3. Resolve conflicts within authorized scope without discarding unrelated work
-   or weakening specifications to make incomplete behavior appear compliant.
-   Follow repository permissions for branch, rebase and publishing operations.
-   Recalculate version impact against the latest target; avoid reusing an already
-   finalized version for different implementation or specification contents.
-4. Validate the proposed merged tree, not just the source branch alone. Check
-   aligned Major.Minor for primary-branch integration, an accurate specification
-   baseline reference, applicable tests/builds, metadata, and compatibility.
-   Missing required checks, unresolved conflicts or implementation gaps block
-   readiness. Record what ran and its source/target commit IDs. Apply required
-   checks proportionately; do not invent a comprehensive release qualification
-   requirement for a narrow documentation change.
-5. If not ready, clearly state **Not ready to merge**, identify blockers and
-   consequences, and explain the work needed. Do not create the merge request
-   (including a draft as a workaround), perform the merge, create a release tag,
-   or claim readiness. Continue authorized corrective work when possible. A
-   request to merge is not evidence that checks passed or permission to ignore
-   them. Record the failed gate in the workflow.
-6. When ready, perform only the requested operation. For publication, push the
-   development branch and create the PR, or update its existing PR. A merge
-   request includes a concrete summary, version changes, validation and relevant
-   limitations. Creating it does not authorize merging it. An authorized merge
-   into the primary branch must merge the PR, never bypass it through a direct
-   push or local merge. Do not add redundant approval steps for operations
-   already explicitly authorized.
-7. Before the actual merge, confirm that the source and target still match the
-   reviewed commits and that required reviews/checks remain satisfied. Reassess
-   changed commits and rerun affected checks if either moved. After merging,
-   verify the resulting target state and record the request link or merge commit,
-   versions, checks and remaining authorized steps. Publication, release tagging,
-   branch deletion and workflow closure follow their own applicable rules.
+Report **Not ready to integrate** when the gate fails, with precise missing
+checks or gaps. Intermediate development targets may permit explicitly documented
+gaps; do not call that primary-branch or release readiness.
 
-For an intermediate development target, explicitly record its permitted gaps;
-do not present integration there as primary-branch or release readiness. Required
-checks for the agreed scope still apply.
+### Release preparation
+
+1. Identify the requested version line, latest finalized declarations and current
+   primary target. Only one active finalization proposal per version line may
+   allocate identities. Create an authorized release branch from that target.
+2. Inspect all pending change records and the combined requirements/delivered
+   behavior. Resolve gaps and inconsistent classification; compute the highest
+   impact once. Preserve unaffected application releases and their provenance.
+3. Produce a read-only plan tied to the selected `integration_ref` and its
+   resolved target commit, exact source HEAD/tree, declarations and record bytes.
+   An explicit cached remote ref can be used without a local primary mirror;
+   planning does not fetch or establish current remote state. Preparation rechecks
+   the stored ref rather than selecting another target. With no version effect,
+   integrate tracking-only work without allocating a release. A specification-only project cannot propose implementation changes.
+4. Apply the reviewed plan coherently on the release branch: propose candidate
+   declarations, archive included records unchanged, prepare release notes and
+   retain plan/provenance evidence. Independent application versions are assigned
+   only under their own policy. Preparation never commits, tags or publishes
+   implicitly. On failure preserve recoverable state and report incomplete writes.
+5. Validate candidate uniqueness, declarations, coverage, baseline references,
+   affected applications and release scope. Missing candidate tags are not errors
+   before authorized creation; conflicting existing identities are errors. An
+   unchanged specification baseline must be verified when reused for publication.
+6. Complete integration preparation and request closure of all open workflows.
+   Submit the closed candidate tree for reviewed integration. If its target moves,
+   reassess scope, recompute stale plans and rerun affected validation before
+   integration. Another branch must not accidentally finalize these declarations.
+7. Authorized reviewed integration finalizes the candidate versions. Separately
+   authorized operations create/verify annotated baseline tags and publish selected
+   applications. Record exact finalized commit and application provenance without
+   claiming publication from a merge alone.
+
+For a later application-only release, use the application's own policy and scoped
+preparation rather than manufacturing another Macrostates baseline plan. Ready
+`none`/`none` records remain pending; verify their actual evidence, absence of gaps,
+closed workflows and permitted metadata-only source changes. Keep the previous
+baseline plan and consumed records unchanged. Any pending version-affecting record
+or changed runtime/effective specification prevents claiming that the new source
+is merely release bookkeeping against the old baseline.
 
 ### Exception
 
@@ -756,125 +838,124 @@ Read `annex_exceptions.md` before executing an exception workflow.
 
 ### Versioning and integration
 
-#### Automatic classification and updates
+#### Classification and pending work
 
 Apply [Concepts](001_concepts.md#contract-based-versioning) and maintain
-[Version declarations](002_artifacts.md#version-declarations) during ordinary
-authorized work. Classify semantic contract changes separately from textual
-specification changes and implementation-only changes. Assess compatibility of
-the effective composition, not an upstream package's version number alone.
+[Artifacts](002_artifacts.md#version-declarations). Classify meaning after authority,
+not file counts or upstream version numbers. Update pending change records during
+ordinary authorized work; do not advance finalized numeric versions on feature
+branches. Record no-bump decisions. Complete evidence before integration.
 
-Use one version bump per coherent finalized change set, relative to the previous
-finalized version on that line of work. Edits, retries, build runs and fixes during
-validation of that same uncommitted change set do not each receive another bump.
-If scope changes, recalculate the highest impact against the same baseline. A
-later distinct version-affecting change needs a new version even when the earlier
-version was committed but not tagged or published. Do not mechanically increment
-both independent revision counters.
+A semantic specification update may temporarily create a development gap.
+Keep it explicit; never weaken specifications or manipulate version numbers to
+conceal it. Once an implementation exists, the integrated tree must satisfy the
+current effective requirements even while its official baselines await release.
+Tests and review establish coverage; declarations and CLI checks establish only
+the bookkeeping they actually inspect.
 
-For a new contract Major or Minor, reset each side's revision to zero when that
-side first finalizes it. A development branch may then advance specification
-revisions before the first conforming implementation is finalized; implementation
-`6.5.0` can therefore implement `spec-6.5.3`. Do not require both revision counters
-to be zero at integration. Assign the new release date when finalizing an
-implementation version; rebuilding or tagging the same candidate retains it.
+Maintain origin provenance separately from current validation target. Computed
+branch/unreleased identities reflect current Git state and dirty status; avoid
+self-referential hashes. A source archive without Git reports unavailable identity
+or uses explicitly captured build metadata. Do not describe changed source as
+an unchanged finalized baseline.
 
-For an unchanged contract, specification revisions distinguish finalized edits to
-the authoritative root entrypoint, composition, selected package contents and
-applicable repository-specific directory specifications.
-Only implementation changes affecting the delivered result require an implementation
-revision. Keep workflow/test-only and non-authoritative documentation changes in
-Git history without manufacturing product releases.
+The CLI is strongly recommended and optional. Equivalent manual checks must
+preserve the same records, classifications and exact evidence. Projects can
+specify application release tooling and a reviewed native Git integration strategy
+without a provider account. Application policy overrides follow composition
+authority; the default stable application version is numeric finalized `imp-*`.
 
-The implementer performs required version bookkeeping automatically within
-authorized work, including Major project contract bumps for approved incompatible
-changes. This is not permission to change product requirements, bypass Meta's
-package-Major approval, or perform unrequested Git operations. Record the baseline,
-classification and any no-bump decision in the relevant workflow.
+#### Primary-branch gates and finalization
 
-#### Integration through pull requests
+Author changes only on development branches. Integration preparation closes all
+workflows with definer confirmation before proposal submission. External proposal-
+triggered checks/reviews may follow; they must pass before authorized integration.
+Pending change records on primary are permitted and do not imply open workflows.
 
-Develop and commit changes on a development branch. For a contract change,
-update specifications, implement the change, validate it, and prepare both aligned
-declarations and their corresponding work for integration through the PR. Do not
-merge an incomplete contract first and repair it in a later primary-branch state.
+Release preparation finalizes a collected scope once. Shared Major/Minor comes
+from the highest contract impact; unchanged-contract patches remain independent.
+Candidate uniqueness is checked against finalized identities and existing tags.
+No numerical version claim is conformance evidence. Changed target/source/records
+invalidate the affected release plan and checks. Preserve shared history while
+refreshing candidates; do not silently amend published snapshots.
 
-Temporary working-tree mismatches and intermediate incomplete commits are allowed
-on development branches. Before submitting a PR or merging it into the primary
-branch, the implementer must inspect the proposed integrated tree, including the
-versions and actual scope, to ensure composition and implementation Major.Minor
-match, declarations are valid, and the implementation satisfies the contract.
-This responsibility remains even if no automated hook or CI check is installed.
-Do not discard work or change a version number solely to pass alignment checks.
-
-Projects should automate declaration, alignment and release checks in their
-normal validation, and protect the primary branch with required checks when
-their hosting setup permits. Such checks verify bookkeeping; tests and review
-establish conformance. Local checks supplement the implementer's responsibility.
-The Macrostates CLI is strongly recommended for the policies its installed
-version supports. CLI installation and CLI-specific pre-commit hooks and CI wiring
-remain optional; apply the required checks manually or through other suitable
-automation when needed. See [Specification verification](#specification-verification).
-
-An editorial composition revision can enter the primary branch while the unchanged
-implementation declaration references an earlier exact revision at the same
-Major.Minor. Verify that the intervening specification changes do not change the
-contract. Do not rewrite a historical release's baseline.
+Repository protection and CI may automate these checks; native hooks/manual
+review remain valid. The implementer retains responsibility when automation is
+absent. The final gate must cover the actual combined result, not only a previously
+checked feature branch. Publishing a status file does not serialize integrations.
 
 #### Release commits, tags and publication
 
-Committing a versioned change does not automatically create or publish a release.
-Create release tags only when the definer requests a release or an explicitly
-selected release policy authorizes them, after applicable validation and primary
-branch integration. Ordinary builds never create commits, tags or versions.
+Baseline finalization, tag publication and application distribution are distinct.
+Create annotated `specs-MAJOR.MINOR.PATCH` and `imp-MAJOR.MINOR.PATCH` tags in the
+project repository only after authorized finalization and relevant validation.
+Specification-only finalization needs no implementation tag. Reuse an existing
+verified specification tag when the implementation's contract snapshot is unchanged.
 
-Use annotated `spec-MAJOR.MINOR.REVISION` tags for finalized composition snapshots
-and annotated `vMAJOR.MINOR.REVISION` tags for finalized implementation releases
-in the project's main repository. An implementation tag contains its declaration,
-corresponding implementation and verification evidence; the referenced composition
-tag must identify the exact validated specification snapshot. When both snapshots
-are finalized together, both tags may point to the same commit. Reuse an existing
-verified composition tag for an unchanged baseline. An editorial-only specification
-release does not require an implementation tag.
+An implementation tag identifies its declared implementation and exact validated
+specification reference. Verify tag/declaration agreement, source completeness,
+Major.Minor alignment, required evidence and absence of conflicting identities.
+Referenced specification tags must exist and identify the intended specification
+snapshot for publication. A finalized baseline tag stays at its original validated
+commit; an application tag or release receipt may identify a later reviewed commit
+whose differences are only permitted application metadata/bookkeeping. Verify the
+referenced baseline's plan, declarations, consumed record hashes and specification/
+source binding at the historical tag. Do not require it to move to current HEAD.
+Separately verify the application's new exact source, metadata-only delta, required
+checks, pending no-impact evidence and own release policy. Pending version-affecting
+work blocks publication against that older baseline. Candidate checking distinguishes a tag not yet created
+from a missing previously finalized baseline. Do not require a current editorially
+updated specification to equal an earlier release's preserved baseline.
 
-Check declaration/tag agreement, tagged source completeness, snapshot identity,
-Major.Minor alignment, required checks and conflicts with existing tags before
-creating tags. Never move, replace or reuse a published tag for different content;
-prefer a new version. An existing tag at the same verified release commit needs
-no recreation. Distinguish a local candidate, a local tag, a published tag, and a
-distributed build in reports. Follow repository permissions for commits and remote
-publication; when publication is authorized, publish the relevant commits and tags
-together, atomically where supported, then verify their remote identities.
+Application tags use the selected application policy and unambiguous namespaces
+when multiple deliverables or specification packages share a repository. Preserve
+historical `spec-*` and `v*` tags rather than repurposing them. Reusable package
+tags remain Meta-owned `v<package-version>` in canonical source repositories.
 
-Package tags continue following Meta in each package's own source repository.
-Projects releasing multiple independently versioned implementations, or also
-publishing a package in the same Git tag namespace, must define unambiguous tag
-prefixes before release. Do not silently repurpose historical tags.
+Never move, replace or reuse published identities for different contents.
+Publish related refs together atomically where supported and verify remote
+identities afterward. Report whether a candidate, local tag, remote tag or
+actual distribution exists. If publication partly succeeds, preserve successful
+immutable identities, report the incomplete stage and retry the same verified
+artifacts when the destination permits. Changed contents need a new version;
+never rewrite successful publication to disguise the failure.
 
-Release/tag creation does not close a workflow or substitute for explicit closure
-confirmation. Missing required checks block a release; report them honestly.
+Ordinary builds never finalize, tag or publish. Close release-preparation workflows
+before reviewed integration; later publication evidence belongs in external release
+records or a new explicitly closed documentation workflow, never an open record
+committed to primary. Publication does not substitute for definer acceptance.
 
 #### Adopting this policy in an existing project
 
-Inventory existing package, composition and implementation versions, declarations,
-build sources and published tags. Preserve their history. During authorized
-specification adoption, document the new requirements and the implementation gap;
-do not claim the build already consumes a declaration that does not exist.
+Inventory existing declarations, package selections, workflows, tags, application
+versions and build consumers. Preserve published history and distribution ordering.
+Explicit adoption introduces Process-5 records/schema and `specs-*`/`imp-*`
+identities; ordinary inspection never migrates or rewrites a project.
 
-During the corresponding implementation update, reconcile specifications with
-implemented behavior, introduce the release declaration and its build consumers,
-remove competing hand-edited metadata, and add applicable validation. Select an
-explicit first aligned contract baseline with versions that avoid existing release
-identities and preserve platform update ordering. Package Major versions do not
-by themselves select the application's new Major.
+Map a verified old `spec-X` baseline to its new `specs-X` namespace and numeric
+implementation `Y` to `imp-Y` only as an explicitly recorded baseline translation.
+Do not claim new tags already exist. Distinguish translation of an existing
+validated snapshot from new requirements introduced by adoption; those requirements
+need ordinary impact classification, implementation and release preparation.
+Never create a conforming baseline by merely changing prefixes.
 
-Until that migration is implemented and checked, keep the specification changes
-as an explicitly incomplete local candidate or on an authorized development branch.
-Do not commit an unaligned adoption state on the primary branch or tag it as an
-aligned release. This permits specifications to be prepared before implementation
-without weakening the primary-branch rule. A specification-only project without
-an implementation declares only the composition version; a new implementation
-normally starts at `0.1.0` / `spec-0.1.0` unless another baseline is defined.
+Reconcile current specifications, implementation coverage and build consumers
+on a development branch. Existing open workflows must be listed for definer
+closure decisions; never silently archive them during migration. Preserve their
+original requests, evidence and confirmations. Audit legacy closed records honestly
+and document known evidence limitations rather than inventing earlier acceptance.
+When ready, use the new local-preparation and integration gates.
+
+Source-only canonical specification repositories remain Meta package authoring
+contexts unless they explicitly adopt a composed Process project. Specification-
+only composed projects may have change records without an implementation declaration.
+A new composed project normally starts at `specs-0.1.0`, and the first conforming
+implementation at `imp-0.1.0`, unless explicitly defined otherwise. Initialization
+creates a provisional specification seed, not accepted implementation or release
+evidence. Establish the first accepted implementation declaration explicitly in
+the bootstrapping/release-preparation workflow; manual verified establishment
+remains valid when the CLI only supports releases after an implementation baseline
+exists. Never manufacture an implementation merely to pass planning checks.
 
 ### Ambiguity and conflicts
 
@@ -965,15 +1046,26 @@ intended baseline, local work was preserved, starting versions/commit are record
 and linked feature workflows retain their own scope. Do not require feature
 completion or remote publication to deliver branch setup.
 
-For `Development branch merge`, check that the requested operation was authorized,
-readiness was evaluated against the actual source/target commits and combined
-result, version alignment and applicable checks passed, and the request/merge
-outcome is recorded. If blocked, no merge request or merge was performed and the
-definer received the specific blockers and consequences.
+For `Development branch synchronization`, check source/target and operation scope,
+original provenance preservation, conflict outcome, refreshed identity/evidence and
+release-plan invalidation when applicable.
 
-For all version-affecting work, verify the classification, declarations and
-development-state declarations before committing, and the primary-branch invariant
-before PR submission or integration. For release work, verify the exact
+For `Integration preparation`, check change records and local combined-tree
+readiness, explicitly confirmed closure of every open workflow, and absence of
+open/malformed statuses in the submitted tree. Distinguish pending external checks
+from passed checks. If blocked, no proposal was submitted.
+
+For `Development branch merge`, check exact current source/target, required checks,
+reviews, coverage and no open workflows. Record the reviewed integration outcome
+without introducing an open primary-branch workflow.
+
+For `Release preparation`, check input binding, impact calculation, archived scope,
+coherent candidate declarations and relevant application provenance. Target changes
+require reassessment before finalization; tags/publication retain separate scope.
+
+For all version-affecting work, verify classification, change records and honest
+development state before committing, and the appropriate proposal/integration
+gate for the actual source and target. For release work, verify the exact
 specification baseline, tags and any authorized remote publication separately.
 
 For `Exception`, check that the exception record explains why ordinary workflow

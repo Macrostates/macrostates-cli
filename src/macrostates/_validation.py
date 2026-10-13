@@ -204,12 +204,46 @@ class Process41Policy(Process40Policy):
     label = "Process 4.1"
 
 
+class Process50Policy:
+    """Finalized baselines and pending records; readiness gates are separate."""
+
+    label = "Process 5.0"
+    requires_modern_layout = True
+
+    def check(self, composition: Composition, implementation: Path, report: Report) -> None:
+        from ._changes import check_changes
+        from ._deliverables import check_deliverables
+        from ._versioning import baselines
+
+        if implementation.parent.name != ".macrostates":
+            report.add("process.layout", "Process 5.0 requires .macrostates/implementation/")
+            return
+        root = implementation.parent.parent
+        try:
+            declared = baselines(root)
+            overview = safe_path(implementation, "main.md")
+            if (
+                declared["implementation"] is None
+                and overview.is_file()
+                and re.search(r"(?im)^\s*project phase:\s*active\b", overview.read_text())
+            ):
+                report.add(
+                    "process.release_missing",
+                    "Active implementation needs an explicitly established imp baseline",
+                )
+            report.diagnostics.extend(check_changes(root, readiness=False).diagnostics)
+            report.diagnostics.extend(check_deliverables(root).diagnostics)
+        except (MacrostatesError, ValueError, OSError) as exc:
+            report.add("process.release_invalid", str(exc))
+
+
 PROCESS_POLICIES = {
     (2, 3): Process23Policy(),
     (2, 4): Process24Policy(),
     (3, 0): Process30Policy(),
     (4, 0): Process40Policy(),
     (4, 1): Process41Policy(),
+    (5, 0): Process50Policy(),
 }
 
 
@@ -243,7 +277,13 @@ class Meta21Policy(Meta20Policy):
     label = "Meta 2.1"
 
 
-META_POLICIES = {(2, 0): Meta20Policy(), (2, 1): Meta21Policy()}
+class Meta22Policy(Meta21Policy):
+    """2.2 adds optional annotated-tag downloads from arbitrary Git remotes."""
+
+    label = "Meta 2.2"
+
+
+META_POLICIES = {(2, 0): Meta20Policy(), (2, 1): Meta21Policy(), (2, 2): Meta22Policy()}
 
 
 def check_meta(composition: Composition, specs: Path, root: Path, report: Report) -> None:

@@ -2,8 +2,8 @@
 
 - Workflow type: Development branch creation
 - Project phase: bootstrapping
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Change depth: medium
 - Branch: release/pypi-distribution
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), repository-local Git identity and this conversation.
@@ -18,3 +18,7 @@ Create an isolated feature branch for the requested CLI repository update, build
 ## Delivery
 
 Branch setup is delivered. Feature work and publication are tracked separately. No version changes arise from setup alone. Acceptance and explicit closure remain separate.
+
+## Definer-confirmed closure
+
+On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.

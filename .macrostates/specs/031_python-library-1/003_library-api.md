@@ -11,6 +11,11 @@ unless they are deliberately part of the supported API.
 Public names should be documented or discoverable from the README. Removing,
 renaming, or materially changing public behavior is a compatibility decision.
 
+Those compatibility decisions govern the library's distribution version policy
+under [Packaging](008_packaging.md), independently of repository baseline
+numbers. Record the supported public surface and migration implications when
+reviewing a version-affecting library change.
+
 ## Import Behavior
 
 Importing a library should not perform surprising I/O, replace process-global
@@ -28,4 +33,3 @@ should be explicit at public boundaries.
 Environment variables may provide integration hooks, but they should not be the
 only way to configure supported behavior. Environment variables used by the
 library are part of the public compatibility surface.
-

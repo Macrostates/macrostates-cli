@@ -2,8 +2,8 @@
 
 - Workflow type: Development branch merge
 - Project phase: bootstrapping
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Change depth: large
 - Branch: release/public-launch-alignment
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), repository-local Git identity and this conversation.
@@ -81,3 +81,7 @@ The follow-up delivery record changes tracking only. Implementation 0.3.0,
 composition spec-0.3.0, the local CLI package 0.5.0, imported archives and all
 published release tags remain unchanged. No primary-branch file edits or pushes
 were used. Project phase and workflow closure remain separate definer decisions.
+
+## Definer-confirmed closure
+
+On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.

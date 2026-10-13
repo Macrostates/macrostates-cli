@@ -9,7 +9,7 @@ contain:
 - `main.md`: the human-readable project specification entrypoint.
 - `composition.yaml`: the machine-readable package composition.
 - `composition.lock.yaml`: verified provenance and content inventory for imported
-  GitHub release snapshots, when that source mechanism is used.
+  tagged Git snapshots, when that source mechanism is used.
 
 `composition.yaml` is the conventional filename. `composition.yml` is also
 accepted; use exactly one manifest per project. References to `composition.yaml`
@@ -185,16 +185,19 @@ when migrating an unversioned composition to Meta 2.
 ### Composition version
 
 Project metadata may include `project.version`, identifying the complete composed
-specification snapshot rather than any individual package or its implementation:
+specification baseline rather than any individual package or its implementation:
 
 ```yaml
 project:
   name: example
   entrypoint: main.md
-  version: "spec-6.4.2"
+  version: "specs-6.4.2"
 ```
 
-Meta defines the field and its scope, not its versioning policy. A selected package
+Meta defines the field and its scope, not its versioning policy. The selected
+policy may distinguish a last finalized baseline from accepted unreleased work;
+then this field alone must not claim that current files equal the finalized
+snapshot. A selected package
 or the explicit project contract defines whether the field is required, its format,
 bump rules and any relationship to an implementation version. The example prefix
 is illustrative; Meta does not require it for all compositions. Record the policy
@@ -224,7 +227,7 @@ Package entries should use this shape:
 ```yaml
 packages:
   - name: process
-    version: 1.0.0
+    version: 5.0.0
     path: 001_process/
     entrypoint: README.md
 ```
@@ -273,27 +276,43 @@ packages:
       type: local
 ```
 
-Use `source.type: github-archive` as the normal source for GitHub-hosted packages:
+Use `source.type: git-archive` for tagged snapshots from a Git repository,
+independently of its hosting service:
 
 ```yaml
 packages:
-  - name: meta
+  - name: example-package
     version: 2.0.0
-    path: 000_meta/
+    path: 020_example-package/
     entrypoint: README.md
     source:
-      type: github-archive
-      repository: https://github.com/Macrostates/macrostates-meta.git
+      type: git-archive
+      repository: https://git.example.org/specs/example-package.git
       tag: v2.0.0
 ```
 
-Resolve the explicit release tag, verify its package metadata, then download a
-source archive at that resolved commit. Strip only the enclosing archive root.
-There is no build step or nested Git repository. Track all package files under
-the declared path and record canonical provenance and inventory in
-`.macrostates/specs/composition.lock.yaml`; see [Package integrity
+`repository` identifies the canonical Git URL or an explicitly selected local
+repository path. Authentication uses the Git transport's configured mechanism;
+credentials must not be embedded in the composition. Local paths are explicit
+local provenance and need not be usable on another machine. Prefer a portable
+Git URL when the composition is shared. Source access is separate from offline
+validation and may require transport configuration.
+
+Resolve the explicit `refs/tags/<tag>`, verify tagged package metadata, and
+extract a Git archive at its resolved commit. Strip only an enclosing archive
+root when present. There is no build step or nested Git repository. Track all
+package files under the declared path and record canonical provenance and
+inventory in `.macrostates/specs/composition.lock.yaml`; see [Package integrity
 locks](annex_package-lock.md). Never substitute a moving branch head or `latest`
-for a release. Keep credentials out of source metadata.
+for a release. Reject unsafe archive content before installing it. Resolution,
+metadata validation, import and lock must refer to the same commit.
+
+The optional legacy `source.type: github-archive` uses its provider's tagged
+archive service with the same `repository` and `tag` fields and integrity rules.
+Existing selections remain supported; a source-type conversion is explicit and
+must preserve verified package bytes and provenance. No provider account or
+provider-specific API is required for the generic Git mechanism. Git subtree
+remains a separate supported mechanism rather than an implicit conversion.
 
 Imported external packages are immutable in a consuming project. Verify their
 file bytes, inventory and executable flags against the lock. Propose changes in
@@ -309,18 +328,18 @@ projects whose maintenance depends on subtree history:
 ```yaml
 packages:
   - name: meta
-    version: 2.0.0
+    version: 2.2.0
     path: 000_meta/
     entrypoint: README.md
     source:
       type: git-subtree
-      repository: https://github.com/Macrostates/macrostates-meta.git
+      repository: https://git.example.org/specs/meta.git
       branch: main
-      tag: v2.0.0
+      tag: v2.2.0
       prefix: .macrostates/specs/000_meta
 ```
 
-For `github-archive`, `repository` and `tag` are required. For `git-subtree`,
+For `git-archive` and `github-archive`, `repository` and `tag` are required. For `git-subtree`,
 `repository`, `branch`, `tag` and `prefix` are required. The prefix is relative
 to the project Git root and must identify the exact installed package directory.
 Archive installation must not silently convert a subtree. Preserve established

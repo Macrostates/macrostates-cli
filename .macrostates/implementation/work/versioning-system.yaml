@@ -1,0 +1,6 @@
+schema_version: 1
+id: versioning-system
+origin:
+  commit: 96a467c448f6fc5abf3ca9f8b19a29d976725c93
+  specification: specs-0.3.0
+  implementation: imp-0.3.1

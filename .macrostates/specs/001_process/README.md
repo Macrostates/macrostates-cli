@@ -48,15 +48,20 @@ Workflow closure requires explicit definer confirmation, including completion,
 abandonment, and supersession. When work appears done, suggest closure and keep
 the workflow open until the definer confirms. See [Execution](003_execution.md).
 
-The implementer maintains contract versions automatically: compositions use
-`spec-MAJOR.MINOR.REVISION`, implementations use `MAJOR.MINOR.REVISION`, with
-independent revisions. Primary-branch integration happens only through PRs;
-integrated states must have matching Major.Minor and actual contract coverage.
-Development branches may hold provisional gaps. See [Concepts](001_concepts.md#contract-based-versioning),
-[Version declarations](002_artifacts.md#version-declarations) and
-[Versioning and integration](003_execution.md#versioning-and-integration).
-Existing projects must complete the documented adoption before committing an
-aligned baseline; changing numbers alone does not establish conformance.
+Finalized specifications use `specs-MAJOR.MINOR.PATCH` and implementations use
+`imp-MAJOR.MINOR.PATCH`, sharing contract Major.Minor with independent patches.
+Feature branches retain starting numbers and compute commit-based development
+identities. Committed change records describe independent impact and evidence;
+release preparation collects them and proposes official baselines through reviewed
+integration. Accepted pending changes on primary are explicitly unreleased, not
+an unchanged historical release. See [Concepts](001_concepts.md#contract-based-versioning),
+[Artifacts](002_artifacts.md#version-declarations) and
+[Execution](003_execution.md#versioning-and-integration).
+
+Applications may adopt technology/project release policies. Without an explicit
+policy, a stable application version is numeric finalized `imp-*`. Monorepos may
+version and release applications independently while preserving exact baseline
+provenance. New repository baselines do not automatically publish applications.
 
 The Macrostates CLI is strongly recommended for supported specification checks
 and remains optional. Use relevant manual equivalents when needed, preserving
@@ -64,13 +69,18 @@ the selected requirements and reporting coverage. Meta owns tool guidance;
 [Specification verification](003_execution.md#specification-verification) defines
 when checks fit a workflow and a proposed commit.
 
-Development branch creation and merge are explicit workflow types. When the
-definer asks to push or publish changes, push the development branch and submit a
-PR, never push changes directly to the primary branch. Creating a PR does not
-authorize merging it. On a definer-requested PR or merge, check readiness first;
-if required checks fail or remain unavailable, clearly warn and do not perform
-that operation.
-See [Development branch merge](003_execution.md#development-branch-merge).
+Branch creation, synchronization, integration preparation and release preparation
+have distinct scopes. Use reviewed integration through pull/merge requests where
+available or a native Git equivalent; no hosting service is mandatory.
+
+Before proposal submission, the implementer requests explicit definer closure
+with a short numbered summary of **all open workflows** and explains the closure
+prerequisite. The submitted/integrated tree must contain no open workflows.
+Proposal-triggered CI/review can begin after submission, but all required checks
+and reviews must pass before integration. Later corrections receive their own
+workflows, closed before merge. See
+[Integration preparation](003_execution.md#integration-preparation) and
+[Development branch merge](003_execution.md#development-branch-merge).
 
 Specification edits stay within the project context of the request. After
 committing, inspect other package copies and suggest applicable pulls; obtain
@@ -93,8 +103,10 @@ handling. Read an annex only when a core document says the situation applies.
 - Definer support during process execution.
 - Documentation ownership and authority.
 - Common workflows and workflow continuity.
-- Contract-based composition/implementation versioning and release declarations.
-- Required development branches and validated integration through PRs.
+- Project baseline, development and pending identities, impact records and release preparation.
+- Optional application release policies, defaults and monorepo provenance.
+- Development-branch synchronization and platform-independent reviewed integration.
+- Explicit definer closure and separate proposal/merge readiness gates.
 - Project scaffolding during specification.
 - Workflow execution against specifications.
 - Subproject coordination inside a parent project.
@@ -113,6 +125,10 @@ Read the core documents in this order:
 3. [Execution](003_execution.md)
 
 Conditional annexes:
+
+- [Versioning schemas and examples](annex_versioning.md): read when creating
+  change records, preparing releases, declaring deliverables or migrating version
+  artifacts. The core rules still apply when using equivalent manual tooling.
 
 - [Project state](annex_project-state.md): read when project phase or project
   artifacts appear inconsistent.

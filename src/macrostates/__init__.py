@@ -4,9 +4,17 @@ from importlib.metadata import PackageNotFoundError, version
 
 from ._models import Diagnostic, MacrostatesError, Report
 from ._project import Project
-from ._sources import GitHubSource, SourceProvider
+from ._sources import GitHubSource, GitSource, SourceProvider
 
-__all__ = ["Diagnostic", "GitHubSource", "MacrostatesError", "Project", "Report", "SourceProvider"]
+__all__ = [
+    "Diagnostic",
+    "GitHubSource",
+    "GitSource",
+    "MacrostatesError",
+    "Project",
+    "Report",
+    "SourceProvider",
+]
 
 
 def __getattr__(name: str) -> str:
