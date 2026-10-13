@@ -54,8 +54,9 @@ their selected behavior. New support must not silently reinterpret older policie
 
 ## Release-Selected Policies
 
-Meta 2.0.x, 2.1.x, and 2.2.x require `.macrostates/specs/` and composition
+Meta 2.0.x, 2.1.x, 2.2.x, and 3.0.x require `.macrostates/specs/` and composition
 format 1. Meta 2.2 adds generic tagged Git archives without changing that format.
+Meta 3.0 retains the same technical formats and source mechanisms.
 Explicit dependency constraints remain required; an authoring default does not
 select latest packages or make an omitted constraint valid. Earlier releases
 retain their own checks. Unknown later Meta layout policies receive unsupported
@@ -69,8 +70,8 @@ explicit active phase requires an implementation declaration. Process 3.0.x and
 4.x also require `.macrostates/implementation/`. Retain these old names and
 rules while those releases are selected.
 
-Process 5.0.x requires modern locations, a `specs-*` composition declaration,
-and a schema-2 `imp-*` implementation declaration when an implementation baseline
+Process 5.0.x and 5.1.x require modern locations, a `specs-*` composition
+declaration, and a schema-2 `imp-*` implementation declaration when an implementation baseline
 exists. Validate shared Major.Minor, exact implemented specification reference,
 independent patches, and a quoted valid calendar date. A specification-only
 project has no invented implementation baseline. Initialization creates a
@@ -83,6 +84,19 @@ enforce readiness. They inspect documentary workflow status and authorization,
 but do not establish truthful definer approval or semantic coverage automatically.
 Process 1.x and 2.0 through 2.2 keep their earlier checks. Unsupported future
 policies receive clear diagnostics instead of guessed requirements.
+
+Under selected Meta 3.0, implementers classify and apply the required package
+version increment within requested specification work. Under selected Process
+5.1, they classify baseline impact and prepare the corresponding versions within
+authorized release work. A Major increment or classification alone requires no
+separate definer approval under these policies. Explain the impact in the change
+record or proposal, and ask when requirements or compatibility expectations are
+unclear. Older selected policies retain their own authority rules.
+
+This version authority does not authorize additional scope, workflow closure,
+reviewed integration, tagging, or application publication. Their existing
+acceptance and authorization requirements remain separate. Readiness checks
+inspect documentary evidence rather than proving truthful consent.
 
 ## Explicit Migration
 

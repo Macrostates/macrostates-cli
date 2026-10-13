@@ -5,21 +5,21 @@ project:
   version: specs-1.0.0
 packages:
 - name: meta
-  version: 2.2.0
+  version: 3.0.0
   path: 000_meta/
   entrypoint: README.md
   source:
     type: git-archive
     repository: https://github.com/Macrostates/macrostates-meta.git
-    tag: v2.2.0
+    tag: v3.0.0
 - name: process
-  version: 5.0.0
+  version: 5.1.0
   path: 001_process/
   entrypoint: README.md
   source:
     type: git-archive
     repository: https://github.com/Macrostates/macrostates-process.git
-    tag: v5.0.0
+    tag: v5.1.0
 - name: repository-1
   version: 4.0.0
   path: 010_repository-1/
@@ -45,7 +45,7 @@ packages:
     repository: https://github.com/Macrostates/macrostates-python-library-1.git
     tag: v2.0.0
 - name: cli
-  version: 1.0.0
+  version: 2.0.0
   path: 051_cli/
   entrypoint: README.md
   source:

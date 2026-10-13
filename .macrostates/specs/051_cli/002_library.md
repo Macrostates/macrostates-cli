@@ -62,9 +62,9 @@ operations raise `MacrostatesError`; ordinary filesystem read failures may raise
 from unsuccessful reports. After lint succeeds in executing, `check` converts
 missing/invalid integrity locks into `lock.invalid` diagnostics.
 
-Development/versioning methods require explicit selection of the supported
-Process 5.0 policy; older projects retain their existing behavior until deliberate
-adoption. `branch_status` and `sync_branch` use the project's Git repository and
+Development/versioning methods require explicit selection of a supported
+Process 5.0 or 5.1 policy; older projects retain their existing behavior until
+deliberate adoption. `branch_status` and `sync_branch` use the project's Git repository and
 do not rewrite its version declarations or implicitly adopt Process 5. Public
 method meanings and data contracts follow
 [Development and releases](008_development-and-releases.md). Change arguments

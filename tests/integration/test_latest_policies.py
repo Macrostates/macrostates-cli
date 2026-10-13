@@ -47,9 +47,11 @@ def test_latest_meta_process_work_together(tmp_path, meta, process):
     [
         ("meta", "2.0.0"),
         ("meta", "2.1.0"),
+        ("meta", "3.0.0"),
         ("process", "3.0.0"),
         ("process", "4.0.0"),
         ("process", "4.1.0"),
+        ("process", "5.1.0"),
     ],
 )
 def test_latest_policies_refuse_legacy_initialization_without_writes(tmp_path, name, selected):
@@ -59,7 +61,7 @@ def test_latest_policies_refuse_legacy_initialization_without_writes(tmp_path, n
     assert not list(tmp_path.iterdir())
 
 
-@pytest.mark.parametrize("selected", ["2.0.0", "2.1.0"])
+@pytest.mark.parametrize("selected", ["2.0.0", "2.1.0", "3.0.0"])
 def test_meta2_requires_explicit_composition_format(tmp_path, selected):
     data = composition(versions={"meta": selected}, schema=None)
     with pytest.raises(MacrostatesError, match="schema_version"):
@@ -67,7 +69,7 @@ def test_meta2_requires_explicit_composition_format(tmp_path, selected):
     assert not list(tmp_path.iterdir())
 
 
-@pytest.mark.parametrize("selected", ["2.3.0", "3.0.0"])
+@pytest.mark.parametrize("selected", ["2.3.0", "3.1.0", "4.0.0"])
 def test_future_meta_policy_is_not_assumed(tmp_path, selected):
     with pytest.raises(MacrostatesError, match="adapter"):
         Project.initialize(tmp_path, manifest=composition(versions={"meta": selected}))

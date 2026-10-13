@@ -232,7 +232,10 @@ def test_late_cli_change_creation_needs_an_explicit_original_commit(tmp_path, ca
     assert yaml.safe_load((tmp_path / accepted["path"]).read_text())["origin"]["commit"] == origin
 
 
-def test_cli_new_policy_shorthand_creates_only_specification_seed(tmp_path, capsys):
+@pytest.mark.parametrize(
+    "meta,process", [("2.2.0", "5.0.0"), ("3.0.0", "5.1.0"), ("3.0.7", "5.1.4")]
+)
+def test_cli_new_policy_shorthand_creates_only_specification_seed(tmp_path, capsys, meta, process):
     status = main(
         [
             "init",
@@ -241,9 +244,9 @@ def test_cli_new_policy_shorthand_creates_only_specification_seed(tmp_path, caps
             "--name",
             "example",
             "--package",
-            "meta@2.2.0",
+            "meta@" + meta,
             "--package",
-            "process@5.0.0",
+            "process@" + process,
             "--json",
         ]
     )

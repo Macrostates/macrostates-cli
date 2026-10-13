@@ -56,6 +56,8 @@ def composition_path(root: Path) -> Path:
 
 def declarations(root: Path) -> dict[str, Any]:
     """Read authoritative finalized/candidate numbers, never infer source readiness."""
+    from ._validation import process_uses_prefixed_baselines
+
     manifest = composition_path(root)
     composition = read_yaml(manifest)
     packages = composition.get("packages")
@@ -65,8 +67,10 @@ def declarations(root: Path) -> dict[str, Any]:
         (item for item in packages if isinstance(item, dict) and item.get("name") == "process"),
         None,
     )
-    if process is None or version(process.get("version"))[:2] != (5, 0):
-        raise MacrostatesError("This operation requires the supported Process 5.0 policy")
+    if process is None or not process_uses_prefixed_baselines(
+        string(process.get("version"), "process.version")
+    ):
+        raise MacrostatesError("This operation requires a supported Process 5.0 or 5.1 policy")
     project = mapping(composition.get("project"), "composition.project")
     specification = string(project.get("version"), "project.version")
     spec_numbers = baseline(specification, "specification")
