@@ -26,18 +26,35 @@ Legacy locations remain discoverable under [Versioning](006_versioning.md).
 
 ## Operation boundaries
 
-Only installation and canonical locking contact package sources. Initialization,
-inspection, lint, integrity verification and combined checks operate offline.
+Installation and canonical locking contact package sources. Explicit branch
+synchronization may fetch a configured Git remote when requested. Initialization,
+inspection, lint, integrity verification, planning and local readiness checks
+operate offline against available files and Git refs.
 Read-only operations preserve project files; staged checks may create temporary
 snapshots without changing the checkout or index.
 
-No command automatically stages, commits, pushes, changes branches, modifies Git
-configuration, installs hooks or executes downloaded code. Initialization creates
-specification scaffolding rather than application behavior. Users may explicitly
-integrate checks into their hooks or CI.
+Git synchronization performs the explicitly selected merge or rebase on the
+attached development branch, which may update the worktree/index and create or
+rewrite development commits through Git. It must preserve unresolved conflicts
+for the implementer and refuse unsafe starting states. Other operations do not
+stage or commit changes. No command creates or switches branches, pushes,
+force-pushes, creates release tags, publishes applications, changes Git
+configuration, installs hooks, or executes downloaded package code.
+Initialization creates specification scaffolding rather than application
+behavior. Users may explicitly integrate checks into their hooks or CI.
 
 The CLI is strongly recommended and optional in the selected specification system.
-Its structural and inventory checks assist specification reading; they do not
-establish semantic consistency, workflow compliance or implementation conformance.
-Automatic update planning, workflow management, remote release publication and
-migrations are outside the supported command set.
+Its structural, inventory, documentary workflow and release checks assist
+specification reading. They do not prove semantic consistency, truthful approval,
+or complete implementation conformance. The implementer declares semantic impact
+and reviews evidence under the selected specifications. Workflows require
+explicit definer-authorized closure; the CLI can list required closure requests
+and check recorded status, but never closes or approves workflows automatically.
+
+Process 5 operations distinguish pending work, reviewed baseline finalization,
+and separately versioned deliverables. Application policies are optional; the
+default stable application version is the selected finalized implementation's
+numeric part. Project-local policies can explicitly override it. Core operations
+use Git refs and identities without a hosting-platform account. Remote reviews,
+required external checks, application version assignment under independent
+policies, dependency selection, tagging and publication remain project operations.

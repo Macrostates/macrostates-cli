@@ -50,7 +50,7 @@ when the package uses progressive disclosure.
 Use `README.md` as the normal package entrypoint because specification packages
 may also be distributed as standalone repositories. This makes the same file
 serve as the package entrypoint inside a composed project and as the repository
-entrypoint on GitHub or similar repository browsers.
+entrypoint in repository browsers.
 
 The exact entrypoint remains the value declared in `package.yaml`, so a future
 package may choose another filename deliberately.
@@ -149,8 +149,8 @@ Example package metadata:
 
 ```yaml
 name: python-project-1
-version: 1.0.0
-versioned_at: 2026-08-31 18:59
+version: 3.0.0
+versioned_at: 2026-10-13 16:08
 description: Reusable Python project conventions.
 entrypoint: README.md
 ```
@@ -170,7 +170,7 @@ Required dependency entries should use this structure:
 ```yaml
 dependencies:
   - name: meta
-    version: 1.0.0
+    version: 2.2.0
     constraint: at_least
 ```
 
@@ -180,7 +180,7 @@ Optional dependency entries should use the same structure under
 ```yaml
 optional_dependencies:
   - name: docker-1
-    version: 1.0.0
+    version: 3.0.0
     constraint: at_least
 ```
 
@@ -256,6 +256,29 @@ specification package work.
 
 Implementers must not increment `major` unless the definer explicitly asks for a
 major version change. If unsure whether a change is major, ask the definer.
+
+### Project and application identities
+
+Distinguish four independent namespaces: a reusable package's release version,
+a composed project's specification baseline, its implementation baseline, and
+its application or library release versions. The selected Process policy owns
+project baseline declarations, development identities, changes and finalization.
+A package version does not assign any of those project or application versions.
+
+Application versioning and release policies may be supplied by selected
+technology packages or explicitly overridden by project-owned specifications,
+according to composition authority. An override identifies its affected
+deliverables and the replaced rule; it must not silently weaken repository-wide
+integration or conformance gates. Process supplies the application version default
+when no other policy applies. Monorepos may have several independent deliverables
+against one composed specification and implementation baseline. Independently
+composed subprojects retain their own scope.
+
+A canonical source-only package repository is not automatically a composed
+application project. Its root package documents and `package.yaml` remain the
+authoritative package, released under the rules below. Do not invent a project
+composition, implementation baseline or application policy merely to author or
+publish that package. Adopt a Process project explicitly when it is useful.
 
 ## Release tags
 

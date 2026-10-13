@@ -58,8 +58,10 @@ even when the latest official releases are mutually compatible.
 Use top-level `schema_version: 1`, project identity/entrypoint, selected packages,
 complete reading/authority orders and real sources under
 [Project composition](002_project-composition.md). Dependencies remain in
-`package.yaml`. Normally use `github-archive` with repository and `v<version>`
-tag; explicitly selected `git-subtree` sources also need branch and exact prefix.
+`package.yaml`. Normally use `git-archive` with a Git repository URL and
+`v<version>` tag. The optional `github-archive` transport remains available for
+explicitly selected provider archives; `git-subtree` sources also need branch
+and exact prefix.
 Never invent tags, repositories or `source.commit` selectors. Local requirements
 need actual content or an explicit authoring request.
 
@@ -133,8 +135,10 @@ it rather than inventing an identity.
 
 ### 2. Import verified packages
 
-For `github-archive`, download archives at tag-resolved commits, extract safely
-and validate all candidates before replacing destinations. Preserve files
+For `git-archive`, resolve the declared tag through Git and extract an archive of
+its exact commit. For optional `github-archive` selections, download the provider's
+archive at the tag-resolved commit. Extract safely and validate all candidates
+before replacing destinations. Preserve files
 unchanged and record a verified format-1 lock. Refuse unexplained local changes.
 `macrostates install` implements supported selections; manual imports follow
 [the lock procedure](annex_package-lock.md). Verify already matching copies

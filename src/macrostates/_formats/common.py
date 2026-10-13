@@ -57,10 +57,22 @@ def composition_fields(data: dict[str, Any], schema: int) -> Composition:
             raise MacrostatesError(
                 "Source credentials belong in explicit authentication, not composition metadata"
             )
-        if source.get("type") not in (None, "local", "github-archive", "git-subtree"):
+        if source.get("type") not in (
+            None,
+            "local",
+            "github-archive",
+            "git-archive",
+            "git-subtree",
+        ):
             raise MacrostatesError("Unsupported package source type")
-        if source.get("type") in ("github-archive", "git-subtree"):
+        if source.get("type") in ("github-archive", "git-archive", "git-subtree"):
             string(source.get("repository"), "source.repository")
+            from .._sources import git_repository, github_repository
+
+            if source["type"] in {"git-archive", "git-subtree"}:
+                git_repository(source["repository"])
+            else:
+                github_repository(source["repository"])
             if source.get("tag") != "v" + selected_version:
                 raise MacrostatesError("source.tag must equal v<selected package version>")
             if "commit" in source:

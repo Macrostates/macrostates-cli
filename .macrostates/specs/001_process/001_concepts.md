@@ -34,87 +34,148 @@ entrypoint, the project-local authority order decides the conflict.
 
 ## Contract-based versioning
 
-For projects using this process, the composition version identifies the combined
-specification contract and its specification revision. An implementation version
-identifies an implementation of that contract and its own implementation revision.
-This is contract-based versioning, not strict Semantic Versioning:
+Macrostates identifies a project's finalized specification and implementation
+baselines separately from its application releases:
 
-- Composition: `spec-MAJOR.MINOR.REVISION`, for example `spec-6.4.2`.
-- Implementation: `MAJOR.MINOR.REVISION`, for example `6.4.8`.
+- Specification: `specs-MAJOR.MINOR.PATCH`, for example `specs-6.4.2`.
+- Implementation: `imp-MAJOR.MINOR.PATCH`, for example `imp-6.4.8`.
 - Each numeric component is a non-negative decimal integer without leading zeroes.
-  Release declarations have exactly three numeric components, without additional
-  suffixes or an `impl-` prefix.
-- Shared `MAJOR.MINOR` identifies the effective project contract. Revision counters
-  are independent; specification revision 2 and implementation revision 8 can
-  describe the same contract. Neither counter must catch up with the other.
+- Shared `MAJOR.MINOR` identifies the effective project contract. Patch counters
+  are independent; neither side must catch up with the other.
 
-The contract includes the effective requirements, compatibility commitments and
-required operating/development behavior of the composed project. Classify a
-change by its meaning after applying composition authority, not by the number of
-changed files or the amount of implementation work. A large rewrite that preserves
-the contract changes only the implementation revision. A fix restoring already
-specified behavior also changes only the implementation revision.
+The contract includes effective requirements, compatibility commitments and
+required operating/development behavior after applying composition authority.
+This is contract-based versioning; it does not impose an application's release
+schema. A large implementation rewrite preserving the contract or a fix restoring
+already specified behavior has implementation patch impact only.
 
-Use the highest applicable impact against the latest integrated baseline:
+### Change impact and finalization
 
-| Change | Composition | Implementation |
+Ordinary development branches do not allocate new numeric versions. Their
+development identities retain the recorded starting baselines, even when
+synchronization imports newer finalized declarations. Record impact, including
+`none`, separately for specifications and implementation:
+
+| Change | Specification impact | Implementation impact |
 | --- | --- | --- |
-| Incompatible contract change | Increment Major; reset Minor and Revision to zero | Use the same new Major.Minor; reset Revision to zero once implemented |
-| Backward-compatible contract addition or change | Increment Minor; reset Revision to zero | Use the same new Major.Minor; reset Revision to zero once implemented |
-| Editorial/specification restructuring or package selection change with no effective contract change | Increment specification Revision | No implementation bump solely for this change |
-| Implementation change preserving the contract | No composition bump unless its contents also change | Increment implementation Revision |
-| Changes on both sides preserving the contract | Increment specification Revision | Increment implementation Revision |
+| Incompatible contract change, fully implemented | Major | Major |
+| Compatible contract addition or change, fully implemented | Minor | Minor |
+| Editorial restructuring or equivalent package selection | Patch | None |
+| Implementation change preserving the contract | None | Patch |
+| Changes to both sides preserving the contract | Patch | Patch |
+| Tracking/tests/non-authoritative documentation with no delivery effect | None | None |
+| Application release-identity/provenance bookkeeping with no contract, implementation behavior or build-logic change | None | None |
 
-A package version change is not automatically a project contract change. Evaluate
-the effective combined requirements. Editorial corrections, equivalent rewrites
-and non-semantic dependency updates still need a new composition revision when
-finalized, so different specification snapshots remain distinguishable. A change
-only to implementation tracking, tests or non-authoritative documentation with no
-effect on the delivered implementation does not require an implementation bump;
-Git identifies those changes. Record the classification, including no-bump decisions.
+A package update is not automatically a contract change. Read the effective
+requirements, including indirect dependency effects. Numeric compatibility and
+matching declarations do not prove semantic consistency or conformance.
 
-Individual specification packages continue to use Meta's independent
-`major.minor.patch` rules and package release tags. The composition version is not
-the version of the project-local package, nor must any package's Major.Minor match
-the implementation. Package Major changes retain Meta's explicit approval rule.
-Automatically assigning a project contract version never authorizes an underlying
-behavior or compatibility change that the definer has not approved.
+A release-preparation branch collects pending records against the latest
+finalized baselines. The highest Major/Minor contract impact across either side
+advances the shared contract once and resets lower components on both sides.
+Without a contract shift, each side with patch impact advances its own patch
+once, independently. Repeated edits, tests, branch updates and several fixes in
+one release do not allocate additional numbers. Tracking-only records can be
+integrated without manufacturing a release. A contradictory semantic impact
+requires review rather than blindly trusting a field.
 
-### Integrated and development states
+Release candidates propose official numbers; approved integration finalizes them.
+Version assignment does not authorize unapproved behavior, package Major changes,
+tag creation or publication. Reusable package versions remain under Meta's
+separate `major.minor.patch` and `v<version>` rules.
 
-The primary branch, normally `main`, represents the current integrated state.
-Implementers work on development branches and integrate changes into the primary
-branch only through PRs. They must never apply file changes while checked out on
-the primary branch. Once an implementation baseline exists, every new integrated
-primary-branch state must have matching composition and implementation Major.Minor
-and implemented coverage of that contract. Temporary working-tree mismatches are
-allowed on development branches.
-Changing numbers alone cannot establish compliance.
+### Development, pending and candidate states
 
-A development branch may commit a provisional specification contract before its
-implementation is complete. Record the gap, keep the actual implemented version
-honest, and do not release that state. Provisional versions must be reassessed
-against the latest target at integration, not reserved from an old branch baseline.
-The primary-branch invariant covers each integrated state on its first-parent
-history; development commits may remain reachable through a merge's side history.
-A PR merge is therefore permitted without rewriting all intermediate work.
+A development identity combines each recorded starting baseline, a work or branch
+identifier and the current commit, for example:
 
-Before the first implementation exists, specification-only projects need only a
-composition version. Bootstrapping may contain documented incomplete work until
-the first implementation baseline, even if the project phase label is still
-bootstrapping afterward. This exception must not be used to relax alignment for
-an existing functioning implementation.
+```text
+specs-0.3.0-branch.feature-x.gabc123
+imp-0.3.1-branch.feature-x.gabc123
+```
 
-The primary branch contains accepted integrated contracts; a primary-branch commit
-is not automatically a published release or workflow closure. A released
-implementation records the exact specification revision used for validation.
-Later editorial specification revisions with the same Major.Minor may enter the
-primary branch without changing that release's declaration or requiring an app
-release. New contract requirements must be implemented before entering it.
+These are snapshot identities, not official releases or universal application
+package versions. Compute the suffix; never store a commit's own hash in a tracked
+declaration. Stable work IDs select provenance when a branch has several records.
+Record the original starting commit and baselines once; synchronizing the branch
+changes its current commit and validation target, not its original provenance.
+An abbreviated display hash does not replace full commit IDs in evidence.
 
-See [Artifacts](002_artifacts.md#version-declarations) for declarations and
-[Execution](003_execution.md#versioning-and-integration) for automatic updates,
-validation, release boundaries and adoption by existing projects.
+The primary branch represents accepted integrated work. Pending change records
+identify accepted but unreleased changes. Its identity can be
+`imp-0.3.1-unreleased.gdef456`: the numeric part names the last finalized baseline,
+not the version of the modified current contents. A dirty working tree must be
+identified as such. A source archive without Git metadata reports unavailable
+snapshot identity or uses explicitly captured build provenance; never guess that
+it is a clean finalized release.
+
+Once an implementation exists, every integrated result must implement its current
+effective contract. Provisional gaps may exist on development branches, including
+drafts, but must not enter primary-branch integration or release finalization.
+Last finalized declarations may retain an earlier contract pair while pending work
+changes the current contract; the pending state and coverage must be explicit.
+Matching Major.Minor is required for finalized/candidate baseline pairs, not as
+permission to conceal pending requirements by changing numbers.
+
+A candidate state is a release proposal tied to exact input and target identities.
+It is not finalized until reviewed integration, and is not published merely
+because candidate declarations or dates exist. The primary branch may contain
+accepted pending records without open workflows: completed work awaiting release
+is not an unfinished workflow.
+
+Before an implementation exists, a specification-only project can finalize only
+specification baselines. Creating change/history bookkeeping does not itself
+create or accept an implementation. Incomplete first-implementation work follows
+bootstrapping rules; an existing functioning implementation cannot escape
+conformance by retaining a `bootstrapping` phase label.
+
+### Applications and monorepos
+
+Applications and libraries may define their own versioning, release cadence,
+authoritative declaration and required tools through selected technology packages
+or project-owned specifications. Project-local overrides follow composition
+authority and identify affected deliverables and replaced requirements. Repository
+integration policy remains coherent across the repository; per-application release
+policies do not bypass its review, closure or conformance gates.
+
+An explicit application policy is optional. If none applies, a stable application
+release uses the numeric finalized implementation version without `imp-`, for
+example `imp-4.12.3` becomes `4.12.3`. Development/unreleased suffixes must not
+be published as stable releases. Technology-specific constraints still apply;
+projects needing independent updates define a suitable policy. Android may use
+that numeric version as `versionName` while retaining its separate `versionCode`.
+
+A monorepo can share one composed specification/implementation baseline while
+several deliverables have independent release versions. Each application release
+records its own version, exact specification baseline, exact implementation
+baseline and source identity. A post-commit receipt records the exact commit, or
+a declared immutable source tag is resolved and verified at publication; a tracked
+candidate declaration cannot contain its own eventual commit hash. A new repository baseline does not automatically
+release all applications; unchanged published applications retain their original
+provenance. Shared-code changes require reviewing all affected deliverables.
+
+After a baseline is finalized, an application's policy may prepare another release
+by changing only its identity metadata, such as version, installation counter,
+release date or source receipt. These changes do not by themselves allocate new
+Macrostates baselines. Record and review `none` impact on both sides, verify that
+behavior, contract and build logic remain unchanged, and retain exact finalized
+baseline references. The application's source commit can differ from the baseline
+commit because of this reviewed metadata; its release provenance must identify
+that distinction. Runtime or effective specification changes need ordinary impact
+classification and cannot hide behind an application release policy.
+
+Published application identities and platform update ordering remain immutable.
+The numeric implementation default does not permit republishing changed artifacts
+under an already published immutable application version. Independent numbering,
+or a technology-owned additional identity such as Android's counter, follows the
+selected application policy.
+Independently composed subprojects retain their own baselines and integration
+requirements rather than silently sharing a parent's identity.
+
+See [Artifacts](002_artifacts.md#version-declarations),
+[Execution](003_execution.md#versioning-and-integration), and
+[Versioning schemas and examples](annex_versioning.md) for the concrete records,
+preparation procedure and migration rules.
 
 ## Project phase
 
@@ -417,19 +478,45 @@ branch for related changes; each individual change does not need its own branch.
 Branch setup can be delivered and proposed for closure as soon as its baseline
 and links are recorded; it need not stay open for the lifetime of the branch.
 
+### Development branch synchronization
+
+Use this workflow when incorporating the authoritative target into a development
+branch or synchronizing a fork's primary mirror. These are distinct operations.
+The project specifies merge/rebase preferences and review facilities; no hosting
+provider is required. Preserve original origins, resolve conflicts only on the
+development branch, review inherited requirements and rerun affected checks.
+
+### Integration preparation
+
+Use this workflow to prepare a branch for a reviewed integration proposal. It
+checks the actual combined source/target result, change records, conformance and
+available local checks. It then requests explicit closure of all open workflows,
+including preparation itself, with a short numbered summary and explains that
+closure is required before submission. Definer confirmation remains mandatory.
+
+The preparation may be completed before proposal-triggered CI and external review
+exist. Those checks are merge prerequisites when required, not a reason to forbid
+opening a draft proposal. After review corrections, complete and close new scoped
+workflows before the merge gate. Git or review-system integration outcomes live
+in the review record; do not leave a tracking workflow open on the integrated tree.
+
 ### Development branch merge
 
-Use this workflow when the definer requests publishing development changes,
-a merge request (also called a pull request), or integration into a designated
-target. Publishing changes means pushing the development branch and submitting
-a PR. Primary-branch integration requires a PR. It
-checks the combined result against the latest target, establishes version and
-implementation readiness, and performs only the authorized integration operation.
+Use the project's reviewed integration mechanism: a pull/merge request when
+available or an explicitly defined equivalent for native Git repositories.
+Submission does not authorize merging. Before integration, verify source/target
+identities, required reviews/checks and no open workflows in the combined tree.
+Never directly author changes on the primary branch. Read-only integration and
+review actions need not open a new tracked workflow; any corrective file edits do.
 
-If required readiness checks fail or cannot be completed, the implementer must
-clearly warn the definer and must not create the merge request or perform the
-merge. An instruction to create a merge request does not authorize merging it.
-See [Execution](003_execution.md#development-branch-merge) for the procedure.
+### Release preparation
+
+Use this workflow when requested to finalize accumulated accepted changes.
+Prepare a release branch from the latest primary state, review pending records,
+calculate candidate baselines once and validate their provenance and conformance.
+Close all workflows through explicit definer confirmation before submitting the
+release proposal. Reviewed integration finalizes the candidates; tags and
+application publication remain separately authorized.
 
 ### Exception
 

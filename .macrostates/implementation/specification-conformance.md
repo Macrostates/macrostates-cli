@@ -1,84 +1,135 @@
-# CLI specification conformance
+# CLI Specification Conformance
 
-## Reviewed baseline and scope
+## Scope And Current State
 
-The local CLI package 0.5.0 and composition spec-0.3.0 define the implementation
-0.3.x contract. The additive change supports Meta 2.1 and Process 4.0/4.1, keeps
-all earlier supported formats/policies, and adopts the latest canonical packages.
-The implementation declaration records this exact validated baseline. Branch/PR
-compliance remains manual; no command performs Git publication or migration.
-Canonical package adoption retains numeric minimums and explicit at_least rules.
+This document maps the revised local CLI contract to current source and
+verification. The development application declaration is `0.4.0.dev0`. Explicit
+migration preserves the historical baseline numbers as `specs-0.3.0` and
+`imp-0.3.1`, the original implementation release date `2026-10-09`, and published
+legacy tags. Those preserved identities do not finalize this development source.
 
-Implementation 0.3.1 keeps that specification baseline unchanged. Packaging and
-release infrastructure adds pip installation from PyPI without changing the
-public API, commands or persisted formats. Its scoped publication workflow owns
-artifact, integration and actual upload evidence; preparing a build is separate
-from completing index publication.
+The approved canonical releases are published: Meta 2.2.0, Process 5.0.0,
+Repository-1 4.0.0, Python 2.1.1, Python-project-1 3.0.0, Python-library-1 2.0.0,
+Android-app-1 5.0.0, and Docker-1 3.0.0. Their older tags remain unchanged. Verified
+CLI adoption selects Meta 2.2.0, Process 5.0.0, Repository-1 4.0.0, Python 2.1.1,
+Python-library-1 2.0.0, and local CLI 1.0.0, using canonical external
+`git-archive` sources and the approved dependency minima. Actual canonical
+installation and locked reinstallation both returned zero diagnostics, as did
+offline project checks and change-readiness checks after migration.
 
-Reviewed every source module, public root exports, command parser/rendering,
-project operations, formats, metadata/dependencies, scopes/links, Git index,
-source/authentication, archives/inventories/locks, transactions and build version
-reader. Reviewed existing tests, fixtures, examples, packaging and CI. Internal
-registries, algorithms, exact limits and historical setup facts remain outside
-the normative local package. Persisted lock encoding and public signatures are
-specified because callers/interoperating readers depend on them.
+The current feature is ordinary pending Major specification/implementation work.
+Its [work record](work/versioning-system.yaml) explicitly captures original commit
+`96a467c448f6fc5abf3ca9f8b19a29d976725c93`; the
+[change record](changes/versioning-system.yaml) preserves the original baseline
+identities, declares Major/Major impacts, records requirements and verification
+evidence, and has no open gaps. The upcoming baseline
+release `specs-1.0.0`/`imp-1.0.0` and independent application release `0.4.0`
+have not been integrated or published. The project remains in bootstrapping;
+first-baseline phase acceptance and closure of the two current workflows have not
+been granted. The nine earlier requested closures are explicitly recorded in
+historical workflows.
 
-## Contract map
+The preceding published application remains valid under its earlier selected
+policies. New APIs and flat commands implement Process 5's captured provenance,
+change/evidence records, independent application policies, integration gates,
+and reviewed baseline preparation. Meta 2.2 adds generic tagged Git source
+transport without changing composition format 1. Retained formats/providers and
+earlier Meta/Process adapters preserve their existing behavior.
 
-Paths below are repository-relative. Each row combines code inspection with the
-listed evidence; it does not claim every edge has an independent automated test.
+Code review covers public factories/exports, command dispatch, persisted records,
+source authentication/archives, strict configuration, Git guards/synchronization,
+combined snapshots, workflow evidence, candidate plans, exact tags, migration,
+and independent build metadata. Specification requirements describe observable
+behavior. Internal algorithms/module names in this map are implementation
+references, not additional normative architectural constraints.
 
-| Specification section | Implementation | Evidence |
+## Contract Map
+
+Paths are repository-relative. Listed tests and inspection identify evidence;
+they do not imply every conceivable edge has independent automated coverage.
+
+| Specification | Implementation | Evidence Or Required Check |
 | --- | --- | --- |
-| [Concepts](../specs/051_cli/001_concepts.md): identity, ownership, effects | pyproject.toml; __init__, _cli, _project | Installed command/import contracts; offline/local-package integration tests; command-path review |
-| [Library](../specs/051_cli/002_library.md): exports, version/import boundary | __init__, _models | test_import_has_no_filesystem_network_or_logging_side_effects; installed version contract; explicit public-value/API probe |
-| Library factories and live configuration | _project.Project.open/initialize/_composition | nested/yml discovery, extension preservation, clean-upgrade tests; factory signature review |
-| Library errors, Report and Diagnostic | _models; _project.check; _cli.main | CLI structured errors; integrity reports; explicit report/value probe; exception-path review |
-| Library injectable SourceProvider/GitHubSource | _sources; _project | FakeSource install/offline cases; annotated tag, explicit credentials and redirect tests; empty-token probe |
-| [Commands](../specs/051_cli/003_commands.md): flags/help/version/exits/JSON | _cli parser/main/display | tests/contract/test_cli.py; installed human/JSON/usage and flags probe; interruption path review |
-| Commands initialization and side effects | _project.initialize | init CLI; extension/AGENTS preservation; shorthand roundtrip; unsupported package/format/layout tests; overwrite/rollback review |
-| Commands install/lock/verify | _project._synchronize/verify | clean-upgrade, missing-copy, modified-copy, moved-tag and subtree tests |
-| Commands lint/check/inspection | _project.lint/check/info | failed-check JSON, malformed info metadata, missing-link, offline and staged-index tests; output fields probe |
-| [Composition](../specs/051_cli/004_composition.md): discovery and scope boundaries | _project.open; _scopes | competing layouts, duplicate manifests, nested discovery, component and separate-composition tests |
-| Composition strict documents and safe paths | _io; _formats; _project._validate_paths | unsafe YAML/path, overlapping selection, credential URL and unknown schema tests; reserved-path review |
-| Composition orders and extension preservation | _formats.common/v0/v1; initialize/info | format preservation and shorthand tests; explicit incomplete legacy/format-1 order probe |
-| Composition sources/metadata | _formats; _sources; _validation.validate_packages | 45 prior plus eight current metadata fixtures; source spelling/credentials; metadata mismatch review |
-| Composition dependencies | _validation.validate_packages | exact/compatible/at_least, missing/optional dependency, cycles and full current graph tests |
-| Composition conservative local links | _validation.check_links; _scopes | missing/fenced-link and component tests; reference/anchor/escape behavior review |
-| [Integrity](../specs/051_cli/005_integrity.md): source resolution and archives | _sources; _integrity.extract_archive | annotated tags, malformed transport, unsafe links/devices/traversal archives; duplicate/root/limit code review |
-| Integrity lock binding/encoding/verification | _integrity; _project.verify | inventory bytes/add/remove/executable tests; unknown lock rejection; canonical/hash record review |
-| Integrity updates, lock-only and local ownership | _project._synchronize | edited copies not blessed/overwritten, clean upgrade, restore missing, moved tag, local and subtree tests |
-| Integrity competition/rollback | _project._synchronize; _mutations | concurrent edits/new destination/marker and simulated write rollback tests; rollback-failure/crash boundary review |
-| [Versioning](../specs/051_cli/006_versioning.md): retained/unknown formats | _formats; _integrity.parse_lock | composition 0/1 and 53 release metadata cases, future metadata/manifest/lock refusal |
-| Versioning Meta/Process isolation | _validation; _project.initialize | tests/integration/test_process_policies.py and test_latest_policies.py |
-| Versioning distribution declaration/runtime metadata | _build_version; pyproject; MANIFEST.in; __init__ | tests/unit/test_build_version.py; installed --version; prior isolated sdist/wheel validation |
-| [Verification](../specs/051_cli/007_verification.md): quality and self-use | pyproject; uv.lock; .github/workflows/checks.yaml | full supported-Python test matrix, static tools, own working/staged checks, prior canonical self-install and installed-wheel evidence |
-| [Recovery](../specs/051_cli/annex_recovery.md) | transaction and source failure paths; README | edit preservation/subtree/tag/marker tests; manual review of recoverable workspace retention |
+| [Concepts](../specs/051_cli/001_concepts.md): identities, ownership, effects | `_project`, `_cli`, domain modules | Existing import/offline/command contracts and side-effect review; synchronization is the explicit Git-mutation exception |
+| [Library](../specs/051_cli/002_library.md): root exports and public API | `__init__`, `_models`, `_project` | Existing public report/factory contracts; new Project API tests and signature review |
+| Library generic/legacy source boundary | `_sources`, `_project` | `test_git_sources.py`, retained `test_sources.py`, injected providers, exact local Git tag/inventory checks |
+| [Commands](../specs/051_cli/003_commands.md): flags, data, reports, errors | `_cli`, `_project` | Retained command contracts, `test_cli_versioning.py` flat-command/data/origin/option checks, and rebuilt development-artifact installed-command probes |
+| [Composition](../specs/051_cli/004_composition.md): discovery, formats, paths, dependencies | `_formats`, `_io`, `_scopes`, `_validation` | Historical/current metadata fixtures, dependency/link/scope tests, generic source validation |
+| [Integrity](../specs/051_cli/005_integrity.md): canonical snapshots and locks | `_integrity`, `_project`, `_sources` | Existing rollback/inventory tests; moved/lightweight/missing local tags, executable files, dirty-copy preservation |
+| [Versioning](../specs/051_cli/006_versioning.md): selected-policy isolation | `_validation`, `_project` | Retained Process/Meta policy tests and new Process 5 domain fixtures; unknown future policies fail explicitly |
+| Versioning explicit migration | `_migration`, `_release` alias verification | `test_version_migration.py`: no implicit conversion, idempotence, source-only projects, primary refusal, preserved refs/history and invalid metadata |
+| Versioning application/build source separation | `_build_version`, application declaration, pyproject, manifest | `test_application_build.py`, retained `test_build_version.py`, rebuilt development wheel/sdist clean installs, shipped-source bytes and Twine metadata checks |
+| [Development](../specs/051_cli/008_development-and-releases.md): captured work and explicit impact | `_changes`, `_versioning`, `_project` | Domain record/identity tests and original-origin review; explicit late capture and work references |
+| Development application/default inspection | `_deliverables`, `_project` | `test_deliverables.py`: independent Python versions, Android default/code, historical provenance, ordering and malformed metadata |
+| Development synchronization and primary guards | `_git`, `_sync` | `test_integration_sync.py`: merge/rebase, full refs, main/master/custom primary, dirty/detached/active state, explicit fetch and preserved conflicts |
+| Development closure requests/history gates | `_integration` | Open/closed statuses, confirmation evidence, index-renaming refusal, archived records and no automatic closure |
+| Development exact combined readiness | `_integration`, project/domain checks | Explicit scope records, inherited target workflows, gaps, merge conflicts, stale expected/during-check targets |
+| Development release plans/preparation | `_release`, `_versioning`, `_mutations` | `test_release_records.py`: aggregation, explicit target refs, commit/tree/record binding, candidate/history checks and retained baseline plans/tags for metadata-only application release |
+| Development release identity/publication checks | `_release`, `_deliverables` | `test_deliverable_sources.py`: declared source tags/commits, agreement, source declarations/baselines and custom-source manual warnings; final artifacts and external authorization remain separate |
+| [Verification](../specs/051_cli/007_verification.md) | Contributor tooling, tests, build and CI | Full 393-test suite passed on Python 3.12/3.13/3.14 and again on 3.14 after adoption; canonical self-install/reinstall, offline/readiness checks, Ruff/formatting, Pyright and development artifact probes passed; remote CI remains pending |
+| [Recovery](../specs/051_cli/annex_recovery.md) | Transport, synchronization, migration and replacement boundaries | Preserved package edits/conflicts/provenance, stale plans, markers/recovery-data review |
 
-## Review findings and limits
+## Verified Development Evidence
 
-The release adds known policy adapters and corresponding initialization checks.
-Regression fixtures retain all prior release metadata; current fixtures cover the
-eight newly published canonical versions. Tests exercise new policy declarations,
-modern-layout refusal, patch ranges and unknown future-policy refusal as well as
-existing behavior. Real canonical self-install, staged checks, supported-Python
-checks and isolated distributions provide delivery evidence in the launch workflow.
-No persisted schema, command, diagnostic category or supported root export changes.
+The full 393-test suite passed separately on Python 3.12, 3.13, and 3.14, including
+the retained legacy regression suite. All 393 tests passed again on Python 3.14
+after adoption. Ruff lint and formatting checks passed across 114 Python files;
+Pyright reported zero errors. Generic-source, synchronization, migration,
+release and deliverable integration tests use temporary local Git
+repositories/remotes and synthetic metadata, with no package-source network
+calls.
 
-Automated lint checks file targets, not Markdown anchors or semantics. Directory
-scope discovery omits hidden/tool/build/cache/temp directories and independent
-compositions. Index snapshots omit submodules and are bounded. Inventories omit
-empty directories, ownership and non-executable permission differences. Locks are
-not signatures. Process active-state checks recognize an explicit phase line;
-they do not infer baseline acceptance. Interrupted operations require manual
-recovery and arbitrary external writes are not fully isolated. These limits are
-explicit in the specs and existing user documentation.
+These tests exposed and verified repairs for empty closure authorization headings,
+invalid legacy migration dates, and noncanonical application dates. They also
+verify that a finalized application build binds shipped source while excluding
+self-referential application metadata, and that source archives preserve the
+verified build identity without Git.
 
-Exact current bounds: YAML/API documents 2 MiB; compressed archives 32 MiB;
-extracted archives/index snapshots 128 MiB; archives 10,000 entries; annotated
-release tag resolution eight levels. These are implementation limits rather
-than requirements fixing the algorithms forever.
+Actual canonical install/reinstall and offline/readiness checks passed after
+adoption. Rebuilt development wheel and source-distribution artifacts passed clean
+API/command installation probes, shipped-source byte comparisons, and Twine
+metadata checks. These development artifacts do not finalize or publish
+application `0.4.0`.
 
-Dated validation results belong to their owning workflows, including the current
-public onboarding/dependency update and closed specification-capture history.
-Earlier installed-wheel/canonical-source evidence remains in the prior records.
+Dated verification and adoption evidence belongs in
+[the implementation workflow](workflows/2026-10-13__1A1GXH__versioning-system.md)
+and [integration preparation](workflows/2026-10-13__1RPQX8__integration-preparation.md).
+Only those two workflows remain open. Final closed-source/staged checks follow
+explicit closure; remote feature CI/integration, stable baseline/application
+releases, and phase acceptance remain pending. Historical publication and launch
+evidence remains in its original workflow records.
+
+## Integration And Release Work Still Required
+
+- Obtain explicit definer closure of the current implementation and integration
+  preparation workflows once their work is accepted.
+- Verify the final closed proposed source and Git index against the primary
+  target, submit the feature proposal, and require remote checks before integration.
+- Prepare a current target/tree-bound baseline candidate, review/integrate it
+  through the repository policy, and perform separately authorized baseline
+  tagging and independent application `0.4.0` publication. Repeat affected checks
+  for those finalized declarations and artifacts.
+- Retain bootstrapping until the definer explicitly accepts the first-baseline
+  phase transition.
+
+## Limits
+
+New Git baseline operations require the shared composition at its Git root.
+Common-baseline monorepos are supported; independently composed nested contexts
+retain existing package/discovery checks and use separate Git/manual baseline
+procedures. Identity inspection explains unavailable computed identity rather
+than attributing a parent snapshot to the nested project.
+
+Matching baseline numbers and documentary evidence are necessary checks, not
+proof of semantic impact or implemented coverage. Workflow markers cannot prove
+truthful approval. Core checks do not obtain remote reviews, enforce a hosting
+service's protection settings, or assign independently versioned application
+releases. Cached Git refs do not claim current remote freshness.
+
+Link checks are conservative file-target checks. Directory scope discovery and
+index snapshots have explicit exclusions; subprojects/submodules may require
+separate checks. Inventories omit empty directories, ownership, and permission
+bits other than executable identity. Locks are not signatures. Transactions
+provide ordinary-failure recovery, not power-loss atomicity or arbitrary-writer
+isolation. Source archives use declared build metadata and honestly report
+unavailable computed Git identity.

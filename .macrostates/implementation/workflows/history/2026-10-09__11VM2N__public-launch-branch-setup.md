@@ -2,8 +2,8 @@
 
 - Workflow type: Development branch creation
 - Project phase: bootstrapping
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Change depth: medium
 - Branch: release/public-launch-alignment
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), repository-local Git identity and this conversation.
@@ -40,3 +40,7 @@ Definer acceptance and explicit closure only for branch setup.
 ## Blockers
 
 None. Private-repository protection becomes available after the explicitly authorized visibility change.
+
+## Definer-confirmed closure
+
+On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.

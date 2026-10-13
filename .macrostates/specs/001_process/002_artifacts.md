@@ -23,7 +23,7 @@ only as an explicit specification change.
 
 ## Layout adoption
 
-Process 3 uses Meta 2's `.macrostates/` layout. Move specification and
+Process 5 retains Meta 2's `.macrostates/` layout. Move specification and
 implementation artifacts together during explicitly requested adoption. Preserve
 workflow/decision history and pending acceptance, update links, build consumers
 and agent pointers, and validate the result. Moving files does not accept a
@@ -114,68 +114,141 @@ history need not be duplicated or moved solely to refresh the overview.
 
 ## Version declarations
 
-The specification composition's authoritative version is `project.version` in
-`.macrostates/specs/composition.yaml` (or the single alternative spelling
-allowed by Meta). Use the `spec-MAJOR.MINOR.REVISION` format defined in
-[Concepts](001_concepts.md#contract-based-versioning). This identifies the
-complete specification snapshot: root entrypoint, composition, selected package
-content and applicable repository-specific directory specifications.
-Independently composed subprojects retain their own snapshots; the parent
-records its integration requirements. Package versions and source selectors
-remain independent Meta-owned fields.
+The composition's authoritative finalized specification baseline is
+`project.version` in `.macrostates/specs/composition.yaml` (or Meta's single
+allowed alternative spelling). Process 5 uses `specs-MAJOR.MINOR.PATCH`.
+The baseline covers the root entrypoint, composition, selected package content
+and applicable directory-scoped specifications. Pending records distinguish
+current changed files from that earlier snapshot; this field alone is not a
+current-tree release claim. Package selection versions and source tags remain
+independent Meta-owned fields.
 
-Once an implementation baseline exists, its authoritative release declaration is:
-
-```text
-.macrostates/implementation/
-  release.yaml
-```
-
-Use these required fields, illustrated with hypothetical versions:
+Once an implementation baseline exists, its declaration is
+`.macrostates/implementation/release.yaml` with schema 2:
 
 ```yaml
-version: "6.4.8"
-specification: "spec-6.4.2"
-release_date: "2026-09-21"
+schema_version: 2
+version: "imp-6.4.8"
+specification: "specs-6.4.2"
+release_date: "2026-10-13"
 ```
 
-- `version`: implementation `MAJOR.MINOR.REVISION`, with no prefix or suffix.
-- `specification`: exact composition version used as this implementation's
-  specification baseline; its Major.Minor must match `version`.
-- `release_date`: a valid calendar date in `YYYY-MM-DD`, assigned when finalizing
-  the version and retained by rebuilds. It is not proof of remote publication.
+All fields are required. Validate schema, exact prefixes, numeric forms,
+Major.Minor alignment and a quoted valid calendar date. The specification is the
+exact finalized baseline used to validate the implementation. Finalization assigns
+the date; rebuilds retain it. A date is not proof of publication. Never fall back
+to another version source when a declaration is malformed.
 
-Platform packages may define namespaced extensions, for example an `android`
-mapping. They own their extension schema and build integration; Process does not
-prescribe a platform's installation counter or packaging details. Required fields
-must be validated; do not silently fall back to a second source when malformed
-or missing. Version strings and dates should be quoted in YAML.
+A release-preparation branch proposes these declarations alongside its candidate
+release plan. On ordinary branches they remain last finalized baselines; change
+records and computed state describe unfinished or unreleased work. Never rewrite
+a historical application's release provenance solely because the repository
+baseline advanced. An unchanged implementation may continue referencing an older
+specification patch at the same Major.Minor after purely editorial finalization.
 
-Builds and generated documentation consume the declaration instead of maintaining
-competing hand-edited versions or dates. A clean checkout must supply release
-metadata without Git, network, local settings or manually supplied parameters.
-Ordinary builds do not mutate declarations, commits or tags.
+Application build consumers use their authoritative release declarations. The
+Macrostates-default stable application version derives from finalized `imp-*`;
+an independent policy owns its separate source. Clean source-distribution builds
+must receive sufficient captured declarations to identify their application
+version without Git, installed specifications or network. Development builds must
+have honest development metadata rather than silently reuse the last stable
+application identity. Ordinary builds never mutate declarations, create tags,
+commit files or publish.
 
-On a development branch this file can describe a version being prepared; neither
-its presence nor its date makes it a release. Record development status, missing
-coverage and validation evidence in the workflow. Intermediate build identity can
-include a separately displayed commit ID; do not disguise an incomplete build as
-a validated release or insert development labels into canonical declarations.
+### Work origins
 
-The composition may later have a higher specification revision at the same
-Major.Minor while the declaration still points to its earlier exact baseline.
-Do not update an old implementation's baseline solely to make these revisions
-equal. When finalizing a new implementation version, record the composition
-actually used for its validation.
+Record original work provenance before feature edits in
+`.macrostates/implementation/work/<id>.yaml`, schema 1 with `id` and `origin`
+(commit, specification and implementation-or-null). Each stable ID owns one
+capture; this is not a workflow status or active-branch pointer. See
+[the origin schema](annex_versioning.md#work-origin-schema). Change creation uses
+that record or an explicitly selected original commit with verified declarations.
+Synchronization never rewrites origin, and inherited records never select new work
+implicitly. Capturing origin itself remains within an open setup/feature workflow.
 
-Git commits preserve intermediate history. Annotated composition and implementation
-release tags preserve finalized declarations and source snapshots; their names
-and verification rules are defined in
-[Execution](003_execution.md#release-commits-tags-and-publication). Do not put a
-commit's own hash inside its tracked declaration or create a growing set of
-duplicate release YAML files. Historical release declarations are read at their
-tags. Existing projects follow the explicit adoption procedure before claiming
-their first aligned baseline.
+### Change records
+
+Pending changes live in `.macrostates/implementation/changes/<id>.yaml`, with
+consumed records preserved in `changes/history/`. These are release-intent and
+conformance records, not workflow status. Use schema 1 with a unique safe ID,
+summary, immutable original commit/baselines, separate impact declarations,
+affected deliverables, requirement coverage, verification evidence and gaps.
+See [the complete schema](annex_versioning.md#change-record-schema).
+
+Create one record per coherent scope; concurrent branches must not overwrite or
+reuse IDs. Reject duplicates across pending/history. Impact values are
+`none`, `patch`, `minor` or `major`. Required empty collections are explicit.
+Record no-bump decisions; version-affecting records require evidence before
+integration. Semantic contract changes require requirement-to-implementation and
+verification coverage. Unresolved required gaps block integration/finalization.
+Tooling validates structure and consistency; the implementer assesses meaning,
+coverage and the actual combined result. Read inherited requirements rather than
+assuming a numeric dependency minimum proves compatibility.
+
+Capture original provenance per work before feature edits. Late change creation
+requires that capture or an explicitly selected original commit verified against
+its declarations; do not silently substitute the current HEAD. No global active
+branch record is inherited as new work. Original provenance does not change
+after merge/rebase. Current integration target
+and validation evidence are separate. Archive records unchanged when consumed;
+retain their IDs, bytes and origin, with release scope in the plan.
+Creating this bookkeeping before an implementation exists does not invent one.
+
+### Release plans
+
+A read-only release plan binds the exact source HEAD/tree, finalized declarations,
+pending IDs and their byte hashes. It separately records `integration_ref`, the
+selected local or cached remote target ref, and `integration_target`, its resolved
+commit. Planning never implicitly fetches; preparation rechecks that same ref and
+source rather than substituting a local mirror. Preparation on a release branch
+refuses stale inputs, gaps or conflicting candidates and updates declarations,
+archives the included records and stores
+`.macrostates/implementation/release-plan.yaml` coherently. Preserve recovery
+evidence if interrupted; never bless a partially written candidate by rerunning.
+The schema-1 candidate record identifies its original target, consumed scope,
+proposed baselines and assigned date; see
+[the schema](annex_versioning.md#release-plan-schema).
+
+Do not store the resulting commit's own hash. A candidate record may remain as
+historical evidence after reviewed integration; its integration is established by
+Git/review evidence, not by blindly treating `status: candidate` as publication.
+A changed target requires reassessment/replanning. Another feature integration
+must not accidentally finalize an existing candidate's version declarations.
+
+### Application declarations
+
+Optional `.macrostates/implementation/deliverables.yaml` describes deliverable
+identity, version source and provenance under schema 1. Each deliverable has
+`strategy: implementation` or `strategy: independent`; absent policy defaults to
+numeric finalized `imp-*`. An independent policy supplies its version and scheme
+or names a technology-owned authoritative declaration and build integration.
+Extensions are owned by selected technology/project specifications.
+
+Application releases preserve exact specification/implementation references and
+source identity. A candidate can declare `source: {tag: <immutable-tag>}` for later
+authorized publication verification; a post-commit receipt can record
+`source: {commit: <full-commit-id>}`. Do not embed the candidate file's eventual
+own commit hash in that file. Publication resolves the tag and preserves the
+actual commit in release evidence. Unreleased drafts must not be mistaken for finalized releases.
+An independent application's version is never assigned merely because Macrostates
+preparation advanced its own baseline. The project can use technology-native
+files instead of this generic declaration when it specifies an unambiguous
+mapping and provenance; avoid competing hand-edited sources.
+
+The [schema and monorepo example](annex_versioning.md#deliverable-schema) show
+how defaults and independent Android counters coexist. Release history preserves
+older application declarations when later baselines leave those applications
+unchanged.
+
+Application-only release preparation may update permitted identity/provenance
+metadata after a referenced Macrostates baseline is finalized. Create a ready
+`none`/`none` change record with actual verification evidence and no required gaps;
+close its workflows through definer confirmation before reviewed integration.
+The new record stays pending without inventing a no-bump Macrostates release or
+altering old consumed records. A later genuine baseline release can consume it.
+Verify the historical baseline at its exact integrated annotated tag and distinguish
+that source from the new application's metadata-only source commit. An independent
+application release is not a new Macrostates candidate plan.
 
 ## Subproject artifacts
 

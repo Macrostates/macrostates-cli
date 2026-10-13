@@ -15,8 +15,10 @@ Use these root-level files when they are needed:
 
 - `README.md`: practical entrypoint for the repository, including purpose,
   setup, common commands, and links to deeper documentation.
-- `CONTRIBUTING.md`: contribution expectations, local workflow, review
-  expectations, and project participation guidance.
+- `CONTRIBUTING.md`: contribution expectations, topic-branch synchronization,
+  integration preparation, review facilities or native equivalents, and project
+  participation guidance. Link to authoritative policies rather than duplicating
+  mutable version or workflow status.
 - `CHANGELOG.md`: notable user-facing or operator-facing changes by release or
   version.
 - `LICENSE`: legal license text for the repository.

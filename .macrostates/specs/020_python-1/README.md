@@ -37,6 +37,13 @@ Project layout, dependency management, formatting tools, linting tools, static
 type checking tools, test layout, hooks, packaging, and Docker integration are
 out of scope for this package.
 
+Under Process 5, project `specs-*` and `imp-*` baseline versioning belongs to
+Process. Python
+distribution versions, release policies, and any application-specific overrides
+belong to the selected project/library or local application specifications. This
+language baseline neither couples distribution versions to repository baselines
+nor requires a particular integration or publication tool.
+
 ## Macrostates artifacts
 
 Follow the selected Meta package's project layout: numbered specification

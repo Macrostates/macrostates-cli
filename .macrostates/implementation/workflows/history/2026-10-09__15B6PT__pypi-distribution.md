@@ -2,8 +2,8 @@
 
 - Workflow type: Implementation amendment
 - Project phase: bootstrapping
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Change depth: medium
 - Branch: release/pypi-distribution
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), repository-local Git identity and this conversation.
@@ -50,3 +50,7 @@ The [publishing workflow](https://github.com/Macrostates/macrostates-cli/actions
 Real pip installed macrostates-cli==0.3.1 from the public PyPI index in a fresh Python 3.12.15 environment without local package/cache fallback. Installed help/version and public API import checks passed. With GitHub credential variables removed and GitHub CLI lookup suppressed for the test process, a fresh project using Meta 2.1.0 initialized, installed and checked successfully. No real login/configuration was changed.
 
 The organization profile's pip guidance is integrated through its own PR after actual publication. Workflow closure and first-baseline phase acceptance remain separate; no canonical specification files or consumers were changed.
+
+## Definer-confirmed closure
+
+On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.

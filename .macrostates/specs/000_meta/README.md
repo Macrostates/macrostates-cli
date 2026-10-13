@@ -20,6 +20,8 @@ development projects.
   composition version whose policy is owned by the selected project rules.
 - Repository-specific directory specifications and their scope and authority.
 - Project kickoff and discovery of official specification packages.
+- Generic tagged Git snapshots, optional legacy transports and package integrity.
+- Independent package, project-baseline and application version identities.
 - Optional CLI assistance and manual specification validation.
 - Progressive disclosure for package documents.
 

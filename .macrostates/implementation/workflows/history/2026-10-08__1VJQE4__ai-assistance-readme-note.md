@@ -2,8 +2,8 @@
 
 - Workflow type: Specification update
 - Project phase: bootstrapping
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Branch: main
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), supplied in this conversation.
 - Implementer: Codex, GPT-6; exact revision and effort not exposed.
@@ -80,3 +80,7 @@ implementation, specification versions, package snapshots or existing tags.
 Definer acceptance and explicit workflow closure. No requested content,
 dependency or publication work remains. No workflow was closed by these requests;
 earlier closed records remain in history.
+
+## Definer-confirmed closure
+
+On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.

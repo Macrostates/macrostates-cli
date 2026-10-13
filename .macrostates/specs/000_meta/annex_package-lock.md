@@ -32,6 +32,11 @@ Any execute bit makes `executable` true. Compare extracted bytes, not compressed
 archive bytes. Reject absolute paths, traversal, links, special files, unsafe
 Git metadata paths, overlapping destinations and case collisions.
 
+Generic Git archives and supported provider archives use the same inventory
+format. Record the actual source type in `selection.source`; never reinterpret
+a legacy source silently. An archive obtained through local Git access must
+resolve the selected tag and compare canonical bytes just as a remote import does.
+
 ## Establishing and checking a baseline
 
 Resolve the selected tag at its canonical repository, verify tagged metadata,

@@ -13,6 +13,11 @@ The repository README should include:
 - a minimal usage example;
 - important side effects or process-global integrations;
 - development commands;
+- the effective library version/release policy, authoritative distribution-version
+  source, supported compatibility promises, and exact Macrostates release
+  provenance;
+- the distinction between development builds, finalized repository baselines,
+  and published library releases;
 - license status.
 
 README examples should use public API imports rather than internal module paths.
@@ -22,4 +27,3 @@ README examples should use public API imports rather than internal module paths.
 Small libraries may keep reference documentation in the README. Larger public
 surfaces should add dedicated documentation or generated API reference when that
 is more maintainable.
-

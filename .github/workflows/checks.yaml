@@ -2,6 +2,7 @@ name: Checks
 on:
   push:
   pull_request:
+  merge_group:
 permissions:
   contents: read
 jobs:
@@ -24,4 +25,14 @@ jobs:
       - run: uv run pyright
       - run: uv run pytest --cov=macrostates --cov-report=term-missing
       - run: uv run macrostates check
+      - name: Validate reviewed integration contents
+        if: github.event_name == 'pull_request' || github.event_name == 'merge_group' || github.ref == 'refs/heads/main'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha }}
+        run: |
+          if [ -n "$BASE_SHA" ]; then
+            uv run macrostates integration-check --target origin/main --expected-target "$BASE_SHA"
+          else
+            uv run macrostates integration-check --target HEAD
+          fi
       - run: uv build

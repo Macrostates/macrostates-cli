@@ -2,8 +2,8 @@
 
 - Workflow type: Specification update
 - Project phase: bootstrapping
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Change depth: large
 - Branch: release/public-launch-alignment
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), repository-local Git identity and this conversation.
@@ -66,3 +66,7 @@ This delivery record changes tracking only; the validated implementation and
 specification contract remain unchanged. Integration and public setup continue
 in the separate launch integration workflow. No workflow closure or phase
 transition is implied.
+
+## Definer-confirmed closure
+
+On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.

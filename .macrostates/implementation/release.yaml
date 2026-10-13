@@ -1,3 +1,4 @@
-version: "0.3.1"
-specification: "spec-0.3.0"
-release_date: "2026-10-09"
+version: imp-0.3.1
+specification: specs-0.3.0
+release_date: '2026-10-09'
+schema_version: 2

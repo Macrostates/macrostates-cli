@@ -2,9 +2,11 @@
 
 ## Canonical identity and lock
 
-Resolve release tags, including annotated tags, to full commit IDs; download the
-exact commit's tar snapshot. Obtaining specifications requires no clone, build
-or code execution. Validate archives before writing destinations. Accept regular
+Resolve release tags to full commit IDs; generic Git archive sources require
+annotated tags and retained transports preserve their documented behavior.
+Download the exact commit's tar snapshot. Installed specifications are tracked
+files rather than an upstream working clone and require no package build or
+execution. Validate archives before writing destinations. Accept regular
 files/directories under one root; reject traversal, links, special files,
 duplicates, case collisions, Git metadata and excessive resource use. Limits must
 be finite and errors clear; exact values/extraction algorithms belong in

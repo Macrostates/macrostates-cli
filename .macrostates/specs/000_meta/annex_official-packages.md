@@ -39,9 +39,9 @@ Find a published `v<version>` tag in its canonical repository, verify its identi
 and resolve required dependencies against the complete proposed composition.
 Check optional constraints only for selected optional packages. The catalog does
 not pin versions, guarantee compatibility between arbitrary releases or replace
-package-owned metadata. In particular, older Python-library releases constrain
-Process to major version 1; do not assume they support Process 2 just because
-another Python package does. Report incompatible choices and discuss compatible
+package-owned metadata. Older releases may impose different Process or technology
+constraints; do not infer compatibility from another package's requirements.
+Report incompatible choices and discuss compatible
 releases or explicitly requested specification changes with the definer.
 
 This is a checked inventory, not a guarantee that no additional official packages

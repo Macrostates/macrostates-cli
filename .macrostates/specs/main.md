@@ -5,12 +5,12 @@ installing, inspecting and checking Macrostates specification packages.
 
 ## Selected packages and reading order
 
-1. [Meta 2.1.0](000_meta/README.md)
-2. [Process 4.1.0](001_process/README.md)
-3. [Repository 3.1.0](010_repository-1/README.md)
-4. [Python 2.1.0](020_python-1/README.md)
-5. [Python-library 1.1.0](031_python-library-1/README.md)
-6. [CLI 0.5.0](051_cli/README.md)
+1. [Meta 2.2.0](000_meta/README.md)
+2. [Process 5.0.0](001_process/README.md)
+3. [Repository 4.0.0](010_repository-1/README.md)
+4. [Python 2.1.1](020_python-1/README.md)
+5. [Python-library 2.0.0](031_python-library-1/README.md)
+6. [CLI 1.0.0](051_cli/README.md)
 
 [composition.yaml](composition.yaml) records selection and sources;
 [composition.lock.yaml](composition.lock.yaml) records verified release contents.
@@ -26,13 +26,17 @@ CLI requirements. Numbering expresses browsing order, not authority.
 
 Meta owns `.macrostates/specs/` and immutable external package installation.
 Process owns `.macrostates/implementation/`, workflow and contract version rules.
-The current specification revision is `spec-0.3.0`; implementation declaration is
-[release.yaml](../implementation/release.yaml). Updates adopt verified tagged
+The last finalized specification baseline is declared by `project.version` in
+[composition.yaml](composition.yaml); the implementation baseline and exact
+specification reference are in [release.yaml](../implementation/release.yaml).
+Development retains those numeric baselines until a reviewed release proposal
+finalizes pending scope. Updates adopt verified tagged
 archive snapshots in this repository; other consuming projects require their
 own deliberate synchronization.
 
-The implementation remains in bootstrapping pending first-baseline acceptance.
-Earlier workflow closures are recorded in implementation history and are
-distinct from first-baseline acceptance. Current changes have their own workflow.
+Project phase and first-baseline acceptance are recorded in the
+[implementation entrypoint](../implementation/main.md). Workflow closure and
+phase acceptance are separate decisions. Earlier closures are preserved in
+implementation history; current work has its own scoped records.
 The CLI is recommended but optional; equivalent manual verification preserves
 the requirements and reports coverage. MIT license applies.

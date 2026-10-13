@@ -1,9 +1,9 @@
 name: process
-version: 4.1.0
-versioned_at: 2026-10-08 17:57
+version: 5.0.0
+versioned_at: 2026-10-13 16:08
 description: Specification-driven development process rules.
 entrypoint: README.md
 dependencies:
 - name: meta
-  version: 2.0.2
+  version: 2.2.0
   constraint: at_least
