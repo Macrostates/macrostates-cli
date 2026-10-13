@@ -3,7 +3,7 @@
 - Project phase: bootstrapping
 - Workflow type: Release preparation; Integration preparation (one release outcome, scopes below)
 - Status: in_progress
-- Delivery state: awaiting_acceptance
+- Delivery state: implementing
 - Change depth: systemic
 - Branch: release/baselines-1.0.0
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com) - Obtained from repository-local Git identity and current conversation
@@ -44,3 +44,7 @@ No architecture blocker identified. Candidate implementation and applicable loca
 ## Suggested next step
 
 Complete the actual release candidate and collect its verification, then present a short numbered closure summary naming every open workflow and separately request first-baseline acceptance and activation in the release PR.
+
+## Exact source-plan reassessment
+
+The committed candidate check correctly rejected a conformance-document update made after planning. Preserve that reviewed documentation as a new planning input, return declarations and byte-identical consumed records to their pending state, and calculate a fresh plan. Runtime code and final shipped inputs are unchanged; their completed tests and artifact verification remain applicable. The earlier candidate is unintegrated and no new immutable tag exists. No history is rewritten.

@@ -2,7 +2,7 @@ schema_version: 1
 project:
   name: macrostates-cli
   entrypoint: main.md
-  version: specs-1.0.0
+  version: specs-0.3.0
 packages:
 - name: meta
   version: 2.2.0
