@@ -12,8 +12,9 @@ Licensed under [MIT](https://github.com/Macrostates/macrostates-cli/blob/main/LI
 
 Application version `0.5.0` supports Meta 3.0 and Process 5.1 alongside earlier
 selected policies. Its own composition uses released Meta 3.0.0, Process 5.1.0,
-Repository 4, Python 2.1.1 and Python-library 2 packages. Within requested work,
-implementers choose version impact without a separate Major-number approval.
+Repository 4, Python 2.1.1 and Python-library 2 packages. Under Meta 3.0 and
+Process 5.1, implementers choose version impact within requested work without a
+separate Major-number approval.
 The CLI application version is independent from its Macrostates specification
 and implementation baselines. Older projects retain their selected formats and
 policies until explicitly adopted and migrated.
@@ -302,9 +303,10 @@ integration-preparation checks belong at their dedicated gate, since ordinary
 development commits legitimately contain open workflows. Index checks preserve
 partial staging, have documented resource limits, and exclude submodule contents.
 
-The CLI tracks its own composition under `.macrostates/specs/`. Adoption of the
-new official releases, exact selections, lock, and final baseline declarations
-will be verified separately. This development branch uses an independent
+The CLI tracks its own composition under `.macrostates/specs/`. The exact
+released selections passed canonical installation, locked reinstallation and
+offline checks. Baseline finalization and application publication retain their
+separate verification gates. The source uses an independent
 [application declaration](https://github.com/Macrostates/macrostates-cli/blob/main/.macrostates/implementation/application.yaml)
 for independent build version `0.5.0`; the Macrostates implementation declaration is a
 separate identity. Candidate/finalized builds bind verified shipped source and
