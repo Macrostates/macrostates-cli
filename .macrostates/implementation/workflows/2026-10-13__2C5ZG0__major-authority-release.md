@@ -3,7 +3,7 @@
 - Project phase: active
 - Workflow type: Release preparation
 - Status: in_progress
-- Delivery state: implementing
+- Delivery state: awaiting_acceptance
 - Change depth: targeted
 - Branch: release/major-version-authority-2.0.0
 - Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com) - Repository-local Git identity and current conversation
@@ -30,3 +30,13 @@ Complete the scope above, record actual verification and unresolved limits, requ
 ## Blockers and unresolved questions
 
 No unresolved architecture decision identified. Explicit workflow closure and required external checks remain prerequisites; existing active-phase acceptance is preserved.
+
+## Delivered local preparation and verification
+
+The entire unmerged feature is assembled on the separate release branch from current primary, without claiming an earlier feature integration. The reviewed plan binds source 3f9f5c3bcbec98480f0c3365671d174c348df95b, target fe6e36989b0a3c5c274b9fe2a03f7a7673ffff09, original declarations, pending/previous-history hashes and the complete actual scope. It computes specs-2.0.0 / imp-2.0.0 once from the authority/dependency Major impact and archives both new records byte-for-byte, preserving prior consumed history. Application 0.5.0 independently declares candidate state, matching baselines/date, future immutable source tag v0.5.0 and shipped-input fingerprint 9b1ce349710c5f6875d4c0b59027a5e0b023392d38822792df0df0e9028b4f90.
+
+All 407 source tests passed independently on Python 3.12.15, 3.13.16 and 3.14.7 after actual canonical adoption. All 407 passed again against the prepared candidate on Python 3.14. Ruff lint/format across 117 files, Pyright, package installation/locked reinstallation, project/change checks and whitespace checks passed. Both 0.5.0 distributions passed clean installation, public API/commands/version, exact source-byte and strict metadata checks. All 151 local references across 72 Markdown documents passed. These are local outcomes; no workflow closure, external PR check/integration, new tag or PyPI publication is inferred.
+
+## Remaining external and consent gates
+
+Obtain explicit definer closure of all three named workflows, record scoped consent and archive them; then verify the exact closed committed candidate and current combined target tree before proposal submission. Required external checks precede normal integration. Immutable baseline/application tags and verified PyPI publication follow their existing authorized procedure. Existing active phase stays unchanged.

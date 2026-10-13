@@ -2,10 +2,11 @@
 
 Project phase: active.
 
-Current source prepares independent application version `0.5.0`, with development
+Current source prepares independent application version `0.5.0`, with candidate
 state recorded in [application.yaml](application.yaml). The composition and
-[release.yaml](release.yaml) retain finalized `specs-1.0.0` / `imp-1.0.0` during
-ordinary feature work. The immutable 0.4.0 release identifies source
+[release.yaml](release.yaml) now propose `specs-2.0.0` / `imp-2.0.0` under the
+[bound release plan](release-plan.yaml). Ordinary feature work retained the earlier
+1.0.0 numbers; separate release preparation computes the Major/Major scope once. The immutable 0.4.0 release identifies source
 `fe6e36989b0a3c5c274b9fe2a03f7a7673ffff09`; its baselines, provenance and published
 artifacts remain unchanged. New source is unreleased until its reviewed baseline
 and application procedures complete.
@@ -107,7 +108,10 @@ implementation and verification. The new policy tests cover exact new selections
 initialization, Major release planning without a consent flag, retained closure
 requirements, older policies and refusal of unreviewed future versions. Dated
 results, package adoption and release checks belong to the current workflow;
-new verification is not inferred from the previously released 393-test suite.
+All 407 tests pass on Python 3.12, 3.13 and 3.14 after adoption and again on
+Python 3.14 against the candidate. Static checks, actual installation/locked
+reinstallation and clean candidate artifact probes pass. External proposal and
+publication results remain separate; no historical consent closes this work.
 
 Structural checks cannot prove semantic classification, truthful consent or
 requirement coverage. Cached refs do not establish current remote state. Final
