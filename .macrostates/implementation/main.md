@@ -2,42 +2,33 @@
 
 Project phase: active.
 
-Current source prepares independent application version `0.5.0`, with candidate
-state recorded in [application.yaml](application.yaml). The composition and
-[release.yaml](release.yaml) now propose `specs-2.0.0` / `imp-2.0.0` under the
-[bound release plan](release-plan.yaml). Ordinary feature work retained the earlier
-1.0.0 numbers; separate release preparation computes the Major/Major scope once. The immutable 0.4.0 release identifies source
-`fe6e36989b0a3c5c274b9fe2a03f7a7673ffff09`; its baselines, provenance and published
-artifacts remain unchanged. New source is unreleased until its reviewed baseline
-and application procedures complete.
+Current source prepares application version `0.6.0`, recorded as a candidate in
+[application.yaml](application.yaml). The reviewed release plan proposes
+`specs-3.0.0` and `imp-3.0.0` from the recorded Major/Major policy scope. These
+remain candidates until reviewed integration finalizes their exact source.
+Published releases and their exact source provenance remain unchanged.
 
 ## Current Behavior And Adoption
 
-The console command and public Python API share project initialization,
-installation, locking, inspection, structural checks and exact staged-index
-checks. Git-based baseline operations capture work origins, record independent
-change impacts and evidence, inspect optional applications, synchronize branches,
-verify combined integration snapshots and prepare bound release candidates.
+The command and public Python API share package composition, source installation,
+integrity, structural verification, captured work origins, change evidence,
+branch synchronization, combined integration and baseline release operations.
+The new work adds explicit Process 6 policy support while retaining older selected
+policies and refusing unreviewed future families. Process 6 keeps the technical
+baseline formats and changes document authoring to neutral roles, self-contained
+technical objectives, safe evidence retention and scoped historical cleanup.
 
-The current selection adopts released Meta 3.0.0 and Process 5.1.0 alongside
-Repository 4.0.0, Python 2.1.1 and Python-library 2.0.0. The local CLI contract is
-listed in its [package metadata](../specs/051_cli/package.yaml). External packages
-remain unchanged tagged Git snapshots under the exact integrity lock. The new
-policies retain the modern layouts and technical record formats. They remove the
-separate Major-number consent requirement within authorized work; ordinary
-workflow closure, integration, publication and scope authorization remain distinct.
+The selected composition adopts the published canonical Process 6.0.0 snapshot
+through source installation and verified provenance. Meta 3.0.0,
+Repository 4.0.0, Python 2.1.1 and Python-library 2.0.0 remain selected. The local
+CLI contract records the new policy minimum and output-retention boundaries.
+External package copies and lock inventories must match their exact releases.
 
-Explicit adapters support Meta 3.0 and Process 5.1 without accepting unreviewed
-future versions. Process capabilities consistently select initialization seeds,
-record declarations and public baseline operations. Earlier selected policies
-retain their original validation and source-format behavior. Major changes use
-the existing impact/evidence aggregation; the CLI does not invent a Major-specific
-permission token or automatically authorize any operation.
-
-The [captured work origin](work/major-version-authority.yaml) retains finalized
-starting commit and baselines. Pending scope and later consumed records live under
-[changes](changes/). Current work and scoped acceptance belong to
-[workflow records](workflows/); no historical closure grants this new scope.
+Current work is captured in [its original provenance](work/public-document-authoring.yaml).
+It does not inherit closure authorization from earlier completed work. Historical
+workflow summaries are anonymized without changing observed acceptance, closure,
+measurements or qualification limits. Original released source remains in its
+existing immutable commits and tags; no published Git history is rewritten.
 The project's previously accepted active phase is preserved.
 
 ## Architecture
@@ -46,7 +37,7 @@ The project's previously accepted active phase is preserved.
 | --- | --- |
 | `_models.py` | Normalized package/composition models, public diagnostics, reports, and controlled errors |
 | `_formats/` and `_io.py` | Explicit composition/metadata readers, strict YAML, field/path primitives, and retained formats |
-| `_validation.py` | Metadata/dependency/link checks and explicit Meta 2.0/2.1/2.2/3.0 and Process 2.3/2.4/3.0/4.0/4.1/5.0/5.1 policy adapters |
+| `_validation.py` | Metadata/dependency/link checks and explicit Meta 2.0/2.1/2.2/3.0 and Process 2.3/2.4/3.0/4.0/4.1/5.0/5.1/6.0 policy adapters |
 | `_scopes.py` | Visible directory-scoped specification discovery and independent-composition boundaries |
 | `_sources.py` | Injectable transport boundary, generic Git provider, and retained legacy HTTP provider/authentication |
 | `_integrity.py` | Bounded archive extraction, inventories, content identities, and integrity lock reader |
@@ -103,31 +94,30 @@ silently breaking documented interfaces.
 
 ## Verification And Limits
 
-[Specification conformance](specification-conformance.md) maps requirements to
-implementation and verification. The new policy tests cover exact new selections,
-initialization, Major release planning without a consent flag, retained closure
-requirements, older policies and refusal of unreviewed future versions. Dated
-results, package adoption and release checks belong to the current workflow;
-All 407 tests pass on Python 3.12, 3.13 and 3.14 after adoption and again on
-Python 3.14 against the candidate. Static checks, actual installation/locked
-reinstallation and clean candidate artifact probes pass. External proposal and
-publication results remain separate; no historical consent closes this work.
+[Specification conformance](specification-conformance.md) maps the current contract
+to implementation and qualification. New policy coverage must include Process 6
+initialization and baseline operations, role-only workflows without identity
+lookup, preserved closure gates, retained earlier policies and future-policy
+refusal. Applicable tests and static/package checks must complete before delivery
+is described as qualified. Dated results belong in the current workflow and
+reviewed verification receipt.
 
-Structural checks cannot prove semantic classification, truthful consent or
-requirement coverage. Cached refs do not establish current remote state. Final
-proposal checks cover the actual combined tree, and required external checks
-precede integration. Transactions recover ordinary failures but do not guarantee
-power-loss atomicity or isolation from arbitrary external writes. Integrity locks
-are reviewable baselines rather than signatures. Scope discovery and staged
-snapshots have documented exclusions; separately composed subprojects and
-submodules need their own review. Source archives honestly report unavailable
-Git identity rather than inventing a release claim.
+Structural checks cannot establish semantic anonymity, truthful consent or
+requirement coverage. CLI results may contain operator-supplied names or paths;
+select necessary fields and review them in memory before retaining evidence.
+Never write an unreviewed raw output edition. Document scans support semantic
+review and do not guarantee that indirect identifiers are absent.
+
+Cached refs do not establish remote freshness. Combined-tree checks and required
+external reviews precede integration. Ordinary-failure rollback does not promise
+crash atomicity. Historical workflow anonymization does not requalify old results
+or rewrite exact baseline declarations, consumed change records, tags or packages.
 
 ## Current Workflow Acceptance
 
-The definer explicitly confirmed completion and closure of the policy-adoption,
-release-preparation and integration-preparation workflows. Their records are
-archived with the actual scoped confirmation. No open workflow remains. The
-complete release proposal still requires passing external checks and normal
-integration before immutable tags and application publication. These future
-results are not inferred from local acceptance. The active phase remains unchanged.
+Local implementation and candidate qualification are complete. The Definer
+explicitly authorized completion and closure of the policy-adoption, release-
+preparation and integration-preparation scopes. Their records retain the neutral
+dated authorization in workflow history. External checks, reviewed integration,
+tags and application publication remain separate operations. No successful
+publication is inferred from local acceptance or historical summaries.

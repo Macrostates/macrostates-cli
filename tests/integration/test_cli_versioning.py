@@ -233,7 +233,14 @@ def test_late_cli_change_creation_needs_an_explicit_original_commit(tmp_path, ca
 
 
 @pytest.mark.parametrize(
-    "meta,process", [("2.2.0", "5.0.0"), ("3.0.0", "5.1.0"), ("3.0.7", "5.1.4")]
+    "meta,process",
+    [
+        ("2.2.0", "5.0.0"),
+        ("3.0.0", "5.1.0"),
+        ("3.0.7", "5.1.4"),
+        ("3.0.0", "6.0.0"),
+        ("3.0.0", "6.0.4"),
+    ],
 )
 def test_cli_new_policy_shorthand_creates_only_specification_seed(tmp_path, capsys, meta, process):
     status = main(

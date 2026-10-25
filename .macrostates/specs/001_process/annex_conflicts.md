@@ -4,6 +4,10 @@ This annex applies when an ambiguity or conflict is found during a workflow.
 Normal execution should continue without this annex unless a conflict or
 material ambiguity is actually encountered.
 
+Record findings and decisions as neutral technical summaries under
+[Public document authoring](004_documents.md). Do not retain the conversation,
+personal attribution or private context that exposed a conflict.
+
 ## Ambiguity
 
 When an ambiguity materially affects intended behavior, compatibility, safety,

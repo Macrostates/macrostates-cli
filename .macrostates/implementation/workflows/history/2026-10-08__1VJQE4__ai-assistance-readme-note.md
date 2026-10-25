@@ -1,23 +1,20 @@
 # AI assistance README note
 
+Anonymized historical summary. Dates, recorded states and measurements are retained historical observations. This rewrite does not rerun checks or grant acceptance. Commit IDs and artifact fingerprints describe the original observed sources or artifacts, not this edited document. Omitted evidence locations are unavailable through this summary; no substitute evidence is invented.
+
 - Workflow type: Specification update
 - Project phase: bootstrapping
 - Status: completed
 - Delivery state: accepted
 - Branch: main
-- Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), supplied in this conversation.
-- Implementer: Codex, GPT-6; exact revision and effort not exposed.
+- Requested by: Definer
+- Implementer: AI-assisted implementation
 - Started at: 2026-10-08 17:21 UTC
 - Last updated at: 2026-10-08 17:30 UTC
 
-## Original request and scope
+## Technical objective and scope
 
-“maybe just make a note in readme, short one, about the AI aided”
-
-Add a brief factual note to the eight specification repository READMEs, the CLI
-README and the organization profile README: “This project was developed with AI
-assistance.” This is disclosure, not a new contribution policy, a claim of human
-line-by-line review, commit attribution rewriting or a license change.
+Add a concise AI-assistance disclosure to the applicable public entrypoints without changing licensing, contribution policy or product behavior. Preserve existing releases and verify the resulting editorial package snapshots.
 
 ## Related publication work
 
@@ -25,20 +22,18 @@ The public-onboarding patch releases are already published. Preserve those tags;
 new README contents receive another editorial package Patch. The dependency
 synchronization workflow will adopt the final releases instead of the intermediate
 ones. Its uncommitted CLI composition/local package bumps remain one coherent
-change set. Organization profile changes have no package dependencies/version.
+change set. Documentation-only entrypoints have no specification-package version.
 
 ## Validation and acceptance
 
 Check exact note wording, existing links, compatible metadata/dependencies,
 release identities, retained fixtures, protected canonical self-install and
 working/staged checks. Verify published README contents. Explicit closure remains
-separate from delivery; the new request does not close workflows.
+separate from delivery; delivery alone does not close workflows.
 
 ## Delivered
 
-Added the exact one-sentence AI note to ten READMEs: eight specification package
-entrypoints, the CLI README and the organization profile. The profile is pushed
-at commit 1df20b0. This factual disclosure adds no contribution attribution policy,
+Added the exact one-sentence AI note to ten READMEs: the eight specification package entrypoints and the CLI README among the observed set. The count also includes an additional public entrypoint. This factual disclosure adds no contribution attribution policy,
 model badge, human line-by-line review claim or license change. Package Patch
 releases include the note; the [dependency workflow](2026-10-08__1V3M9F__public-onboarding-and-dependencies.md) adopts their
 latest metadata, snapshots and verified lock.
@@ -69,18 +64,19 @@ meta v2.0.2, process v3.0.2, repository-1 v2.0.2, docker-1 v2.0.2, python-1 v2.0
 Published CLI commit 8ff6f6dd89995d5e5ec1abbccad5456f366e6ad7. Live GitHub API reads confirm
 all eight final package versions/dependencies, the CLI composition, public HTTPS
 setup text and all ten README disclosures. Package repositories retain their
-private visibility and MIT licenses; profile content is public.
-[GitHub CI](https://github.com/Macrostates/macrostates-cli/actions/runs/37816784942) passed Python 3.12, 3.13 and 3.14 for the published
+private visibility and MIT licenses; public entrypoint content was verified.
+GitHub CI (external evidence location omitted) passed Python 3.12, 3.13 and 3.14 for the published
 change. Both working-tree and exact staged self-checks pass after publication.
 A follow-up documentation commit records this evidence without changing the
 implementation, specification versions, package snapshots or existing tags.
 
-## Remaining work
+## Recorded pre-closure gates
 
-Definer acceptance and explicit workflow closure. No requested content,
-dependency or publication work remains. No workflow was closed by these requests;
+Definer acceptance and explicit workflow closure. No scoped content, dependency or publication work remained at that checkpoint; this delivery alone did not close workflows;
 earlier closed records remain in history.
 
 ## Definer-confirmed closure
 
-On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.
+The Definer explicitly confirmed acceptance and closure for this workflow's recorded technical scope. This preserves the existing closed state; it does not grant new acceptance or publication authority.
+
+Historical confirmation dates: 2026-10-13.

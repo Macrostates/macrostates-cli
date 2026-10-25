@@ -10,10 +10,10 @@ operations. Requires Python 3.12 or newer. Distribution name: `macrostates-cli`.
 Import package and executable name: `macrostates`.
 Licensed under [MIT](https://github.com/Macrostates/macrostates-cli/blob/main/LICENSE).
 
-Application version `0.5.0` supports Meta 3.0 and Process 5.1 alongside earlier
-selected policies. Its own composition uses released Meta 3.0.0, Process 5.1.0,
+Application version `0.6.0` supports Meta 3.0 and Process 6.0 alongside earlier
+selected policies. Its own composition uses released Meta 3.0.0, Process 6.0.0,
 Repository 4, Python 2.1.1 and Python-library 2 packages. Under Meta 3.0 and
-Process 5.1, implementers choose version impact within requested work without a
+Process 5.1 or 6.0, implementers choose version impact within requested work without a
 separate Major-number approval.
 The CLI application version is independent from its Macrostates specification
 and implementation baselines. Older projects retain their selected formats and
@@ -26,13 +26,13 @@ Install the published package from
 newer environment:
 
 ```bash
-python -m pip install "macrostates-cli>=0.5.0"
+python -m pip install "macrostates-cli>=0.6.0"
 macrostates --help
 ```
 
-Use `python -m pip install macrostates-cli==0.5.0` to select this release, or
-`python -m pip install --upgrade macrostates-cli` to update. The older `0.3.1` and `0.4.0`
-releases remain available for projects that deliberately retain it. A virtual environment can be created with
+Use `python -m pip install macrostates-cli==0.6.0` to select this release, or
+`python -m pip install --upgrade macrostates-cli` to update. Earlier releases remain available for projects that deliberately retain their
+selected policy support. A virtual environment can be created with
 `python -m venv .venv`; activate it before installing when your environment
 requires one. For a command outside a project environment, use
 `pipx install macrostates-cli` or `uv tool install macrostates-cli`.
@@ -44,14 +44,14 @@ the separate `identity` command.
 
 ## Start A Project
 
-Supply a composition with explicit package versions, sources, authority, and
-reading orders. The
+Prepare `composition-input.yaml` in the working directory with explicit package
+versions, sources, authority, and reading orders. The
 [minimal composition](https://github.com/Macrostates/macrostates-cli/blob/main/examples/composition.yaml)
 selects only Meta; add Process and the technology packages appropriate to your
 project.
 
 ```bash
-macrostates init --from /path/to/composition.yaml
+macrostates init --from ./composition-input.yaml
 macrostates install
 macrostates info
 macrostates check
@@ -80,7 +80,7 @@ AGENTS.md
 
 Commit the composition, lock, package copies, and local requirements. Initialization
 preserves existing agent instructions, refuses overwrites, and creates
-specification scaffolding. Process 5 initialization supplies a provisional
+specification scaffolding. Process 5/6 initialization supplies a provisional
 specification seed; it never invents an accepted implementation baseline. Establish
 the first baseline explicitly under the selected Process policy before using
 ordinary release planning.
@@ -143,10 +143,24 @@ retain recovery data when rollback itself fails. Interrupted operations require
 inspection before retrying. See
 [recovery guidance](https://github.com/Macrostates/macrostates-cli/blob/main/.macrostates/specs/051_cli/annex_recovery.md).
 
+## Public Document Authoring
+
+Process 6 requires generated documents and retained evidence to be anonymous and
+self-contained from their first draft. Workflow attribution uses roles and
+neutral technical objectives. Existing reviewed history may be sanitized without
+inventing acceptance, rerunning old observations or rewriting published Git refs.
+
+CLI output is technical data and may contain operator-supplied paths or names.
+Before retaining it as a report, select necessary fields and review names, keys,
+values and embedded content in memory. Write only the reviewed representation;
+do not save raw output as an intermediate private edition. Structural checks
+do not certify anonymity. Required public licenses, dependency identities and
+immutable provenance remain intact.
+
 ## Development And Baseline Releases
 
 The following development commands require explicit selection of supported
-Process 5.0 or 5.1. `branch-status` and `branch-sync` also serve projects retaining older
+Process 5.0, 5.1 or 6.0. `branch-status` and `branch-sync` also serve projects retaining older
 version policies. Core operations work with Git refs and commits; your repository
 policy defines the review/integration mechanism and required external checks.
 
@@ -198,7 +212,7 @@ When preparing completed work, declare its impact explicitly:
 macrostates change-create --id offline-mode --work offline-mode \
   --summary "Support the specified offline operation" \
   --specification-impact minor --implementation-impact minor \
-  --requirements /path/to/coverage.yaml \
+  --requirements ./coverage.yaml \
   --evidence "Offline behavior checks passed"
 macrostates change-check
 macrostates closure-request
@@ -254,7 +268,7 @@ a technology-specific additional identity distinguishes another release.
 ```python
 from macrostates import Project
 
-project = Project.open("/path/to/project")
+project = Project.open(".")
 report = project.check()
 for diagnostic in report.diagnostics:
     print(diagnostic.code, diagnostic.message, diagnostic.path)
@@ -308,7 +322,7 @@ released selections passed canonical installation, locked reinstallation and
 offline checks. Baseline finalization and application publication retain their
 separate verification gates. The source uses an independent
 [application declaration](https://github.com/Macrostates/macrostates-cli/blob/main/.macrostates/implementation/application.yaml)
-for independent build version `0.5.0`; the Macrostates implementation declaration is a
+for independent build version `0.6.0`; the Macrostates implementation declaration is a
 separate identity. Candidate/finalized builds bind verified shipped source and
 rebuild from source distributions without Git. Builds do not mutate declarations
 or publish artifacts.

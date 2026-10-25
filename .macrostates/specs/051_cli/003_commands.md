@@ -38,7 +38,7 @@ order (highest authority first); ask the user to review these in the scaffold.
 use it for custom packages/sources. Do not combine selection forms.
 `--layout modern|legacy` defaults to modern. New shorthand uses format 1;
 known older Process contract-version policies receive `spec-0.1.0` initially.
-Process 5.0 and 5.1 receive the provisional `specs-0.1.0` specification seed
+Process 5.0, 5.1 and 6.0 receive the provisional `specs-0.1.0` specification seed
 instead.
 Initialization does not invent or accept an implementation baseline. Establish
 the first baseline under Process with explicit definer acceptance; release tools
@@ -96,7 +96,7 @@ presents packages, sources, required dependencies, orders and scope entrypoints.
 
 ## Development And Release Commands
 
-Use these commands under a supported Process 5.0 or 5.1 policy, except Git branch
+Use these commands under a supported Process 5.0, 5.1 or 6.0 policy, except Git branch
 inspection/synchronization, which also serve older selected policies. Their
 contracts and prerequisites are in
 [Development and releases](008_development-and-releases.md).

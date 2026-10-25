@@ -1,21 +1,20 @@
 # Macrostates CLI alignment
 
+Anonymized historical summary. Dates, recorded states and measurements are retained historical observations. This rewrite does not rerun checks or grant acceptance. Commit IDs and artifact fingerprints describe the original observed sources or artifacts, not this edited document. Omitted evidence locations are unavailable through this summary; no substitute evidence is invented.
+
 - Workflow type: Implementation update
 - Project phase: bootstrapping
 - Status: completed
 - Change depth: systemic
 - Branch: main
-- Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), supplied in this conversation.
-- Implementer: Codex — GPT-6; exact revision and effort not exposed.
+- Requested by: Definer
+- Implementer: AI-assisted implementation
 - Started at: 2026-10-08 12:07 UTC
 - Last updated at: 2026-10-08 13:00 UTC
 
-## Original request and scope
+## Technical objective and scope
 
-Implement the latest official package policies, preserve older supported projects,
-and use the latest packages in this CLI's own modern composition. Update public
-CLI/API documentation, tests, build metadata and current-state documentation.
-No other consuming project is authorized for migration.
+Support the modern specification layout and released Meta/Process policies while retaining earlier formats and behavior. Adopt verified canonical snapshots and integrate authoritative build metadata, regression tests and public API verification.
 
 ## Related specification work
 
@@ -39,7 +38,6 @@ New compatible CLI/API capabilities target 0.2.0 / spec-0.2.0. Adopt Process's
 contract versioning explicitly: declarations and Python builds must consume one
 authoritative release version; validate actual coverage before primary-branch
 integration. Retain older selected policies without applying new requirements.
-
 
 ## Delivered and verified
 
@@ -69,7 +67,7 @@ fixtures alongside 21 historical releases and maintained regression tests.
   copies are exercised separately from that in-process coverage measurement.
 
 Published implementation commit 1eacc30db0299694e1b02e5db134a1c00dfa2478.
-[GitHub CI run 37777622784](https://github.com/Macrostates/macrostates-cli/actions/runs/37777622784)
+GitHub CI run 37777622784 (external evidence location omitted)
 passed all three Python jobs. A fresh remote clone matches the implementation and
 passes both working-tree and exact staged checks with the independently installed
 wheel. Live GitHub API reads verify private visibility, current main metadata and
@@ -81,19 +79,12 @@ release tags were explicitly authorized and published; no CLI implementation or
 composition release tag was requested. That distinction does not affect source
 installation from main or the package snapshots consumed here.
 
-## Remaining work
+## Recorded pre-closure gates
 
 None within this workflow. Baseline acceptance remains a separate phase decision.
 
-## Authorized closure
+## Definer-confirmed closure
 
-Closed at 2026-10-08 13:00 UTC under the definer's explicit instruction:
-“you can then close all open workflows in the cli project and commit and push
-the repository.” The identified set is all four open CLI-project records,
-including specification capture. Earlier delivery evidence was reviewed, and
-current conformance verification passed before closure. Earlier statements about
-open related workflows describe their historical state; this closure supersedes
-that tracking state. No external workflow record is closed.
+The Definer explicitly confirmed closure for this workflow's recorded technical scope. Acceptance remains limited to the distinctions already recorded below. This preserves the existing closed state; it does not grant new acceptance or publication authority.
 
-Workflow closure is distinct from accepting the first implementation baseline;
-project phase remains bootstrapping pending that separate decision.
+Historical confirmation dates: 2026-10-08 13:00 UTC.

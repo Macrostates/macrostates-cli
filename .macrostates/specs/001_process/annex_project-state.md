@@ -4,6 +4,12 @@ This annex applies when normal project phase checks find inconsistent or
 unclear project artifacts. The core project phase model is defined in
 `001_concepts.md`; normal execution checks are defined in `003_execution.md`.
 
+Recovery records and reports follow [Public document authoring](004_documents.md).
+Retain neutral technical state and role decisions, not private histories or the
+identity of another project. When legacy cleanup is authorized, follow
+[its scoped procedure](annex_document-cleanup.md) without inventing earlier
+acceptance or erasing repository history.
+
 ## Conflicting state
 
 Use the `conflicting` phase when project artifacts disagree about the current

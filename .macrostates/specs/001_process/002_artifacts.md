@@ -3,6 +3,10 @@
 Work artifacts are the files used to define, implement, explain, and resume
 specification-driven work.
 
+All artifacts below follow [Public document authoring](004_documents.md) before
+their first retained write, including examples, drafts, ignored outputs and
+embedded evidence. Artifact ownership does not exempt content from that contract.
+
 ## Specification documents
 
 The project-root `.macrostates/specs/` contains the composition and
@@ -23,7 +27,7 @@ only as an explicit specification change.
 
 ## Layout adoption
 
-Process 5 retains Meta 2's `.macrostates/` layout. Move specification and
+Process 6 retains the established `.macrostates/` layout. Move specification and
 implementation artifacts together during explicitly requested adoption. Preserve
 workflow/decision history and pending acceptance, update links, build consumers
 and agent pointers, and validate the result. Moving files does not accept a
@@ -93,8 +97,9 @@ state that scope explicitly.
 
 Use the existing artifact roles for history:
 
-- Workflow records own requests, progress, delivery/acceptance, closure and the
-  sequence of work. Link to them rather than copying their chronology into the
+- Workflow records own neutral technical objectives, progress, delivery/acceptance,
+  closure and the technical sequence of work. Link to them rather than copying
+  their chronology into the
   current-state description.
 - Decision records preserve the context and rationale of a choice. Mark obsolete
   decisions or portions as superseded and point to their replacement or current
@@ -104,6 +109,13 @@ Use the existing artifact roles for history:
   evidence, not an automatically current pass or open-work statement. Reusable
   verification guidance describes current commands and prerequisites separately
   from those results.
+
+History preserves technical meaning, measurements, dates and lifecycle state, not
+private transcripts or identifying context. Follow the central contract when
+authoring evidence and the [legacy cleanup procedure](annex_document-cleanup.md)
+when current historical documentation needs an explicitly authorized rewrite.
+Mark redacted receipts as anonymized historical summaries without inventing
+acceptance, reproducibility or new successful checks.
 
 Current gaps and verification limits still belong in the current-state documents;
 removing chronology must not hide incomplete behavior or missing qualification.
@@ -116,7 +128,7 @@ history need not be duplicated or moved solely to refresh the overview.
 
 The composition's authoritative finalized specification baseline is
 `project.version` in `.macrostates/specs/composition.yaml` (or Meta's single
-allowed alternative spelling). Process 5 uses `specs-MAJOR.MINOR.PATCH`.
+allowed alternative spelling). Process 5 and 6 use `specs-MAJOR.MINOR.PATCH`.
 The baseline covers the root entrypoint, composition, selected package content
 and applicable directory-scoped specifications. Pending records distinguish
 current changed files from that earlier snapshot; this field alone is not a
@@ -193,6 +205,12 @@ after merge/rebase. Current integration target
 and validation evidence are separate. Archive records unchanged when consumed;
 retain their IDs, bytes and origin, with release scope in the plan.
 Creating this bookkeeping before an implementation exists does not invent one.
+
+Author summaries, coverage, evidence and optional extensions under the public
+document contract before their bytes are bound into a plan. Current legacy
+documentation cleanup must not silently rewrite historical record bindings;
+report an unsupported migration or integrity gate rather than blessing redacted
+bytes as the original consumed record.
 
 ### Release plans
 
@@ -281,6 +299,10 @@ work can be resumed from either context.
 `.macrostates/implementation/decisions/` contains ADRs for meaningful
 implementation choices not settled by the specifications. ADRs are part of
 implementation documentation and follow the same ownership rules.
+
+Context and rationale are neutral technical explanations under the
+[document contract](004_documents.md), not transcripts or links to private
+conversations. Use roles for attribution and repository-local evidence.
 
 Decision records should be specific enough that a later maintainer can
 understand why the choice was made and what would justify changing it.
@@ -401,8 +423,12 @@ Examples:
 Existing date-based, date/counter and full-ULID filenames remain valid; adopting this
 convention does not require renaming them or rewriting historical records.
 Readers and tooling must continue to discover legacy records. If migration is
-explicitly requested, record the old-to-new filename mapping and update references
-to moved files. Derive each migrated date and time ID from the recorded
+explicitly requested, update references to moved files. Record an old-to-new
+filename mapping only when the prior names are already safe technical names
+under [Public document authoring](004_documents.md). Identifying prior names
+instead follow [Legacy document cleanup](annex_document-cleanup.md): repair links
+without retaining those names, aliases or reversal maps. Keep the established
+collision rules. Derive each migrated date and time ID from the recorded
 `Started at`, using its known timezone and available precision, converted to UTC. For
 minute-only records, encode the recorded minute with seconds and milliseconds set
 to zero; do not claim those finer components were measured. Clarify an unknown
@@ -418,12 +444,11 @@ Each workflow entry should include:
 - Status.
 - Change depth.
 - Branch or worktree context when known.
-- Requested by.
-- Implementer.
+- Requested by: `Definer`.
+- Implementer: `Implementer` or `AI-assisted implementation`.
 - Started at.
 - Last updated at.
-- Original request.
-- Objective, scope and acceptance criteria.
+- Neutral technical objective, authorized scope and acceptance criteria.
 - Delivery state.
 - Work done.
 - Files touched when useful.
@@ -434,49 +459,21 @@ Each workflow entry should include:
 Use the smallest useful amount of detail. The entry should help resume work
 without becoming a duplicate implementation log.
 
-`Requested by` should identify the definer as specifically as practical. Prefer
-this format:
+Use role attribution under [Public document authoring](004_documents.md). Never
+look up Git/account/environment identities or ask for personal information to
+complete these fields. Missing personal information does not block authorized
+work. Relevant tool versions and qualification environments belong in technical
+evidence, without identity sources or session metadata.
 
-```text
-Name Lastname (email@example.com) - Obtained from <source>
-```
+Replace an original-request transcript with a neutral statement of technical
+intent, authorized scope and acceptance criteria. Record what must change and
+why; do not quote or closely paraphrase a conversation. Use
+[the neutral template](resources/workflow-template.md) for new records.
 
-A handle or stable local identifier may be used when name or email are
-unavailable.
-
-When the project uses Git, prefer repository-local Git identity information when
-available. If repository-local Git identity is unavailable, the implementer may
-use another confident source, such as explicitly provided definer identity or
-global Git configuration. If the implementer cannot identify the definer
-confidently, it should ask for a name, email, handle, or preferred identifier
-before creating the workflow record.
-
-`Implementer` identifies who performs the work, independently of `Requested by`:
-
-- For a person, record their name. If unavailable, record a known handle or an
-  explicitly unknown name rather than attributing the work to the requester.
-- For a model, record its name and version or exact model identifier as exposed
-  by the execution environment. Include relevant available parameters, such as
-  reasoning/effort level, and the agent or tool used when useful for provenance.
-  A tool name alone does not identify its underlying model.
-- State the source of the identity and parameters, such as the person's own
-  identification or session/runtime metadata. Mark unavailable values as unknown
-  or not exposed; do not infer an exact revision or effort level from a family
-  name, defaults, output style, or another session's configuration. Missing
-  metadata does not block otherwise authorized work.
-
-Use a compact field, for example `Person — NAME` or
-`Model — NAME; version/identifier: VALUE; effort: VALUE; agent: TOOL; source: SOURCE`.
-Record only relevant non-secret configuration, never credentials or private
-prompts. When multiple implementers contribute or a model/version/configuration
-changes, retain the earlier attribution and append a dated entry identifying
-the contributor, changed parameters and work scope. Do not overwrite history
-with the last implementer's identity or imply it performed all prior work.
-
-Include this field in new records. When resuming an older workflow, add the
-current implementer for the resumed work and mark earlier attribution unknown
-unless reliable evidence exists. Do not rewrite archived workflows merely to
-backfill identities.
+For resumed or collaborative work, retain dates, roles, scope, results and limits
+without named contributor attribution. Do not imply that a later role performed
+earlier work or backfill personal identities into archived records. Authorized
+legacy cleanup follows [its separate procedure](annex_document-cleanup.md).
 
 `Started at` and `Last updated at` should include date and time to minute
 precision using this format:
@@ -498,7 +495,7 @@ Open statuses are `in_progress`, `paused`, and `blocked`.
 
 Closed statuses are `completed`, `abandoned`, and `superseded`. Assigning any
 closed status requires explicit definer confirmation for the identified workflow.
-Record that confirmation and its scope in the workflow before moving it to
+Record that role decision, date and technical scope neutrally before moving it to
 history. An implementer's assessment that the work is done is not confirmation.
 
 While awaiting confirmation, keep the workflow in its open location with an open
@@ -555,7 +552,7 @@ check for open workflow entries in `./.macrostates/implementation/workflows/`.
 If open workflows exist, the implementer must summarize them to the definer
 before starting new work. The summary should identify:
 
-- The active workflow type and request.
+- The active workflow type and neutral technical objective.
 - The change depth.
 - What was done.
 - What remains.

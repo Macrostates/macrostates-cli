@@ -1,0 +1,47 @@
+schema_version: 1
+id: public-document-authoring
+summary: Adopt anonymous public-document policy and explicit Process 6 support
+origin:
+  commit: c2397930b87395b9446ac5aa605caf6e75d9accd
+  specification: specs-2.0.0
+  implementation: imp-2.0.0
+impact:
+  specification: major
+  implementation: major
+deliverables: []
+requirements:
+- requirement: Support explicitly selected Process 6.0 without reinterpreting earlier
+    policies.
+  implementation: Explicit policy registration and shared prefixed-baseline capability.
+  verification: Full regression suite succeeds on Python 3.12, 3.13 and 3.14; 432
+    tests independently pass on Python 3.14.
+- requirement: Use role-only workflows while retaining documentary acceptance and
+    closure requirements.
+  implementation: Unchanged workflow-state reader plus neutral role-only documentation.
+  verification: Synthetic policy tests cover no identity lookup, missing closure evidence
+    and valid historical authorization.
+- requirement: Adopt an immutable canonical Process release and public document rules.
+  implementation: Released Process 6.0.0 installation, verified inventory and local
+    CLI contract 3.0.0.
+  verification: Source installation, offline project checks and local document links
+    pass.
+- requirement: Sanitize authorized historical documents without altering technical
+    outcomes or published history.
+  implementation: Nineteen anonymized historical workflow summaries; original consumed
+    records and Git refs remain unchanged.
+  verification: Lifecycle header comparison, historical measurements/hash semantics,
+    safe-field scans and semantic review.
+- requirement: Keep application build versions independent and development source
+    distinguishable.
+  implementation: Development application declaration and existing isolated build
+    reader.
+  verification: Existing build/installed metadata tests; candidate artifact qualification
+    remains a separate release gate.
+evidence:
+- Full regression exit status zero on Python 3.12, 3.13 and 3.14.
+- 'Independent Python 3.14.7 regression: 432 passed.'
+- Canonical Process release installed; offline project and local-link checks passed.
+- Nineteen historical workflows reviewed as anonymized summaries without altered lifecycle
+  state.
+gaps: []
+work: public-document-authoring

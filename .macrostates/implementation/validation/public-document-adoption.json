@@ -1,0 +1,63 @@
+{
+  "scope": "CLI public-document policy adoption",
+  "policy": "Process 6.0.0",
+  "application_candidate": "0.6.0",
+  "specification_contract": "cli 3.0.0",
+  "qualification": {
+    "full_regression_matrix": [
+      {
+        "python": "3.12",
+        "exit_code": 0
+      },
+      {
+        "python": "3.13",
+        "exit_code": 0
+      },
+      {
+        "python": "3.14",
+        "exit_code": 0
+      }
+    ],
+    "independent_regression": {
+      "python": "3.14.7",
+      "passed": 432,
+      "exit_code": 0
+    },
+    "static_checks": {
+      "ruff": 0,
+      "format": 0,
+      "pyright_errors": 0,
+      "pyright_warnings": 0
+    },
+    "canonical_install": {
+      "process_version": "6.0.0",
+      "commit": "6e60e9ea636784ea951acbd4a43f98bbed2b079e",
+      "exit_code": 0
+    },
+    "offline_check": {
+      "exit_code": 0
+    },
+    "document_links": {
+      "documents": 77,
+      "local_targets": 177,
+      "findings": 0
+    },
+    "historical_cleanup": {
+      "records": 19,
+      "lifecycle_headers_unchanged": true,
+      "consumed_change_records_unchanged": true,
+      "historical_summaries_explicit": true
+    }
+  },
+  "acceptance_matrix": {
+    "source": ".macrostates/specs/001_process/resources/document-authoring-acceptance.md",
+    "cases": 13,
+    "method": "Semantic review of policy coverage and synthetic acceptance criteria; not executable anonymity certification."
+  },
+  "limits": [
+    "Structural checks do not prove semantic anonymity or truthful consent.",
+    "No raw subprocess logs or personal identity lookup retained.",
+    "Candidate artifacts and final integration/publication have separate gates."
+  ],
+  "paths_relative_to": "repository root"
+}

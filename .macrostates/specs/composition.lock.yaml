@@ -49,45 +49,57 @@ packages:
   process:
     selection:
       name: process
-      version: 5.1.0
+      version: 6.0.0
       path: 001_process
       entrypoint: README.md
       source:
         type: git-archive
         repository: https://github.com/Macrostates/macrostates-process.git
-        tag: v5.1.0
-    commit: 6a6cfd19f01a7d7265f315b1237f75c8db5e5d4d
-    content_sha256: d8bc82b6c27837d2ea768435787499c4958095c610ad4dfae92f4ce731c40e9c
+        tag: v6.0.0
+    commit: 6e60e9ea636784ea951acbd4a43f98bbed2b079e
+    content_sha256: eb748f16e96bfde4d1813af05a2d32e3446275ff267528e8ee94b1d0e4620455
     files:
       001_concepts.md:
-        sha256: 7cae598a8250fbbd71a60e69eaeafb457ec82bd152529b3883320e3b7027eb87
+        sha256: c289efbf9612826c9d84bf47c031de892615467939f83e3e202f0c345cbc0878
         executable: false
       002_artifacts.md:
-        sha256: 4c3b3a9e69f5e3967e7b68593400c15d100f09d6764055aba9827ca4d9f5ed36
+        sha256: 52f138c07d1bef830cc5593fcbf17ec46adf22aa4aed65d760f11deeeb49b8df
         executable: false
       003_execution.md:
-        sha256: c4de2379520aa761e2dd0594333edc404a164bef377844ba2916c98dc8827089
+        sha256: f4f717ec0ce9a78ff35759d6577f7cac14c518c8f60ace84bc4f46d1bbe20477
+        executable: false
+      004_documents.md:
+        sha256: 9f664452beeae3fe3c0932d886417ebda008ecd53723bae97fb38998217af486
         executable: false
       LICENSE:
         sha256: fb36cfd742a789c0e7843dbf21c3a7442a13e37dee4dfaf0fa7afe0b87f06ef6
         executable: false
       README.md:
-        sha256: 61785f94697d760797a4593ad6049fe9cb017250039ec74ca2e670eec173d753
+        sha256: a3b972f7698eb8d1e89ec2fe65a91768528effa5f4dcdd8995e3126ba1bda13a
         executable: false
       annex_conflicts.md:
-        sha256: d77f7005734d256a06c534207971a51b297bf3b2d3c77647f3dc63376f99c78e
+        sha256: 4c1f62a51dd710431a70d3990e0dd50a0b89e9449da3f6951b320c5aa748a38f
+        executable: false
+      annex_document-cleanup.md:
+        sha256: d391087b5fd6f60e3cad6cd36f5b51f4d5c338bd7c8e71a30691424bf4003400
         executable: false
       annex_exceptions.md:
-        sha256: bc62f1268718a169a03e5a80f3987d87cd10d0fa859904068c0e620173a8fa6c
+        sha256: 91cea9f27477bdce4c68430e04dc58facf0963167324d376f57bfb518ff3f88d
         executable: false
       annex_project-state.md:
-        sha256: edf8ccd6d88f1979f702476a7650b65b9f42e467931bd46bc9c6804276e68439
+        sha256: e12c9ac2882fc9101a7d236eefa2752b98f4b5648b01b76dbfe8fd766eaaaec2
         executable: false
       annex_versioning.md:
-        sha256: 780f90c64b700fcbd2aba7fc3b35597b48d7cd0b31c1b1fed14292a0b2132dac
+        sha256: ad2b1840efc71efb2e4a2eb602a1412bd21bc563ea6a17d596d06891393417c2
         executable: false
       package.yaml:
-        sha256: e3afae84310fa60df68191aea971cf6a6f4a45323bcde909cb27f7463f596726
+        sha256: ebbccdc26c4b7cc206042fe923a368512a18231c9fc6e12d24f993f21850536c
+        executable: false
+      resources/document-authoring-acceptance.md:
+        sha256: d8cb2b8621e99f382049800d1f54ca6a1cd6ecc0c05a56b7bd01140a40bb0e3b
+        executable: false
+      resources/workflow-template.md:
+        sha256: 5785775fd8cb8401439adbaacb5dec92e16f188a14365087bafd37d647a2883a
         executable: false
   repository-1:
     selection:

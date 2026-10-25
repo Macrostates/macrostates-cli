@@ -1,19 +1,21 @@
 # Versioning system implementation
 
+Anonymized historical summary. Dates, recorded states and measurements are retained historical observations. This rewrite does not rerun checks or grant acceptance. Commit IDs and artifact fingerprints describe the original observed sources or artifacts, not this edited document. Omitted evidence locations are unavailable through this summary; no substitute evidence is invented.
+
 - Project phase: bootstrapping
 - Workflow type: Specification update; Implementation update (one definer-authorized outcome, scopes below)
 - Status: completed
 - Delivery state: accepted
 - Change depth: systemic
 - Branch: feature/versioning-system
-- Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com) - Obtained from approved repository Git identity and current conversation
-- Implementer: Model: GPT-6; exact revision/effort: not exposed; agent: Codex; source: runtime instructions
+- Requested by: Definer
+- Implementer: AI-assisted implementation
 - Started at: 2026-10-13 12:14 UTC
 - Last updated at: 2026-10-13 20:30 UTC
 
-## Original request and objective
+## Technical objective and scope
 
-Implement the definer-approved baseline/development/change-record/release-preparation system across official packages and this CLI, preserving older projects and published identities. Add arbitrary Git-remote tagged specification downloads. Definers retain workflow closure authority; integration preparation asks for closure using a short numbered summary. The nine identified earlier delivered workflows were explicitly accepted for closure on 2026-10-13.
+Implement separate specification/implementation baselines, captured development provenance, change records, synchronization, integration and release checks, application identities and arbitrary tagged Git sources. Preserve older projects and published identities.
 
 ## Acceptance criteria
 
@@ -34,15 +36,15 @@ Verification completed:
 
 A final independent review found and corrected the application-only release continuation: immutable finalized baseline tags/plan/history are verified separately from later application metadata, evidenced no-impact records stay pending, and work-origin controls remain validated. The complete lifecycle and rejection cases pass; no new architecture decision remains.
 
-At the pre-approval verification checkpoint, actual package versions, dependency minima, external self-selection, global baseline declarations, and annotated release tags remained unchanged. Application 0.4.0.dev0 is explicitly a local development build. No remote integration or publication has occurred.
+At the source-only verification checkpoint, actual package versions, dependency minima, external self-selection, global baseline declarations, and annotated release tags remained unchanged. Application 0.4.0.dev0 is explicitly a local development build. No remote integration or publication has occurred.
 
-## Remaining work
+## Recorded pre-closure gates
 
 The requested source implementation, canonical releases and actual CLI self-adoption are complete and locally verified. Obtain explicit definer closure of this workflow and the related integration-preparation workflow, verify the closed committed source tree, and submit the authorized feature proposal. External CI and reviewed feature integration precede the separately tracked baseline/application release proposal. No new CLI baseline, phase acceptance or application publication is claimed.
 
-## Version decision resolved
+## Recorded release authority
 
-The definer explicitly approved the proposed versions and releases on 2026-10-13: the seven Major package targets, the CLI specs-1.0.0 / imp-1.0.0 release proposals, application 0.4.0, dependency adoption, integration through passing PRs, immutable Git tags and PyPI publication. The earlier pause is resolved. Workflow closure remains a separate request and is not inferred from this authorization. Canonical metadata, package releases and CLI adoption are complete. The separate CLI integrations and publication remain.
+Recorded release authorization on 2026-10-13 covered: the seven Major package targets, the CLI specs-1.0.0 / imp-1.0.0 release proposals, application 0.4.0, dependency adoption, integration through passing PRs, immutable Git tags and PyPI publication. Workflow closure remains a separate request and is not inferred from this authorization. Canonical metadata, package releases and CLI adoption are complete. The separate CLI integrations and publication remain.
 
 ## Authorized specification scope
 
@@ -60,7 +62,7 @@ Meta 2.2.0, Process 5.0.0, Repository 4.0.0, Python 2.1.1, Docker 3.0.0, Python-
 
 No architecture blocker remains. Actual adoption and verification are complete. Obtain the separate definer closure decision before preparing the CLI proposal. Bootstrapping remains unchanged until explicit phase acceptance.
 
-## Suggested next step
+## Recorded follow-up gates
 
 Present the two current workflows with their completed outcomes and request explicit closure before proposal preparation. Preserve bootstrapping. After closure, verify the proposed source, submit the feature PR and require remote checks before merging.
 
@@ -72,4 +74,6 @@ All 393 tests passed again on Python 3.14 after actual adoption; the prior 3.12/
 
 ## Definer-confirmed closure
 
-At 2026-10-13 20:30 UTC, Lucas Lopez explicitly approved closing both named workflows as completed in response to the numbered closure petition. This accepts the local implementation and integration-preparation outcomes and authorizes their archival. It does not grant first-baseline phase acceptance or close the later release-preparation workflow. External checks and the already authorized reviewed integration remain separate.
+The Definer explicitly confirmed acceptance and closure for this workflow's recorded technical scope. This preserves the existing closed state; it does not grant new acceptance or publication authority.
+
+Historical confirmation dates: 2026-10-13 20:30 UTC.
