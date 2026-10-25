@@ -1,0 +1,75 @@
+{
+  "application_candidate": "0.6.0",
+  "specification_candidate": "specs-3.0.0",
+  "implementation_candidate": "imp-3.0.0",
+  "checked_at_utc": "2026-10-25T02:20:31.771581+00:00",
+  "candidate_regression": {
+    "check": "candidate-pytest-python-3.14",
+    "exit_code": 0,
+    "counts": {
+      "passed": 432
+    },
+    "checked_at_utc": "2026-10-25T02:19:18.079411+00:00"
+  },
+  "artifact_qualification": {
+    "application": "0.6.0",
+    "checks": [
+      {
+        "check": "strict-distribution-metadata",
+        "exit_code": 0
+      },
+      {
+        "check": "create-clean-wheel-environment",
+        "exit_code": 0
+      },
+      {
+        "check": "install-built-wheel",
+        "exit_code": 0
+      },
+      {
+        "check": "installed-command-version",
+        "exit_code": 0
+      },
+      {
+        "check": "installed-command-help",
+        "exit_code": 0
+      },
+      {
+        "check": "installed-library-and-process6-probe",
+        "exit_code": 0
+      },
+      {
+        "check": "source-archive-wheel-rebuild-without-git",
+        "exit_code": 0
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "dist/macrostates_cli-0.6.0-py3-none-any.whl",
+        "sha256": "674a944cc5c280d2d6320dcf35522af63ccfa61a59b58a1494d763d7d8f4aec2"
+      },
+      {
+        "path": "dist/macrostates_cli-0.6.0.tar.gz",
+        "sha256": "f515ad51af8e614bd72ff7afd320502ff9b31ca545cb807fc6532f7c6026defa"
+      }
+    ],
+    "archive_review": {
+      "member_counts": {
+        "wheel": 32,
+        "source_archive": 47
+      },
+      "author_role_only": true,
+      "personal_author_email_absent": true,
+      "relative_member_names": true,
+      "nested_archives": 0,
+      "scope": "Reviewed distribution metadata, member names and packaged source layout; legal notices preserved."
+    },
+    "all_passed": true,
+    "limits": [
+      "Pattern checks support semantic review and do not certify anonymity.",
+      "Candidate artifacts are not published by these checks."
+    ]
+  },
+  "state": "Local qualification complete; workflow closure, external review, integration and publication remain separate.",
+  "paths_relative_to": "repository root"
+}

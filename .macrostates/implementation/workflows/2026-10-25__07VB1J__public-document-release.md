@@ -3,7 +3,7 @@
 - Project phase: active
 - Workflow type: Release preparation
 - Status: in_progress
-- Delivery state: implementing
+- Delivery state: awaiting_acceptance
 - Change depth: small
 - Branch: release/public-documents-3.0.0
 - Requested by: Definer
@@ -24,11 +24,18 @@ Prepare a reviewed baseline and independent application release, preserving prio
 
 ## Work done
 
-- Established the dedicated release branch with the prepared feature scope.
+- Reviewed the bound Major/Major plan and prepared candidate baselines 3.0.0.
+- Prepared independent application candidate 0.6.0 with verified shipped-source binding.
+- Candidate regression passed 432 tests on Python 3.14.
+- Built wheel/source distributions, passed strict metadata checks, installed the
+  wheel in a clean environment and rebuilt the source archive without Git.
+- Reviewed archive member names and role-only distribution metadata; preserved
+  required legal notices. Retained results in
+  [the candidate receipt](evidence/public-document-release.json).
 
 ## Remaining work
 
-Review the bound baseline plan, prepare candidate declarations, qualify built artifacts and retain safe results.
+Local release preparation is complete. Explicit Definer closure remains required; integration and publication are subsequent authorized operations.
 
 ## Blockers and limits
 

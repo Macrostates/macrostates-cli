@@ -3,7 +3,7 @@
 - Project phase: active
 - Workflow type: Integration preparation
 - Status: in_progress
-- Delivery state: implementing
+- Delivery state: awaiting_acceptance
 - Change depth: small
 - Branch: release/public-documents-3.0.0
 - Requested by: Definer
@@ -24,11 +24,15 @@ Prepare the exact proposed integration of the public-document policy adoption an
 
 ## Work done
 
-- Established the dedicated release branch with the prepared feature scope.
+- Reviewed the exact prepared source, canonical package adoption and preserved
+  historical lifecycle evidence.
+- Tests, document checks, builds and clean-install probes completed.
+- Remaining documentary gate is explicit Definer closure of all three workflows;
+  subsequent staged/combined checks must confirm those actual closing edits.
 
 ## Remaining work
 
-Review all scoped changes and workflows, qualify staged and combined contents, and require explicit closure before proposal submission.
+Obtain explicit Definer closure, verify the actual closed staged/combined tree, then submit the release proposal under the existing authorization.
 
 ## Blockers and limits
 

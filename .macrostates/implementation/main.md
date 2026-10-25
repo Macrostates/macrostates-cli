@@ -115,7 +115,8 @@ or rewrite exact baseline declarations, consumed change records, tags or package
 
 ## Current Workflow Acceptance
 
-Current work remains in progress and its workflow is open. Completion, acceptance,
+Local implementation and candidate qualification are complete. Three scoped
+workflows remain open while awaiting explicit Definer closure. Completion, acceptance,
 closure, integration and publication remain distinct. Closure requires explicit
 Definer authorization; no new acceptance or successful release is inferred from
 historical summaries or passing structural checks.
