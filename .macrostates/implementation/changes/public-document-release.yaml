@@ -1,0 +1,26 @@
+schema_version: 1
+id: public-document-release
+summary: Prepare independent application release bookkeeping and reviewed baseline
+  finalization
+origin:
+  commit: d6c5d5ea8297058dd7582b650f4ab5a0b6edcd4b
+  specification: specs-2.0.0
+  implementation: imp-2.0.0
+impact:
+  specification: none
+  implementation: none
+deliverables: []
+requirements:
+- requirement: Keep independent application identity, baseline provenance and earlier
+    published refs distinct.
+  implementation: Dedicated release branch with development application declaration,
+    captured origin and separate finalization plan.
+  verification: Original tag-object inventory retained; Process 6 installed canonically;
+    existing release-provenance regression cases pass.
+evidence:
+- Release preparation uses a dedicated development branch.
+- Captured origin retains actual starting baselines.
+- Public package and project verification completed; candidate artifact gates remain
+  explicitly separate.
+gaps: []
+work: public-document-release

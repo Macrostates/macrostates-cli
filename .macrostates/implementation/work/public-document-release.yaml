@@ -1,0 +1,6 @@
+schema_version: 1
+id: public-document-release
+origin:
+  commit: d6c5d5ea8297058dd7582b650f4ab5a0b6edcd4b
+  specification: specs-2.0.0
+  implementation: imp-2.0.0
