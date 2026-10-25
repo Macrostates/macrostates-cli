@@ -14,6 +14,8 @@ sections below define how to apply them.
 
 Before changing files:
 
+- Apply [Public document authoring](004_documents.md) before any retained write,
+  including workflow records, drafts, ignored reports and generated evidence.
 - Read the project-local specification entrypoint.
 - Discover and read applicable directory-scoped specifications before edits.
 - In Git repositories, identify the primary branch and verify that the working
@@ -39,6 +41,11 @@ Any project file change requires an open workflow record. Read-only inspection,
 analysis, or explanation may happen without a workflow record, but creating,
 editing, moving, renaming, deleting, or generating any file in the project must
 first be covered by an open workflow record.
+
+All retained content follows the central document contract. Plan evidence output
+before running tools, review allowlisted results in memory before serialization,
+and never create a private raw edition for later cleanup. This applies to
+document-like output as well as repository files.
 
 ### Branch responsibility
 
@@ -105,6 +112,8 @@ context:
 
 - Read the project-local specification entrypoint.
 - Read relevant package entrypoints and specifications.
+- Identify safe document destinations and evidence fields under the public
+  document contract before generating output.
 - Identify the primary branch and establish a suitable authorized development
   branch before any file write, including workflow tracking.
 - Discover directory-scoped specifications applicable to each target path.
@@ -341,16 +350,17 @@ Record:
 - Project phase.
 - Status.
 - Change depth.
-- Definer identity.
-- Original request.
+- Definer and implementer role attribution.
+- Neutral technical objective and acceptance criteria.
 - Planned scope.
 - Initial known risks, conflicts, blockers, or open questions.
 - Suggested next step.
 
-Identify the definer as specifically as practical. Prefer repository-local
-identity information when available. If identity cannot be determined
-confidently, ask the definer how they should be recorded before creating the
-workflow record. Use the `Requested by` format defined for workflow records.
+Use the role fields defined for workflow records and the
+[neutral template](resources/workflow-template.md). Do not read identity
+configuration, record identity sources or ask for personal data. Summarize the
+technical objective and scope without quoting or retaining a conversation.
+Missing personal information must not delay otherwise authorized work.
 
 Choose the smallest workflow scope that honestly contains the request.
 
@@ -405,7 +415,7 @@ When continuing an existing workflow, read its workflow record before acting.
 
 Use the record to identify:
 
-- What the definer requested.
+- The neutral technical objective and authorized scope.
 - What has already been done.
 - What remains.
 - Which files or areas are affected.
@@ -457,6 +467,10 @@ When the implementer considers the work done:
    changes before deciding to close it.
 4. Only after explicit confirmation, record the definer's decision, assign the
    appropriate closed status, and move the record to workflow history.
+
+Record the role, date, authorized technical scope and outcome under the document
+contract, without a quotation, message identifier or conversational account.
+Anonymization never substitutes for actual acceptance or closure confirmation.
 
 A request to perform work, successful checks, a positive reaction to the result,
 silence, or a change of topic does not authorize closure. Acceptance of a result
@@ -600,7 +614,7 @@ historical wording active elsewhere. Authority rules resolve already-decided
 changes; unresolved choices remain explicit for the definer.
 
 Each topic should have an identifiable owner. Prefer concise links from other
-sections to competing normative copies. Keep exact user messages, dynamic
+sections to competing normative copies. Keep required user-facing product strings, dynamic
 placeholders, icons and their triggers in the corresponding feature sections.
 Use a consistent feature structure where helpful: behavior, states and failures,
 messages/actions, safety and lifecycle constraints, and acceptance criteria.
@@ -730,6 +744,8 @@ existing authorization must not be requested again.
    Run appropriate tests, builds and metadata/integrity checks. Record failures,
    limitations and the exact source/target under review. Do not demand release
    qualification for unrelated tracking-only changes.
+   Select safe retained result fields before tool execution and apply the
+   [document contract](004_documents.md), including archive and ignored outputs.
 4. Review every open workflow, including preparation itself, and its remaining
    acceptance/closure criteria. If any work or required acceptance remains, report
    the blocker. Do not close, archive or relabel it merely to pass the gate.
@@ -745,6 +761,8 @@ existing authorization must not be requested again.
    history and inspect both open and history locations. Verify the actual
    proposed tree has no open workflows and no malformed or falsely archived
    statuses. Apply relevant staged/tree checks after the closing edits.
+   Preserve a neutral dated role decision and its technical scope, not a private
+   transcript or link to a conversation.
 7. Submit only the authorized integration proposal. Use a pull/merge request when
    available or the project's native Git review procedure. Required external CI
    or review may remain pending until proposal creation; say which checks are
@@ -942,7 +960,8 @@ Never create a conforming baseline by merely changing prefixes.
 Reconcile current specifications, implementation coverage and build consumers
 on a development branch. Existing open workflows must be listed for definer
 closure decisions; never silently archive them during migration. Preserve their
-original requests, evidence and confirmations. Audit legacy closed records honestly
+technical objectives, scope, measured evidence and confirmation states under the
+document contract. Private text is not preserved merely for chronology. Audit legacy closed records honestly
 and document known evidence limitations rather than inventing earlier acceptance.
 When ready, use the new local-preparation and integration gates.
 
@@ -1001,6 +1020,8 @@ Record the CLI version and relevant commands, or the manual checks and compared
 baseline, with results and coverage limits in the workflow. Distinguish tool
 incompatibility from a failing check. Investigate reported modifications and
 metadata errors; using a manual method does not excuse an unresolved failure.
+Retained commands and results must satisfy [Public document authoring](004_documents.md):
+use safe result fields and relative locations rather than raw private logs.
 If required verification cannot be completed, report the missing evidence and
 preserve the applicable readiness gate. A passing structural or integrity check
 does not establish semantic consistency or implementation conformance.
@@ -1075,6 +1096,15 @@ what condition will return the project to normal workflow handling.
 If a relevant check cannot be run or completed, say what was not checked and
 why.
 
+For every workflow type, complete the document contract's
+[pre-write and completion review](004_documents.md#pre-write-and-completion-review)
+across all generated artifacts in scope, including ignored outputs and nested
+archives. Verify structured parsing, local links, evidence limits, legal notices,
+technical provenance and lifecycle state. Safe diagnostics identify the artifact
+and violated rule without echoing identifying content. When legacy cleanup is
+authorized, use [its procedure](annex_document-cleanup.md); do not clean unrelated
+repositories or rewrite published history as a package-adoption side effect.
+
 ### Final response
 
 At the end of a workflow step, the implementer should report:
@@ -1085,3 +1115,7 @@ At the end of a workflow step, the implementer should report:
 - Any workflow record, implementation document, decision record, or
   non-authoritative documentation update that was made.
 - Any ambiguity, conflict, blocker, or gap the definer should know about.
+
+The report itself follows [Public document authoring](004_documents.md), with
+role attribution, neutral technical summaries, repository-relative evidence and
+truthful qualification limits. Do not retain raw private output as a report.

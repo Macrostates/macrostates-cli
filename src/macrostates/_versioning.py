@@ -70,7 +70,7 @@ def declarations(root: Path) -> dict[str, Any]:
     if process is None or not process_uses_prefixed_baselines(
         string(process.get("version"), "process.version")
     ):
-        raise MacrostatesError("This operation requires a supported Process 5.0 or 5.1 policy")
+        raise MacrostatesError("This operation requires a supported Process 5.0, 5.1 or 6.0 policy")
     project = mapping(composition.get("project"), "composition.project")
     specification = string(project.get("version"), "project.version")
     spec_numbers = baseline(specification, "specification")

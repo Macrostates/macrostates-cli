@@ -8,7 +8,7 @@ development identities, and application distribution versions. New package
 releases do not imply new schemas or dictate the CLI application's Major number.
 Meta owns reusable and local specification package versioning.
 
-Process 5 owns finalized `specs-MAJOR.MINOR.PATCH` and
+Process 5 and 6 own finalized `specs-MAJOR.MINOR.PATCH` and
 `imp-MAJOR.MINOR.PATCH` baselines. They share contract Major.Minor and retain
 independent patch counters. Ordinary development branches preserve recorded
 starting baselines and expose computed suffixes; release preparation assigns
@@ -41,8 +41,8 @@ their declared policy.
 | Composition schema 1 | Explicit orders and archive-capable format 1 |
 | Package metadata without schema, or explicit 1 | Package metadata format 1 |
 | Integrity lock schema 1 | Inventory lock format 1 |
-| Process 5 implementation declaration schema 2 | Prefixed implementation/specification baselines |
-| Work, change, deliverable, migration, and release-plan records schema 1 | Their explicitly defined Process 5 artifact formats |
+| Process 5/6 implementation declaration schema 2 | Prefixed implementation/specification baselines |
+| Work, change, deliverable, migration, and release-plan records schema 1 | Their explicitly defined Process 5/6 artifact formats |
 | CLI application declaration schema 1 | Independent application build version and source validation |
 | Locations | Modern and legacy, subject to selected policies |
 
@@ -70,7 +70,7 @@ explicit active phase requires an implementation declaration. Process 3.0.x and
 4.x also require `.macrostates/implementation/`. Retain these old names and
 rules while those releases are selected.
 
-Process 5.0.x and 5.1.x require modern locations, a `specs-*` composition
+Process 5.0.x, 5.1.x and 6.0.x require modern locations, a `specs-*` composition
 declaration, and a schema-2 `imp-*` implementation declaration when an implementation baseline
 exists. Validate shared Major.Minor, exact implemented specification reference,
 independent patches, and a quoted valid calendar date. A specification-only
@@ -78,7 +78,7 @@ project has no invented implementation baseline. Initialization creates a
 provisional specification seed; the first implementation must be established
 with explicit acceptance under Process before ordinary baseline release planning.
 
-Process 5 structural checks permit incomplete development evidence to remain
+Process 5/6 structural checks permit incomplete development evidence to remain
 documented while work proceeds. Dedicated change/integration/release checks
 enforce readiness. They inspect documentary workflow status and authorization,
 but do not establish truthful definer approval or semantic coverage automatically.
@@ -87,7 +87,7 @@ policies receive clear diagnostics instead of guessed requirements.
 
 Under selected Meta 3.0, implementers classify and apply the required package
 version increment within requested specification work. Under selected Process
-5.1, they classify baseline impact and prepare the corresponding versions within
+5.1 and 6.0, they classify baseline impact and prepare the corresponding versions within
 authorized release work. A Major increment or classification alone requires no
 separate definer approval under these policies. Explain the impact in the change
 record or proposal, and ask when requirements or compatibility expectations are
@@ -98,9 +98,19 @@ reviewed integration, tagging, or application publication. Their existing
 acceptance and authorization requirements remain separate. Readiness checks
 inspect documentary evidence rather than proving truthful consent.
 
+Process 6.0 retains the technical baseline and record schemas of Process 5.1.
+Its public-document authoring contract replaces personal workflow attribution and
+conversational request records with role attribution and neutral objectives.
+Explicitly register that policy; do not infer support for future families.
+Role-only workflow records retain the same status and documentary authorization
+gates. Adopting it does not rewrite other projects or published history, and
+legacy selected policies keep their previous interpretation. The CLI does not
+provide a general anonymization scanner; retained output needs the selected
+Process authoring review.
+
 ## Explicit Migration
 
-`migrate-versioning` requires deliberate selection of Process 5 and an attached
+`migrate-versioning` requires deliberate selection of supported Process 5 or 6 and an attached
 development branch. It converts supported legacy `spec-*` specification and
 numeric implementation declarations to `specs-*` and schema-2 `imp-*` names,
 preserving numbers, dates, extension fields, and existing Git history/tags.

@@ -5,6 +5,10 @@ This annex applies when an `Exception` workflow is needed.
 An exception workflow records work that must proceed even though the request or
 project state does not fit the normal process cleanly.
 
+The exception record and its evidence follow
+[Public document authoring](004_documents.md). Explain the technical deviation,
+scope and decision without private transcripts or identifying context.
+
 ## When to use
 
 Use an exception workflow when:
@@ -22,7 +26,7 @@ the implementer must create an open exception workflow record before changing
 files.
 
 An exception workflow does not suspend specification authority, file ownership,
-conflict handling, secret handling, or safety rules.
+conflict handling, secret handling, public document authoring or safety rules.
 
 ## Record contents
 

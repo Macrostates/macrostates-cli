@@ -27,6 +27,11 @@ In normal use, the definer is a human and the implementer is an agent. The roles
 are not tied to identity: a definer may be another agent, and an implementer may
 be a human when explicitly acting in that role.
 
+Document attribution uses these roles rather than personal identities or
+conversational provenance. All authored and retained material follows
+[Public document authoring](004_documents.md), including drafts and evidence.
+Technical decisions and scope must remain understandable without private context.
+
 ## Authority
 
 When a reusable process rule conflicts with a project-local specification

@@ -51,10 +51,26 @@ and reviews evidence under the selected specifications. Workflows require
 explicit definer-authorized closure; the CLI can list required closure requests
 and check recorded status, but never closes or approves workflows automatically.
 
-Process 5 operations distinguish pending work, reviewed baseline finalization,
+Process 5 and 6 operations distinguish pending work, reviewed baseline finalization,
 and separately versioned deliverables. Application policies are optional; the
 default stable application version is the selected finalized implementation's
 numeric part. Project-local policies can explicitly override it. Core operations
 use Git refs and identities without a hosting-platform account. Remote reviews,
 required external checks, application version assignment under independent
 policies, dependency selection, tagging and publication remain project operations.
+
+## Public document authoring
+
+This project's selected Process policy requires anonymous, self-contained
+documents from their first draft. Follow its
+[document contract](../001_process/004_documents.md) for specifications, workflow
+records, reports, temporary evidence and archived deliverables. Attribute work
+by role and express neutral technical objectives. Preserve required public
+licenses, dependency identities and immutable technical provenance.
+
+CLI diagnostics and operation results are technical data, not automatically
+anonymous documents. Before retaining them as evidence, the implementer selects
+necessary result fields, reviews names/keys/values and embedded content in memory,
+and writes only the reviewed representation. Never save raw output as a private
+intermediate copy. Do not imply that existing structural checks establish
+anonymity, truthful consent or semantic conformance.

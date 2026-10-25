@@ -1,22 +1,21 @@
 # Public onboarding and CLI specification synchronization
 
+Anonymized historical summary. Dates, recorded states and measurements are retained historical observations. This rewrite does not rerun checks or grant acceptance. Commit IDs and artifact fingerprints describe the original observed sources or artifacts, not this edited document. Omitted evidence locations are unavailable through this summary; no substitute evidence is invented.
+
 - Workflow type: Specification update
 - Project phase: bootstrapping
 - Status: completed
 - Delivery state: accepted
 - Change depth: coordinated editorial update
 - Branch: main
-- Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), supplied in this conversation.
-- Implementer: Codex, GPT-6; exact revision and effort not exposed.
+- Requested by: Definer
+- Implementer: AI-assisted implementation
 - Started at: 2026-10-08 17:13 UTC
 - Last updated at: 2026-10-08 17:30 UTC
 
-## Original request
+## Technical objective and scope
 
-Make the public onboarding documentation changes recommended in the readiness
-review and update every repository's specification dependencies to the latest
-versions. Also explain conventions for disclosing AI assistance; that question
-does not request adding a new attribution policy or rewriting commit identities.
+Align public setup guidance and exact released specification dependencies, preserve published identities, and verify canonical CLI self-adoption with compatibility fixtures and integrity locks.
 
 ## Authorized scope
 
@@ -26,7 +25,7 @@ refresh required and optional dependencies in dependency order, and synchronize
 the CLI's selected snapshots/lock and compatibility fixtures. Commit/push the
 verified updates and release tags needed to make canonical package selections
 installable. Preserve all existing tags and history. Repository visibility,
-PyPI publication, unrelated consumers and organization profile content are
+PyPI publication, unrelated consumers and separate entrypoint maintenance are
 outside this change. Existing workflow records retain their status.
 
 ## Version classification
@@ -52,10 +51,10 @@ verification and remote CI. Report completed versions and attribution guidance.
 
 Changed Meta kickoff/resource/catalog and CLI installation instructions to public
 HTTPS/download defaults. Initially published eight editorial .1 patch releases.
-The subsequent explicit AI README request is tracked separately in
+The AI-assistance disclosure is tracked separately in
 [its workflow](2026-10-08__1VJQE4__ai-assistance-readme-note.md). New .2 snapshots preserve those already published .1
 and earlier tags. The final dependency selections and canonical copies adopt
-the .2 releases. No repository visibility changes are part of these requests.
+the .2 releases. Repository visibility was outside these recorded scopes.
 
 ## Final package releases
 
@@ -83,18 +82,19 @@ meta v2.0.2, process v3.0.2, repository-1 v2.0.2, docker-1 v2.0.2, python-1 v2.0
 Published CLI commit 8ff6f6dd89995d5e5ec1abbccad5456f366e6ad7. Live GitHub API reads confirm
 all eight final package versions/dependencies, the CLI composition, public HTTPS
 setup text and all ten README disclosures. Package repositories retain their
-private visibility and MIT licenses; profile content is public.
-[GitHub CI](https://github.com/Macrostates/macrostates-cli/actions/runs/37816784942) passed Python 3.12, 3.13 and 3.14 for the published
+private visibility and MIT licenses; public entrypoint content was verified.
+GitHub CI (external evidence location omitted) passed Python 3.12, 3.13 and 3.14 for the published
 change. Both working-tree and exact staged self-checks pass after publication.
 A follow-up documentation commit records this evidence without changing the
 implementation, specification versions, package snapshots or existing tags.
 
-## Remaining work
+## Recorded pre-closure gates
 
-Definer acceptance and explicit workflow closure. No requested content,
-dependency or publication work remains. No workflow was closed by these requests;
+Definer acceptance and explicit workflow closure. No scoped content, dependency or publication work remained at that checkpoint; this delivery alone did not close workflows;
 earlier closed records remain in history.
 
 ## Definer-confirmed closure
 
-On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.
+The Definer explicitly confirmed acceptance and closure for this workflow's recorded technical scope. This preserves the existing closed state; it does not grant new acceptance or publication authority.
+
+Historical confirmation dates: 2026-10-13.

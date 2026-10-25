@@ -15,6 +15,14 @@ This section summarizes rules expanded in the package documents below. Use it
 for orientation, but apply the detailed rules in the referenced documents when
 doing the work.
 
+Every implementer-produced document follows
+[Public document authoring](004_documents.md) from its first draft, including
+ignored reports, temporary outputs, structured data and archive contents. Use
+role attribution, neutral technical summaries and repository-relative locations;
+never collect personal identity or retain conversational transcripts to fill a
+record. Review content before writing and review all generated artifacts at
+completion. Legacy cleanup requires its own authorized document scope.
+
 Implementation entrypoints and topic documents describe the current architecture,
 behavior, rationale and gaps. Workflow chronology, decision history and dated
 validation retain their separate roles; do not accumulate release notes in the
@@ -102,6 +110,7 @@ handling. Read an annex only when a core document says the situation applies.
 - Definer and implementer responsibilities.
 - Definer support during process execution.
 - Documentation ownership and authority.
+- Public-by-default document authoring, role attribution and safe evidence handling.
 - Common workflows and workflow continuity.
 - Project baseline, development and pending identities, impact records and release preparation.
 - Optional application release policies, defaults and monorepo provenance.
@@ -123,8 +132,13 @@ Read the core documents in this order:
 1. [Concepts](001_concepts.md)
 2. [Artifacts](002_artifacts.md)
 3. [Execution](003_execution.md)
+4. [Public document authoring](004_documents.md)
 
 Conditional annexes:
+
+- [Legacy document cleanup](annex_document-cleanup.md): read when cleanup of
+  existing documents is explicitly requested, including historical receipts and
+  generated artifacts. Package adoption alone does not authorize cleanup.
 
 - [Versioning schemas and examples](annex_versioning.md): read when creating
   change records, preparing releases, declaring deliverables or migrating version
@@ -136,6 +150,11 @@ Conditional annexes:
   workflow conflict is found.
 - [Exceptions](annex_exceptions.md): read when an `Exception` workflow is
   needed.
+
+## Resources
+
+- [Neutral workflow template](resources/workflow-template.md).
+- [Document authoring acceptance matrix](resources/document-authoring-acceptance.md).
 
 ## License
 

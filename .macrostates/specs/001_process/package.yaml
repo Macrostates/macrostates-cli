@@ -1,6 +1,6 @@
 name: process
-version: 5.1.0
-versioned_at: 2026-10-13 21:55
+version: 6.0.0
+versioned_at: 2026-10-25 02:09
 description: Specification-driven development process rules.
 entrypoint: README.md
 dependencies:

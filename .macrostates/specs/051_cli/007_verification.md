@@ -26,6 +26,8 @@ relevant quality checks in CI. Verify these CLI-specific observable outcomes:
   provenance, and Android counter ordering.
 - Development-branch merge/rebase synchronization, cached/fetched state, primary
   guards, dirty/detached/active-operation refusal, and conflict preservation.
+- Explicit Process 6 support and role-only workflow records without identity lookup;
+  preserve closure evidence requirements and earlier selected-policy behavior.
 - Numbered closure requests and documentary workflow/history gates, including
   renamed records and missing authorization evidence.
 - Exact combined integration contents, explicit scope decisions, stale target

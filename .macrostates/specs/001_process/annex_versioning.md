@@ -1,9 +1,15 @@
 # Annex: versioning schemas and examples
 
 Read when creating change records, planning/preparing a release, declaring
-application version sources, or adopting Process 5. The core Concepts, Artifacts
+application version sources, or adopting Process 5 or 6. The core Concepts, Artifacts
 and Execution rules govern authority, impact and gates. Examples below are
 hypothetical; hashes must be actual verified values in a project.
+
+Every schema field, example, plan and retained receipt follows
+[Public document authoring](004_documents.md). Use technical summaries, roles,
+safe repository-relative locations and reviewed evidence fields before their
+serialization or hashing. Technical source/baseline identifiers retain their
+meaning; they are not personal attribution or permission to copy private context.
 
 ## Artifact and state summary
 
@@ -60,6 +66,10 @@ Safe IDs are lowercase ASCII identifiers suitable for a single filename; do not
 include path separators, whitespace or option-like prefixes. IDs must be unique
 across pending and consumed records. Optional extension fields are retained rather
 than silently discarded.
+
+Extensions must also satisfy the document contract. Report an unsafe field before
+binding evidence; retaining extensions does not authorize storing identifying
+configuration or raw private output.
 
 ```yaml
 schema_version: 1
@@ -179,6 +189,12 @@ gaps or conflicting active candidates require reassessment. Archive included
 records unchanged. Candidate output and archive moves form one coherent operation;
 interruption must remain visible and recoverable.
 
+This unchanged-byte rule applies to ordinary release consumption. Authorized
+cleanup of current historical documentation follows
+[Legacy document cleanup](annex_document-cleanup.md), preserves original baseline
+bytes in their original commits/tags, and must not misrepresent a sanitized summary
+as the hash-bound original. Unsupported migration or verification remains a gate.
+
 A stored candidate plan can remain as historical evidence after finalization.
 Reviewed integration and authorized tag evidence determine finalization; do not
 require a post-merge direct edit to turn a marker into a release. Later release
@@ -297,6 +313,12 @@ inventories existing tags, applications, accepted baselines and open/closed work
 evidence. Preserve all published identities and distribution ordering. Record any
 prefix translation of verified snapshots and separately classify new process or
 product requirements; translation alone is not conformance.
+
+Existing documents are not automatically cleaned by package adoption. Preserve
+technical scope, measured evidence and actual acceptance/closure states; do not
+preserve private context for chronology. Any separately authorized current-document
+cleanup follows the document contract and its legacy procedure without rewriting
+published history or manufacturing provenance.
 
 Initialization of a new project creates a specification seed and no implementation.
 First bootstrapping requires explicit establishment and acceptance of the first

@@ -243,6 +243,12 @@ class Process51Policy(Process50Policy):
     label = "Process 5.1"
 
 
+class Process60Policy(Process51Policy):
+    """6.0 changes document authoring while retaining baseline and closure formats."""
+
+    label = "Process 6.0"
+
+
 PROCESS_POLICIES = {
     (2, 3): Process23Policy(),
     (2, 4): Process24Policy(),
@@ -251,6 +257,7 @@ PROCESS_POLICIES = {
     (4, 1): Process41Policy(),
     (5, 0): Process50Policy(),
     (5, 1): Process51Policy(),
+    (6, 0): Process60Policy(),
 }
 
 

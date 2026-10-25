@@ -6,11 +6,11 @@ installing, inspecting and checking Macrostates specification packages.
 ## Selected packages and reading order
 
 1. [Meta 3.0.0](000_meta/README.md)
-2. [Process 5.1.0](001_process/README.md)
+2. [Process 6.0.0](001_process/README.md)
 3. [Repository 4.0.0](010_repository-1/README.md)
 4. [Python 2.1.1](020_python-1/README.md)
 5. [Python-library 2.0.0](031_python-library-1/README.md)
-6. [CLI 2.0.0](051_cli/README.md)
+6. [CLI 3.0.0](051_cli/README.md)
 
 [composition.yaml](composition.yaml) records selection and sources;
 [composition.lock.yaml](composition.lock.yaml) records verified release contents.

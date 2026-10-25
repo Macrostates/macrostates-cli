@@ -1,26 +1,20 @@
 # CLI specification capture
 
+Anonymized historical summary. Dates, recorded states and measurements are retained historical observations. This rewrite does not rerun checks or grant acceptance. Commit IDs and artifact fingerprints describe the original observed sources or artifacts, not this edited document. Omitted evidence locations are unavailable through this summary; no substitute evidence is invented.
+
 - Workflow type: Specification update
 - Project phase: bootstrapping
 - Status: completed
 - Change depth: substantive
 - Branch: main
-- Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), supplied in this conversation.
-- Implementer: Codex — GPT-6; exact revision and effort not exposed.
+- Requested by: Definer
+- Implementer: AI-assisted implementation
 - Started at: 2026-10-08 12:49 UTC
 - Last updated at: 2026-10-08 13:00 UTC
 
-## Request and scope
+## Technical objective and scope
 
-Inspect the CLI and supported Python library in detail; replace the monolithic
-local CLI specification with several coherent behavior-oriented documents.
-Capture observable implemented behavior while leaving private implementation
-choices to implementers. Verify agreement between specification and code.
-After verification, close all open workflows in this CLI project, commit and
-push this repository. The definer explicitly authorizes that conditional closure
-for this identified set, including this request's workflow; no further closure
-confirmation is required. Other repositories and external workflow records are
-outside scope. Baseline acceptance and project phase are distinct from closure.
+Describe the existing public CLI and library behavior in a multi-document local specification. Separate observable contracts from implementation choices, verify conformance and preserve the existing runtime and canonical dependency snapshots.
 
 ## Plan and acceptance
 
@@ -70,21 +64,13 @@ locked-install wording; no runtime correction was needed.
   and remote CI verification are the final publication steps authorized by the
   definer; no runtime/package release is created.
 
-## Remaining work
+## Recorded pre-closure gates
 
-No product specification/implementation gap remains in this request. Baseline
+No product specification/implementation gap remained in this scope. Baseline
 acceptance is a distinct phase decision and is not inferred from workflow closure.
 
+## Definer-confirmed closure
 
-## Authorized closure
+The Definer explicitly confirmed closure for this workflow's recorded technical scope. Acceptance remains limited to the distinctions already recorded below. This preserves the existing closed state; it does not grant new acceptance or publication authority.
 
-Closed at 2026-10-08 13:00 UTC under the definer's explicit instruction:
-“you can then close all open workflows in the cli project and commit and push
-the repository.” The identified set is all four open CLI-project records,
-including specification capture. Earlier delivery evidence was reviewed, and
-current conformance verification passed before closure. Earlier statements about
-open related workflows describe their historical state; this closure supersedes
-that tracking state. No external workflow record is closed.
-
-Workflow closure is distinct from accepting the first implementation baseline;
-project phase remains bootstrapping pending that separate decision.
+Historical confirmation dates: 2026-10-08 13:00 UTC.

@@ -33,15 +33,16 @@ def policy_project(root, *, meta, process):
     )
     (project.implementation / "main.md").write_text("# Implementation\n\nProject phase: active\n")
     git(root, "init", "--quiet", "--initial-branch=main")
-    git(root, "config", "user.name", "Test Maintainer")
-    git(root, "config", "user.email", "maintainer@example.invalid")
+    git(root, "config", "user.name", "Implementer")
+    git(root, "config", "user.email", "fixture@example.invalid")
     commit_all(root, "Established baseline fixture")
     git(root, "switch", "--quiet", "-c", "feature/policy")
     return project
 
 
 @pytest.mark.parametrize(
-    "meta,process", [("2.2.0", "5.0.0"), ("3.0.0", "5.1.0"), ("3.0.7", "5.1.4")]
+    "meta,process",
+    [("2.2.0", "5.0.0"), ("3.0.0", "5.1.0"), ("3.0.7", "5.1.4"), ("3.0.0", "6.0.0")],
 )
 def test_reviewed_policies_plan_major_scope_without_removing_workflow_closure(
     tmp_path, meta, process
@@ -96,7 +97,7 @@ def test_reviewed_policies_plan_major_scope_without_removing_workflow_closure(
     assert project.check_integration(target="main").ok
 
 
-@pytest.mark.parametrize("process", ["5.2.0", "6.0.0"])
+@pytest.mark.parametrize("process", ["5.2.0", "6.1.0", "7.0.0"])
 def test_future_process_cannot_use_reviewed_baseline_operations(tmp_path, process):
     project = policy_project(tmp_path, meta="3.0.0", process=process)
     before = git(tmp_path, "status", "--porcelain")
@@ -108,7 +109,7 @@ def test_future_process_cannot_use_reviewed_baseline_operations(tmp_path, proces
     assert git(tmp_path, "status", "--porcelain") == before
 
 
-@pytest.mark.parametrize("process", ["5.0.0", "5.1.0"])
+@pytest.mark.parametrize("process", ["5.0.0", "5.1.0", "6.0.0"])
 def test_reviewed_process_keeps_specification_only_and_active_baseline_rules(tmp_path, process):
     project = policy_project(tmp_path, meta="3.0.0", process=process)
     (project.implementation / "release.yaml").unlink()

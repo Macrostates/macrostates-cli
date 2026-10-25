@@ -1,10 +1,7 @@
 schema_version: 1
 name: macrostates-cli
-version: 0.5.0
-status: candidate
+version: 0.6.0.dev0
+status: development
 specification: specs-2.0.0
 implementation: imp-2.0.0
-release_date: '2026-10-13'
-source:
-  tag: v0.5.0
-source_sha256: 9b1ce349710c5f6875d4c0b59027a5e0b023392d38822792df0df0e9028b4f90
+release_date: '2026-10-25'

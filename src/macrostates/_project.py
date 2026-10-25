@@ -404,7 +404,7 @@ class Project:
         )
         if selected is None or not process_uses_prefixed_baselines(selected.version):
             raise MacrostatesError(
-                "This operation requires an explicitly selected Process 5.0 or 5.1 policy; older projects are not migrated implicitly"
+                "This operation requires an explicitly selected Process 5.0, 5.1 or 6.0 policy; older projects are not migrated implicitly"
             )
         if git_scope:
             from ._git import git
