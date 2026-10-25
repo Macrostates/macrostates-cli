@@ -1,19 +1,21 @@
 # Public launch integration
 
+Anonymized historical summary. Dates, recorded states and measurements are retained historical observations. This rewrite does not rerun checks or grant acceptance. Commit IDs and artifact fingerprints describe the original observed sources or artifacts, not this edited document. Omitted evidence locations are unavailable through this summary; no substitute evidence is invented.
+
 - Workflow type: Development branch merge
 - Project phase: bootstrapping
 - Status: completed
 - Delivery state: accepted
 - Change depth: large
 - Branch: release/public-launch-alignment
-- Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), repository-local Git identity and this conversation.
-- Implementer: Model GPT-6; exact identifier/revision and effort not exposed; agent Codex; source: session metadata.
+- Requested by: Definer
+- Implementer: AI-assisted implementation
 - Started at: 2026-10-09 09:51 UTC
 - Last updated at: 2026-10-09 10:35 UTC
 
-## Original request
+## Technical objective and scope
 
-"cool, please do 1, 2 and 3 (make the repositories public first and then enable PR protection for this step)"
+Validate and integrate the reviewed release through protected-branch procedures, publish its immutable source identities and verify anonymous installation and source access. Keep distribution-index publication and phase acceptance separate.
 
 ## Objective and scope
 
@@ -23,17 +25,17 @@ Preserve repository URLs, existing tags, old supported formats/policies and unre
 
 ## Version classification
 
-CLI policy support is an additive public capability with retained old behavior. New composition and implementation contract: spec-0.3.0 / 0.3.0. Local CLI package: 0.5.0. The PR-only development rule was already explicitly requested by the definer; selecting its now-published policy does not introduce a new public API incompatibility. Upstream Major versions do not dictate the CLI's Major. Canonical package versions on main are already assigned and reviewed; release tagging changes no package bytes or dependency minimums.
+CLI policy support is an additive public capability with retained old behavior. New composition and implementation contract: spec-0.3.0 / 0.3.0. Local CLI package: 0.5.0. The PR-only development rule was already applicable; selecting its now-published policy does not introduce a new public API incompatibility. Upstream Major versions do not dictate the CLI's Major. Canonical package versions on main are already assigned and reviewed; release tagging changes no package bytes or dependency minimums.
 
 ## Work done
 
-The definer explicitly requested review steps 1, 2 and 3, including making repositories public before configuring their protection. Delivery includes an integrated, tagged CLI implementation, using a PR rather than a main push. Existing published package tags must remain unchanged.
+The recorded delivery order makes the release sources publicly accessible before enabling their applicable branch protection. Delivery includes an integrated, tagged CLI implementation, using a PR rather than a main push. Existing published package tags must remain unchanged.
 
 ## Acceptance and validation
 
 Verify the newest and previous release policies, unknown-policy refusal, modern-layout and declaration checks. Preserve all 45 existing package tags and all historical metadata fixtures. Validate real tagged package archives, own working/staged checks, Ruff/Pyright, supported-Python tests, wheel/sdist and installed library/command. Scan the proposed release. Check PR integration, remote tag identities, public visibility, main protection including administrators, and anonymous installation/setup.
 
-## Remaining work
+## Recorded pre-closure gates
 
 All requested release, visibility, protection and anonymous-access work is delivered. Definer acceptance and explicit workflow closure remain. Publication evidence is being integrated through a documentation-only PR; no product version change.
 
@@ -43,11 +45,11 @@ None. Private-repository protection becomes available after the explicitly autho
 
 ## Delivered release and integration
 
-- [Release PR 2](https://github.com/Macrostates/macrostates-cli/pull/2) merged as
+- Release PR 2 (external evidence location omitted) merged as
   040585e1c50f1e3d899a6f86732912df33858af0. Its tree exactly matches the reviewed
-  candidate. [Main CI passed all three Python versions](https://github.com/Macrostates/macrostates-cli/actions/runs/37916640563).
+  candidate. Main CI passed all three Python versions (external evidence location omitted).
 - Published annotated spec-0.3.0 and v0.3.0 tags on that merged release commit.
-  [CLI release](https://github.com/Macrostates/macrostates-cli/releases/tag/v0.3.0)
+  CLI release (external evidence location omitted)
   supplies the fixed installation revision; no PyPI publication occurred.
 - Published all eight canonical releases with GitHub release notes: Meta 2.1.0,
   Process 4.1.0, Repository 3.1.0, Docker/Python/Python-project 2.1.0,
@@ -84,4 +86,6 @@ were used. Project phase and workflow closure remain separate definer decisions.
 
 ## Definer-confirmed closure
 
-On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.
+The Definer explicitly confirmed acceptance and closure for this workflow's recorded technical scope. This preserves the existing closed state; it does not grant new acceptance or publication authority.
+
+Historical confirmation dates: 2026-10-13.

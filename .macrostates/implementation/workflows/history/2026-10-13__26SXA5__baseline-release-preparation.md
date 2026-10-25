@@ -1,19 +1,21 @@
 # CLI baseline release and integration preparation
 
+Anonymized historical summary. Dates, recorded states and measurements are retained historical observations. This rewrite does not rerun checks or grant acceptance. Commit IDs and artifact fingerprints describe the original observed sources or artifacts, not this edited document. Omitted evidence locations are unavailable through this summary; no substitute evidence is invented.
+
 - Project phase: bootstrapping
 - Workflow type: Release preparation; Integration preparation (one release outcome, scopes below)
 - Status: completed
 - Delivery state: accepted
 - Change depth: systemic
 - Branch: release/baselines-1.0.0
-- Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com) - Obtained from repository-local Git identity and current conversation
-- Implementer: Model: GPT-6; exact revision/effort: not exposed; agent: Codex; source: runtime instructions
+- Requested by: Definer
+- Implementer: AI-assisted implementation
 - Started at: 2026-10-13 20:37:29.541 UTC
 - Last updated at: 2026-10-13 21:00:01 UTC
 
-## Original request and objective
+## Technical objective and scope
 
-The definer authorized the version targets, reviewed integrations and Git/PyPI publication. The ordinary feature was merged through PR #6 after all required Python checks passed. Prepare the separate collected-scope release targeting specs-1.0.0 / imp-1.0.0 and independent CLI application 0.4.0. Earlier workflow closure does not close this record or accept a phase transition.
+Prepare the aggregate specs-1.0.0 / imp-1.0.0 candidate and independent application 0.4.0 with exact source/target binding, preserved consumed records and verified artifacts. Treat local closure, first-baseline acceptance, integration, tags and distribution as distinct outcomes.
 
 ## Authorized release scope
 
@@ -33,7 +35,7 @@ Release branch starts from freshly fetched merged main 32c1cf2a993fadd2ce152c02e
 
 All 393 tests passed separately on Python 3.12.15, 3.13.16 and 3.14.7 against the prepared candidate. Ruff lint and formatting passed across 115 files; Pyright reported zero errors and warnings. The 0.4.0 wheel and source distribution each passed clean installation, public API/command/version probes, exact shipped-source verification and strict distribution metadata checks. Project conformance returned zero diagnostics. No new tag, application publication, external release-PR check or phase acceptance is claimed by these local results.
 
-## Remaining work
+## Recorded pre-closure gates
 
 Review the exact committed candidate and combined target tree, then obtain explicit closure of this record and first-baseline acceptance/phase activation. Submit the release PR only after the closed-tree gates pass; external CI precedes merge and tags/publication.
 
@@ -41,7 +43,7 @@ Review the exact committed candidate and combined target tree, then obtain expli
 
 No architecture blocker identified. Candidate implementation and applicable local tests/build checks are complete. Exact source/target checks and the explicit definer acceptance decisions remain before proposal submission. Bootstrapping remains until the definer explicitly accepts the verified first implementation baseline. No closure, phase acceptance or new release publication is inferred.
 
-## Suggested next step
+## Recorded follow-up gates
 
 Complete the actual release candidate and collect its verification, then present a short numbered closure summary naming every open workflow and separately request first-baseline acceptance and activation in the release PR.
 
@@ -53,7 +55,9 @@ The fresh plan includes the conformance document in its exact committed source i
 
 ## Definer-confirmed closure
 
-At 2026-10-13 21:00 UTC, Lucas Lopez replied “confirmed, please complete the process” to the petition explicitly listing both decisions. The definer confirms closing this sole open release/integration preparation workflow as completed. This accepts its bound candidate and completed local verification and authorizes archival. The subsequent release PR, external checks, normal integration, tags and application publication retain their already authorized separate procedure. No future external result is asserted by this closure.
+The Definer explicitly confirmed acceptance and closure for this workflow's recorded technical scope. This preserves the existing closed state; it does not grant new acceptance or publication authority.
+
+Historical confirmation dates: 2026-10-13 21:00 UTC.
 
 ## First implementation baseline acceptance
 

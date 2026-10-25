@@ -1,28 +1,32 @@
 # PyPI release integration
 
+Anonymized historical summary. Dates, recorded states and measurements are retained historical observations. This rewrite does not rerun checks or grant acceptance. Commit IDs and artifact fingerprints describe the original observed sources or artifacts, not this edited document. Omitted evidence locations are unavailable through this summary; no substitute evidence is invented.
+
 - Workflow type: Development branch merge
 - Project phase: bootstrapping
 - Status: completed
 - Delivery state: accepted
 - Change depth: medium
 - Branch: release/pypi-distribution
-- Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), repository-local Git identity and this conversation.
-- Implementer: Model GPT-6; exact revision/identifier and effort not exposed; agent Codex; source: session metadata.
+- Requested by: Definer
+- Implementer: AI-assisted implementation
 - Started at: 2026-10-09 10:52 UTC
 - Last updated at: 2026-10-09 11:13 UTC
 
 ## Objective and authorization
 
-The definer requests updating, building and publishing the CLI and its pip instructions. Complete that release through feature-branch PR integration, preserving protected main and required checks. Submit and merge only verified changes as the necessary integration step for the authorized release. No direct main push or administrator bypass. Track the CLI PR, separate organization-profile PR, reviewed commits, required checks, release tag and actual index publication. The definer completed account and pending-publisher setup.
+Integrate the verified CLI packaging and installation-guidance change through a protected topic-branch proposal, with passing required checks and no primary-branch bypass. Record the reviewed candidate, release identity and actual index-publication outcome. Trusted-publisher setup was completed separately from source integration.
 
 ## Readiness
 
 Candidate implementation 0.3.1 references existing spec-0.3.0. Review against current main, validate staged content and clean distributions, and require all protected-main checks before integration. PR 4 is merged at 07119d69cc324b3793ecb377926b232538efdb86 with exact candidate-tree agreement and all main CI checks passing. Annotated v0.3.1 is published, retaining spec-0.3.0. The OIDC publishing workflow succeeded, and public pip installation plus artifact checksum verification passed. No workflow closure or phase change is authorized.
 
-[Release PR](https://github.com/Macrostates/macrostates-cli/pull/4), [organization installation PR](https://github.com/Macrostates/.github/pull/1), [PyPI](https://pypi.org/project/macrostates-cli/0.3.1/) and [publication CI](https://github.com/Macrostates/macrostates-cli/actions/runs/37922032084) identify the delivery. The follow-up PR records evidence only and leaves product/specification versions and released tags unchanged. Acceptance and explicit workflow closure remain.
+Release PR (external evidence location omitted), related installation guidance (external evidence location omitted), PyPI (external evidence location omitted) and publication CI (external evidence location omitted) identify the delivery. The follow-up PR records evidence only and leaves product/specification versions and released tags unchanged. Acceptance and explicit workflow closure remain.
 
-Organization profile PR 1 merged at 9fb46ec546f3218a281513c0357b333ae009ee0b after PyPI installation verification. Main protection remains enforced; no bypass or direct primary-branch push was used.
+Public installation guidance was verified after distribution availability; its separate source location is omitted. Main protection remains enforced; no bypass or direct primary-branch push was used.
 
 ## Definer-confirmed closure
 
-On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.
+The Definer explicitly confirmed acceptance and closure for this workflow's recorded technical scope. This preserves the existing closed state; it does not grant new acceptance or publication authority.
+
+Historical confirmation dates: 2026-10-13.

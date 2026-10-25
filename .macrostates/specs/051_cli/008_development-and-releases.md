@@ -2,7 +2,7 @@
 
 ## Policy And Responsibility
 
-These operations implement the supported Process 5.0 and 5.1 policies with the
+These operations implement the supported Process 5.0, 5.1 and 6.0 policies with the
 same technical formats and structural readiness checks. Core behavior uses
 Git repositories, refs, commits, and reviewed integration without requiring a
 particular hosting platform or external changeset product. Projects define their
@@ -10,7 +10,7 @@ integration/review policy and may define independent application release policie
 The CLI never infers semantic impact from changed files or treats a matching
 version pair as proof of conformance.
 
-Process 5.1 does not require separate definer approval solely for a Major impact
+Process 5.1 and 6.0 do not require separate definer approval solely for a Major impact
 classification or baseline increase within authorized work. This does not close
 a workflow or authorize additional scope, integration, tags, or publication.
 Apply the selected authority rules in

@@ -1,24 +1,23 @@
 # at_least dependency authoring default
 
+Anonymized historical summary. Dates, recorded states and measurements are retained historical observations. This rewrite does not rerun checks or grant acceptance. Commit IDs and artifact fingerprints describe the original observed sources or artifacts, not this edited document. Omitted evidence locations are unavailable through this summary; no substitute evidence is invented.
+
 - Workflow type: Specification update
 - Project phase: bootstrapping
 - Status: completed
 - Delivery state: accepted
 - Branch: spec/at-least-dependency-default in macrostates-cli
-- Requested by: Lucas Lopez (713375+lucaslopez@users.noreply.github.com), supplied in this conversation.
-- Implementer: Codex, GPT-6; exact revision and effort not exposed.
+- Requested by: Definer
+- Implementer: AI-assisted implementation
 - Started at: 2026-10-08 17:55 UTC
 
-## Original request
+## Technical objective and scope
 
-Make at_least the dependency default so project composition can select latest
-releases more freely. Clarify that a numeric minimum does not guarantee that a
-future Major preserves all previous rules. The CLI still uses exact composition
-selections and validates them; this request does not introduce automatic solving.
+Make explicit at_least the normal dependency-authoring constraint and update the existing authored official-package constraints while preserving deliberate compatible/exact constraints, numeric compatibility checks and immutable installed releases.
 
 ## Scope and open work
 
-Prepare the Meta authoring policy and composition guidance first. The definer explicitly confirmed changing existing official-package constraints. Existing
+Prepare the Meta authoring policy and composition guidance. The recorded scope includes existing official-package constraints. Existing
 branch/PR and earlier publication workflows remain open for acceptance.
 
 ## Version classification
@@ -34,13 +33,13 @@ Check metadata, Markdown links, constraints and composition semantics; preserve
 main and all release tags. Use a feature branch and a PR for publication. Record
 consumer and CLI policy compatibility separately from numeric constraints.
 
-## Remaining work
+## Recorded pre-closure gates
 
 Definer acceptance, authorized merge/release and explicit closure. All requested edits and PR submission are delivered.
 
 ## Confirmed scope
 
-The definer chose changing both the default and existing official dependencies.
+The scope includes the default and existing official dependencies.
 Change all 15 canonical package dependency edges and the CLI local package's
 three authored edges from compatible to at_least, retaining numeric minimums.
 External CLI archive snapshots remain immutable on their selected published
@@ -73,21 +72,21 @@ At_least validation itself already accepts later Majors numerically.
 
 ## PR delivery
 
-- meta 2.1.0: https://github.com/Macrostates/macrostates-meta/pull/1
-- process 4.1.0: https://github.com/Macrostates/macrostates-process/pull/2
-- repository-1 3.1.0: https://github.com/Macrostates/macrostates-repository-1/pull/2
-- docker-1 2.1.0: https://github.com/Macrostates/macrostates-docker-1/pull/1
-- python-1 2.1.0: https://github.com/Macrostates/macrostates-python-1/pull/1
-- python-project-1 2.1.0: https://github.com/Macrostates/macrostates-python-project-1/pull/1
-- python-library-1 1.1.0: https://github.com/Macrostates/macrostates-python-library-1/pull/1
-- android-app-1 4.1.0: https://github.com/Macrostates/macrostates-android-app-1/pull/1
-- cli local 0.4.0: https://github.com/Macrostates/macrostates-cli/pull/1
+- meta 2.1.0: external evidence location omitted
+- process 4.1.0: external evidence location omitted
+- repository-1 3.1.0: external evidence location omitted
+- docker-1 2.1.0: external evidence location omitted
+- python-1 2.1.0: external evidence location omitted
+- python-project-1 2.1.0: external evidence location omitted
+- python-library-1 1.1.0: external evidence location omitted
+- android-app-1 4.1.0: external evidence location omitted
+- cli local 0.4.0: external evidence location omitted
 
 All nine PRs target main and are open and mergeable at verification. Package
 repositories have no configured PR checks. CLI CI run 37821403654 passed its
 Python 3.12, 3.13 and 3.14 checks for implementation commit 44d7435. A final
 workflow-only commit records delivery without changing specifications or runtime.
-PRs are attached to the chat. No direct primary-branch push or new release tag
+No direct primary-branch push or new release tag
 was performed. Earlier Process/Repository PR merges were external target updates.
 
 ## Follow-up after acceptance
@@ -100,4 +99,6 @@ to adopt an unpublished package. Explicit workflow closure remains outstanding.
 
 ## Definer-confirmed closure
 
-On 2026-10-13 the definer explicitly answered “yes!” to closing the nine delivered onboarding, AI disclosure, dependency-default, public-launch and PyPI workflows. This record is one of that identified set. Closure accepts the delivered scope and preserves the recorded validation and limitations; it does not change project-phase acceptance.
+The Definer explicitly confirmed acceptance and closure for this workflow's recorded technical scope. This preserves the existing closed state; it does not grant new acceptance or publication authority.
+
+Historical confirmation dates: 2026-10-13.
