@@ -115,8 +115,9 @@ or rewrite exact baseline declarations, consumed change records, tags or package
 
 ## Current Workflow Acceptance
 
-Local implementation and candidate qualification are complete. Three scoped
-workflows remain open while awaiting explicit Definer closure. Completion, acceptance,
-closure, integration and publication remain distinct. Closure requires explicit
-Definer authorization; no new acceptance or successful release is inferred from
-historical summaries or passing structural checks.
+Local implementation and candidate qualification are complete. The Definer
+explicitly authorized completion and closure of the policy-adoption, release-
+preparation and integration-preparation scopes. Their records retain the neutral
+dated authorization in workflow history. External checks, reviewed integration,
+tags and application publication remain separate operations. No successful
+publication is inferred from local acceptance or historical summaries.

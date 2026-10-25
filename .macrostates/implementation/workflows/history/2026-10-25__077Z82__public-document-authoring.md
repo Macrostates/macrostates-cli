@@ -2,14 +2,14 @@
 
 - Project phase: active
 - Workflow type: Implementation update
-- Status: in_progress
+- Status: completed
 - Change depth: systemic
 - Branch: feature/public-document-authoring
 - Requested by: Definer
 - Implementer: AI-assisted implementation
 - Started at: 2026-10-25 02:06 UTC
-- Last updated at: 2026-10-25 02:06 UTC
-- Delivery state: awaiting_acceptance
+- Last updated at: 2026-10-25 10:59 UTC
+- Delivery state: accepted
 
 ## Objective and scope
 
@@ -56,3 +56,13 @@ CLI output must be reviewed and filtered before retention as evidence.
 ## Suggested next step
 
 Review the completed adoption and authorize closure when accepted.
+
+## Closure authorization
+
+Closure authorized by: Definer
+Closure authorized at: 2026-10-25 10:59 UTC
+
+The completed local scope is accepted and explicitly authorized for closure.
+Preparation results and qualification limits remain as recorded. Final external
+checks, reviewed integration and publication are separate authorized operations;
+this closure does not assert that those future operations already succeeded.

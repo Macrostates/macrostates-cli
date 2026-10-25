@@ -2,14 +2,14 @@
 
 - Project phase: active
 - Workflow type: Release preparation
-- Status: in_progress
-- Delivery state: awaiting_acceptance
+- Status: completed
+- Delivery state: accepted
 - Change depth: small
 - Branch: release/public-documents-3.0.0
 - Requested by: Definer
 - Implementer: AI-assisted implementation
 - Started at: 2026-10-25 02:17 UTC
-- Last updated at: 2026-10-25 02:17 UTC
+- Last updated at: 2026-10-25 10:59 UTC
 
 ## Objective and scope
 
@@ -45,3 +45,13 @@ No earlier confirmation is inferred to authorize closure of this scope.
 ## Suggested next step
 
 Complete local preparation and present the numbered closure request.
+
+## Closure authorization
+
+Closure authorized by: Definer
+Closure authorized at: 2026-10-25 10:59 UTC
+
+The completed local scope is accepted and explicitly authorized for closure.
+Preparation results and qualification limits remain as recorded. Final external
+checks, reviewed integration and publication are separate authorized operations;
+this closure does not assert that those future operations already succeeded.
