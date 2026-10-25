@@ -2,10 +2,10 @@
 
 Project phase: active.
 
-Current source develops application version `0.6.0.dev0`, recorded in
-[application.yaml](application.yaml). The specification and implementation
-numbers remain the last finalized `specs-2.0.0` and `imp-2.0.0` while this work
-is pending. A later reviewed release plan will select new candidate baselines.
+Current source prepares application version `0.6.0`, recorded as a candidate in
+[application.yaml](application.yaml). The reviewed release plan proposes
+`specs-3.0.0` and `imp-3.0.0` from the recorded Major/Major policy scope. These
+remain candidates until reviewed integration finalizes their exact source.
 Published releases and their exact source provenance remain unchanged.
 
 ## Current Behavior And Adoption

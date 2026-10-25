@@ -1,33 +1,36 @@
 schema_version: 1
 status: candidate
-target_commit: 3f9f5c3bcbec98480f0c3365671d174c348df95b
-target_tree: bf16ce6cffb76342285320f8e2abc822af76cd6e
+target_commit: fbcd74c5dc7cddb145bff1406a33daa377642a2c
+target_tree: 31d7a918a21c3c979c1cbaf7e4afd86ed6d52f20
 integration_ref: origin/main
-integration_target: fe6e36989b0a3c5c274b9fe2a03f7a7673ffff09
+integration_target: c2397930b87395b9446ac5aa605caf6e75d9accd
 baselines:
-  specification: specs-1.0.0
-  implementation: imp-1.0.0
-  implementation_specification: specs-1.0.0
+  specification: specs-2.0.0
+  implementation: imp-2.0.0
+  implementation_specification: specs-2.0.0
 records:
+- id: public-document-authoring
+  sha256: bc916a86c1a5b280cfb5bf06436dbdec88fc956d172e7ee72625fe2da23c44e9
+- id: public-document-release
+  sha256: 5fd505d0ff3874338616255ca22c950c86d75d0432283f4d7df4ab7d612951d0
+history_records:
+- id: baseline-release-1-0-0
+  sha256: 3939d960123f4f767ebc18d70e7c01d5953736599454d4511ab92bb6309c40db
 - id: major-authority-release
   sha256: 085dd431c2570e98b8b54fff76392c5a5fe9c229c54ddd14ec61b2f2ec35a399
 - id: major-version-authority
   sha256: 8dc694f64a6d8cb5fe636ffbdff80089d50efb44c9e85a0010e77c0237f8d5a9
-history_records:
-- id: baseline-release-1-0-0
-  sha256: 3939d960123f4f767ebc18d70e7c01d5953736599454d4511ab92bb6309c40db
 - id: versioning-system
   sha256: d19227a7c6904752ba383be804a26509f96581be4e358ab2031754c8e9007dd3
 declarations:
-  composition_sha256: d2ac3009841cc5ca2c7f019d777ae1faf854f2b66dddb8aaaaad7cce0710bb6e
-  release_sha256: ef1f3d4b2c948a6a2c6e4624e28985fc9666a8b55b63a24abd08d9790bbad225
+  composition_sha256: 220848d566c7b2895190f0ec5a82b143fdbec75823132e40e617ce1ab173ffe8
+  release_sha256: 0c065fa7888abff8aea578234247ca8546a346ed7eea4be4ee7d54679f2f010f
 candidate:
-  specification: specs-2.0.0
-  implementation: imp-2.0.0
-  implementation_specification: specs-2.0.0
+  specification: specs-3.0.0
+  implementation: imp-3.0.0
+  implementation_specification: specs-3.0.0
 impact:
   specification: major
   implementation: major
-deliverables:
-- macrostates-cli
-release_date: '2026-10-13'
+deliverables: []
+release_date: '2026-10-25'
